@@ -1,3 +1,4 @@
+
 package com.internousdev.template.action;
 
 import java.util.HashMap;
@@ -18,7 +19,7 @@ public class BuyItemAction extends ActionSupport implements SessionAware {
 	/**
 	 * アイテム購入個数
 	 */
-	public int stock;
+	public int count;
 
 	/**
 	 * 支払い方法
@@ -42,12 +43,11 @@ public class BuyItemAction extends ActionSupport implements SessionAware {
 	 */
 	public String execute() {
 		result = SUCCESS;
-
-		buyItemInfoMap.put("stock", stock);
-		int intStock = Integer.parseInt(buyItemInfoMap.get("stock").toString());
+		buyItemInfoMap.put("count", count);
+		int intCount = Integer.parseInt(buyItemInfoMap.get("count").toString());
 		int intPrice = Integer.parseInt(buyItemInfoMap.get("buyItem_price").toString());
 
-		buyItemInfoMap.put("buyItem_price", intStock * intPrice);
+		buyItemInfoMap.put("total_price", intCount * intPrice);
 		String payment;
 
 		if(pay.equals("1")) {
@@ -62,12 +62,12 @@ public class BuyItemAction extends ActionSupport implements SessionAware {
 		return result;
 	}
 
-	public int getStock() {
-		return stock;
+	public int getCount() {
+		return count;
 	}
 
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	public String getPay() {

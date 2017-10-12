@@ -14,6 +14,7 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta charset="utf-8">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<title>BuyItemConfirm画面</title>
 	<style type="text/css">
 	/* ========TAG LAYOUT======== */
@@ -59,6 +60,12 @@
 			clear:both;
 		}
 	</style>
+	<script type="text/javascript">
+		function submitAction(url) {
+			$('form').attr('action', url);
+			$('form').submit();
+		}
+	</script>
 </head>
 <body>
 	<div id="header">
@@ -70,28 +77,32 @@
 			<p>BuyItemConfirm</p>
 		</div>
 		<div>
-			<s:form action="BuyItemConfirmAction">
-			<table>
+			<s:form>
 				<tr>
 					<td>商品名</td>
 					<td><s:property value="buyItemInfoMap.buyItem_name" /></td>
 				</tr>
 				<tr>
 					<td>値段</td>
-					<td><s:property value="buyItemInfoMap.buyItem_price" /><span>円</span></td>
+					<td><s:property value="buyItemInfoMap.total_price" /><span>円</span></td>
 				</tr>
 				<tr>
 					<td>購入個数</td>
-					<td><s:property value="buyItemInfoMap.stock" /><span>個</span></td>
+					<td><s:property value="buyItemInfoMap.count" /><span>個</span></td>
 				</tr>
 				<tr>
 					<td>支払い方法</td>
 					<td><s:property value="buyItemInfoMap.pay" /></td>
 				</tr>
 				<tr>
-					<td><s:submit value="完了" /></td>
+					<td>
+						<br>
+					</td>
 				</tr>
-			</table>
+				<tr>
+					<td><input type="button" value="戻る" onclick="submitAction('HomeAction')" /></td>
+					<td><input type="button" value="完了" onclick="submitAction('BuyItemConfirmAction')" /></td>
+				</tr>
 			</s:form>
 		</div>
 	</div>
