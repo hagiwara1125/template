@@ -3,22 +3,18 @@ package com.internousdev.template.dto;
 import java.math.BigDecimal;
 
 /**
- * カート情報に関するDTOクラス
- * @author HIANKO HAGIWARA
+ * 商品情報に関するDTOクラス
+ * @author HINAKO HAGIWARA
  * @since 2017/10/13
  * @version 1.0
  */
-public class CartDTO {
+
+public class ItemDTO {
 
 	/**
 	 * ユーザーID
 	 */
 	private int user_id;
-
-	/**
-	 * カートID
-	 */
-	private int cart_id;
 
 	/**
 	 * 商品ID
@@ -36,14 +32,9 @@ public class CartDTO {
 	private BigDecimal item_price;
 
 	/**
-	 * 注文数
+	 * 商品カテゴリー
 	 */
-	private int order_count;
-
-	/**
-	 * 小計
-	 */
-	private BigDecimal sub_total;
+	private int item_category;
 
 	/**
 	 * 商品在庫数
@@ -54,6 +45,16 @@ public class CartDTO {
 	 * 商品画像
 	 */
 	private String img_path;
+
+	/**
+	 * 商品説明
+	 */
+	private String item_comment;
+
+	/**
+	 * カート内の注文数を引いた商品在庫数
+	 */
+	private int cart_stock;
 
 
 
@@ -66,27 +67,11 @@ public class CartDTO {
 	}
 
 	/**
-	 * ユーザーIDを格納するためのメソッド
+	 * ユーザーIDを格納するためのクラス
 	 * @param user_id ユーザーID
 	 */
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
-	}
-
-	/**
-	 * カートIDを取得するためのメソッド
-	 * @return cart_id カートID
-	 */
-	public int getCart_id() {
-		return cart_id;
-	}
-
-	/**
-	 * カートIDを格納するためのメソッド
-	 * @param cart_id カートID
-	 */
-	public void setCart_id(int cart_id) {
-		this.cart_id = cart_id;
 	}
 
 	/**
@@ -123,7 +108,7 @@ public class CartDTO {
 
 	/**
 	 * 商品価格を取得するためのメソッド
-	 * @return item_id 商品価格
+	 * @return item_price 商品価格
 	 */
 	public BigDecimal getItem_price() {
 		return item_price;
@@ -138,35 +123,19 @@ public class CartDTO {
 	}
 
 	/**
-	 * 注文数を取得するためのメソッド
-	 * @return order_count 注文数
+	 * 商品カテゴリーを取得するためのメソッド
+	 * @return item_category 商品カテゴリー
 	 */
-	public int getOrder_count() {
-		return order_count;
+	public int getItem_category() {
+		return item_category;
 	}
 
 	/**
-	 * 注文数を格納するためのメソッド
-	 * @param order_count 注文数
+	 * 商品カテゴリーを格納するためのメソッド
+	 * @param item_category 商品カテゴリー
 	 */
-	public void setOrder_count(int order_count) {
-		this.order_count = order_count;
-	}
-
-	/**
-	 * 小計を取得するためのメソッド
-	 * @return sub_total 小計
-	 */
-	public BigDecimal getSub_total() {
-		return sub_total;
-	}
-
-	/**
-	 * 小計を格納するためのメソッド
-	 * @param sub_total 小計
-	 */
-	public void setSub_total(BigDecimal sub_total) {
-		this.sub_total = sub_total;
+	public void setItem_category(int item_category) {
+		this.item_category = item_category;
 	}
 
 	/**
@@ -199,6 +168,38 @@ public class CartDTO {
 	 */
 	public void setImg_path(String img_path) {
 		this.img_path = img_path;
+	}
+
+	/**
+	 * 商品詳細を取得するためのメソッド
+	 * @return item_comment 商品詳細
+	 */
+	public String getItem_comment() {
+		return item_comment;
+	}
+
+	/**
+	 * 商品詳細を格納するためのメソッド
+	 * @param item_comment 商品詳細
+	 */
+	public void setItem_comment(String item_comment) {
+		this.item_comment = item_comment;
+	}
+
+	/**
+	 * カート内の注文数を引いた商品在庫数を取得するためのメソッド
+	 * @return cart_stock カート内の注文数を引いた商品在庫数
+	 */
+	public int getCart_stock() {
+		return cart_stock;
+	}
+
+	/**
+	 * カート内の注文数を引いた商品在庫数を格納するためのメソッド
+	 * @param cart_stock カート内の注文数を引いた商品在庫数
+	 */
+	public void setCart_stock(int cart_stock) {
+		this.cart_stock = cart_stock;
 	}
 
 }

@@ -3,17 +3,24 @@ package com.internousdev.template.dto;
 import java.math.BigDecimal;
 
 /**
- * カート情報に関するDTOクラス
+ * 商品購入に関するDTOクラス
  * @author HIANKO HAGIWARA
  * @since 2017/10/13
  * @version 1.0
  */
-public class CartDTO {
+
+public class PurchaseDTO {
+
 
 	/**
 	 * ユーザーID
 	 */
 	private int user_id;
+
+	/**
+	 * 購入ID
+	 */
+	private int purchase_id;
 
 	/**
 	 * カートID
@@ -36,7 +43,7 @@ public class CartDTO {
 	private BigDecimal item_price;
 
 	/**
-	 * 注文数
+	 * 購入数
 	 */
 	private int order_count;
 
@@ -44,6 +51,11 @@ public class CartDTO {
 	 * 小計
 	 */
 	private BigDecimal sub_total;
+
+	/**
+	 * 合計金額
+	 */
+	private BigDecimal total_price;
 
 	/**
 	 * 商品在庫数
@@ -55,22 +67,43 @@ public class CartDTO {
 	 */
 	private String img_path;
 
-
-
 	/**
-	 * ユーザーIDを取得するためのメソッド
-	 * @return user_id ユーザーID
+	 * 購入日
 	 */
+	private String purcase_date;
+
+
+
+/**
+ * ユーザーIDを取得するためのメソッド
+ * @return user_id ユーザーID
+ */
 	public int getUser_id() {
 		return user_id;
 	}
 
-	/**
-	 * ユーザーIDを格納するためのメソッド
-	 * @param user_id ユーザーID
-	 */
+/**
+ * ユーザーIDを格納するためのメソッド
+ * @param user_id ユーザーID
+ */
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
+	}
+
+	/**
+	 * 購入IDを取得するためのメソッド
+	 * @return purcase_id 購入ID
+	 */
+	public int getPurchase_id() {
+		return purchase_id;
+	}
+
+	/**
+	 * 購入IDを格納するためのメソッド
+	 * @param purchase_id 購入ID
+	 */
+	public void setPurchase_id(int purchase_id) {
+		this.purchase_id = purchase_id;
 	}
 
 	/**
@@ -123,7 +156,7 @@ public class CartDTO {
 
 	/**
 	 * 商品価格を取得するためのメソッド
-	 * @return item_id 商品価格
+	 * @return item_price 商品価格
 	 */
 	public BigDecimal getItem_price() {
 		return item_price;
@@ -138,16 +171,16 @@ public class CartDTO {
 	}
 
 	/**
-	 * 注文数を取得するためのメソッド
-	 * @return order_count 注文数
+	 * 購入数を取得するためのメソッド
+	 * @return order_count 購入数
 	 */
 	public int getOrder_count() {
 		return order_count;
 	}
 
 	/**
-	 * 注文数を格納するためのメソッド
-	 * @param order_count 注文数
+	 * 購入数を格納するためのメソッド
+	 * @param order_count 購入数
 	 */
 	public void setOrder_count(int order_count) {
 		this.order_count = order_count;
@@ -167,6 +200,22 @@ public class CartDTO {
 	 */
 	public void setSub_total(BigDecimal sub_total) {
 		this.sub_total = sub_total;
+	}
+
+	/**
+	 * 合計金額を取得するためのメソッド
+	 * @return total_price 合計金額
+	 */
+	public BigDecimal getTotal_price() {
+		return total_price;
+	}
+
+	/**
+	 * 合計金額を格納するためのメソッド
+	 * @param total_price 合計金額
+	 */
+	public void setTotal_price(BigDecimal total_price) {
+		this.total_price = total_price;
 	}
 
 	/**
@@ -199,6 +248,22 @@ public class CartDTO {
 	 */
 	public void setImg_path(String img_path) {
 		this.img_path = img_path;
+	}
+
+	/**
+	 * 購入日を取得するためのメソッド
+	 * @return purcase_date 購入日
+	 */
+	public String getPurcase_date() {
+		return purcase_date;
+	}
+
+	/**
+	 * 購入日を格納するためのメソッド
+	 * @param purcase_date 購入日
+	 */
+	public void setPurcase_date(String purcase_date) {
+		this.purcase_date = purcase_date;
 	}
 
 }
