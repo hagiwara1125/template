@@ -8,6 +8,8 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.internousdev.template.dao.ItemListDAO;
 import com.internousdev.template.dto.CartDTO;
 import com.internousdev.template.dto.ItemDTO;
+import com.internousdev.template.util.ItemListAllPages;
+import com.internousdev.template.util.ItemListPageObject;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -33,6 +35,11 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 	 * 商品カテゴリー
 	 */
 	private int item_category = 0;
+
+	/**
+	 * 在庫数メッセージ
+	 */
+	private String stock_alert;
 
 	/**
 	 * DBから取得した商品情報リスト
@@ -80,13 +87,34 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 	public String execute() {
 		String result = ERROR;
 
+		if(session.containsKey("user_id")) {
+			user_id = (int) session.get("user_id");
+
+		}
+
 		ItemListDAO dao = new ItemListDAO();
 		selectList = dao.select(item_category);
 
-		for(int i = 0; i < selectList.size(); i++) {
-
-			if(selectList.get(i).isI)
+		if(selectList.size() > 0) {
+			result = SUCCESS;
 		}
+
+		number = selectList.size();
+		if(number > 0) {
+
+			//ページネーション処理
+			ArrayList<ItemListPageObject> allPages = new ArrayList<ItemListPageObject>();
+			ItemListAllPages allp = new ItemListAllPages();
+			allPages = allp.paginate(selectList, 12);
+			maxPage = allp.getMaxPage(selectList, 12);
+			itemList = allPages.get(pageNum - 1).getPaginatedList();
+			for(int i = 0; i < maxPage; i++) {
+				list.add(i);
+			}
+			result = SUCCESS;
+		}
+		result = SUCCESS;
+		return result;
 	}
 
 }
