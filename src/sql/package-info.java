@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author internous
- *
- */
-package sql;
