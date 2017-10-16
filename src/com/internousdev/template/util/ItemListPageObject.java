@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.internousdev.template.dto.ItemDTO;
 
 /**
- * ページネーションが必要なリストのために、1ページ毎の情報を保持するためのクラス
+ * ページネーションが必要なリストのために、1ページごとの情報を保持するためのクラス
  * @author HINAKO HAGIWARA
  * @since 2017/10/15
  * @version 1.0
@@ -19,9 +19,9 @@ public class ItemListPageObject {
 	private int page_id;
 
 	/**
-	 * 当該1ページに表示される商品のリスト
+	 * ページネートされた商品のリスト
 	 */
-	private ArrayList<ItemDTO> pagenatedItemList = new ArrayList<ItemDTO>();
+	private ArrayList<ItemDTO> paginatedItemList = new ArrayList<ItemDTO>();
 
 
 
@@ -29,10 +29,10 @@ public class ItemListPageObject {
 	 * ページネートされた商品リストを取得するメソッド
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/15
-	 * @return pagenatedItemList ページネートされた商品リスト
+	 * @return paginatedItemList ページネートされた商品リスト
 	 */
 	public ArrayList<ItemDTO> getPagenatedList() {
-		return pagenatedItemList;
+		return paginatedItemList;
 	}
 
 	/**
@@ -41,8 +41,8 @@ public class ItemListPageObject {
 	 * @since 2017/10/15
 	 * @param list DTOに格納されたArrayList
 	 */
-	public void setPagenatedList(ArrayList<ItemDTO> list) {
-		pagenatedItemList = list;
+	public void setPaginatedList(ArrayList<ItemDTO> list) {
+		paginatedItemList = list;
 	}
 
 	/**
@@ -51,8 +51,8 @@ public class ItemListPageObject {
 	 * @param list DTOに格納されたArrayList
 	 * @param j 繰り返し用変数
 	 */
-	public void addPagenatedList(ArrayList<ItemDTO> list, int j) {
-		pagenatedItemList.add((ItemDTO) list.get(j));
+	public void addPaginatedList(ArrayList<ItemDTO> list, int j) {
+		paginatedItemList.add((ItemDTO) list.get(j));
 	}
 
 
@@ -74,18 +74,18 @@ public class ItemListPageObject {
 	}
 
 	/**
-	 * 当該1ページに表示される商品のリストを取得するためのメソッド
-	 * @return pagenatedItemList 当該1ページに表示される商品のリスト
+	 * ページネートされた商品のリストを取得するためのメソッド
+	 * @return paginatedItemList 当該1ページに表示される商品のリスト
 	 */
-	public ArrayList<ItemDTO> getPagenatedItemList() {
-		return pagenatedItemList;
+	public ArrayList<ItemDTO> getPaginatedItemList() {
+		return paginatedItemList;
 	}
 
 	/**
-	 * 当該1ページに表示される商品のリストを格納するためのメソッド
-	 * @param pagenatedItemList 当該1ページに表示される商品のリスト
+	 * ページネートされた商品のリストを格納するためのメソッド
+	 * @param paginatedItemList 当該1ページに表示される商品のリスト
 	 */
-	public void setPagenatedItemList(ArrayList<ItemDTO> pagenatedItemList) {
-		this.pagenatedItemList = pagenatedItemList;
+	public void setPaginatedItemList(ArrayList<ItemDTO> paginatedItemList) {
+		this.paginatedItemList = paginatedItemList;
 	}
  }

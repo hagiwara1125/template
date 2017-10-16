@@ -35,7 +35,9 @@
 <s:include value="header.jsp" />
 </head>
 
-
+<ul>
+<li><a href='<s:url action="ItemListAction"><s:param name="item_category" value="%{'1'}"/></s:url>'><s:text name="lang.item_list.test"/></a></li>
+</ul>
 
 <footer></footer>
 

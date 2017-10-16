@@ -32,7 +32,7 @@ public class ItemListDAO {
 		ItemDTO dto = null;
 		String sql;
 		if(item_category != 0) {
-			sql = "SELECT * FROM item where category=? ORDER BY item_name ASC";
+			sql = "SELECT * FROM item where item_category=? ORDER BY item_name ASC";
 		} else {
 			sql = "SELECT * FROM item ORDER BY item_name ASC";
 

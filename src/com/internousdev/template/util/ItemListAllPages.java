@@ -18,7 +18,7 @@ public class ItemListAllPages {
 	 * @param count 1ページあたりに掲載されるオブジェクトの個数
 	 * @return displayBook 渡されたリストを1ページにcount個までオブジェクトが刑された本の形
 	 */
-	public ArrayList<ItemListPageObject> pagenate(ArrayList<ItemDTO> list, int count) {
+	public ArrayList<ItemListPageObject> paginate(ArrayList<ItemDTO> list, int count) {
 
 		ArrayList<ItemListPageObject> displayBook = new ArrayList<ItemListPageObject>();
 		int itemCount = count;
@@ -38,7 +38,7 @@ public class ItemListAllPages {
 				if(list.size() == j) {
 					break;
 				}
-				page.addPagenatedList(list, j);
+				page.addPaginatedList(list, j);
 			}
 
 			page.setPage_id(i);

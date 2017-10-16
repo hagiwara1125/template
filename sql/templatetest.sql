@@ -38,7 +38,7 @@ item_price decimal(9,2) not null, /* 商品価格(税込) */
 item_category int not null, /* 商品カテゴリー */
 item_stock int not null, /* 商品在庫数 */
 img_path text not null, /* 商品画像 */
-comment varchar null, /* 商品詳細 */
+item_comment varchar null, /* 商品詳細 */
 );
 
 
@@ -85,4 +85,21 @@ update_date datetime not null, /* 更新日 */
 /* insert
  * */
 
-insert int
+INSERT INTO login_user_transaction(login_id, login_pass, user_name) VALUES("internous", "internous01", "test");
+
+insert into item(item_name, item_price, item_category, item_stock, img_path, comment) value
+('あいう', 250, 1, 30, './img/item/', 'あいう'),
+('あいう', 250, 2, 30, './img/item/', 'あいう'),
+('あいう', 250, 3, 30, './img/item/', 'あいう'),
+('あいう', 250, 4, 30, './img/item/', 'あいう'),
+('あいう', 250, 5, 30, './img/item/', 'あいう'),
+('あいう', 250, 1, 30, './img/item/', 'あいう'),
+('あいう', 250, 2, 30, './img/item/', 'あいう'),
+('あいう', 250, 3, 30, './img/item/', 'あいう'),
+('あいう', 250, 4, 30, './img/item/', 'あいう'),
+('あいう', 250, 5, 30, './img/item/', 'あいう'),
+('あいう', 250, 1, 30, './img/item/', 'あいう'),
+('あいう', 250, 2, 30, './img/item/', 'あいう'),
+('あいう', 250, 3, 30, './img/item/', 'あいう'),
+('あいう', 250, 4, 30, './img/item/', 'あいう'
+);
