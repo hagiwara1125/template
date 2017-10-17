@@ -2,6 +2,8 @@ package com.internousdev.template.dto;
 
 import java.math.BigDecimal;
 
+
+
 /**
  * 商品情報に関するDTOクラス
  * @author HINAKO HAGIWARA
@@ -27,14 +29,14 @@ public class ItemDTO {
 	private String item_name;
 
 	/**
+	 * 商品カテゴリー
+	 */
+	private int category;
+
+	/**
 	 * 商品価格
 	 */
 	private BigDecimal item_price;
-
-	/**
-	 * 商品カテゴリー
-	 */
-	private int item_category;
 
 	/**
 	 * 商品在庫数
@@ -49,7 +51,17 @@ public class ItemDTO {
 	/**
 	 * 商品説明
 	 */
-	private String item_comment;
+	private String comment;
+
+	/**
+	 * 商品フラグ
+	 */
+	private boolean item_flg;
+
+	/**
+	 * 公開フラグ
+	 */
+	private boolean release_flg;
 
 	/**
 	 * カート内の注文数を引いた商品在庫数
@@ -107,6 +119,22 @@ public class ItemDTO {
 	}
 
 	/**
+	 * カテゴリを取得するためのメソッド
+	 * @return category カテゴリ
+	 */
+	public int getCategory() {
+		return category;
+	}
+
+	/**
+	 * カテゴリを格納するためのメソッド
+	 * @param category カテゴリ
+	 */
+	public void setCategory(int category) {
+		this.category = category;
+	}
+
+	/**
 	 * 商品価格を取得するためのメソッド
 	 * @return item_price 商品価格
 	 */
@@ -120,22 +148,6 @@ public class ItemDTO {
 	 */
 	public void setItem_price(BigDecimal item_price) {
 		this.item_price = item_price;
-	}
-
-	/**
-	 * 商品カテゴリーを取得するためのメソッド
-	 * @return item_category 商品カテゴリー
-	 */
-	public int getItem_category() {
-		return item_category;
-	}
-
-	/**
-	 * 商品カテゴリーを格納するためのメソッド
-	 * @param item_category 商品カテゴリー
-	 */
-	public void setItem_category(int item_category) {
-		this.item_category = item_category;
 	}
 
 	/**
@@ -171,19 +183,51 @@ public class ItemDTO {
 	}
 
 	/**
-	 * 商品詳細を取得するためのメソッド
-	 * @return item_comment 商品詳細
+	 * 商品説明を取得するためのメソッド
+	 * @return comment 商品説明
 	 */
-	public String getItem_comment() {
-		return item_comment;
+	public String getComment() {
+		return comment;
 	}
 
 	/**
-	 * 商品詳細を格納するためのメソッド
-	 * @param item_comment 商品詳細
+	 * 商品説明を格納するためのメソッド
+	 * @param comment 商品説明
 	 */
-	public void setItem_comment(String item_comment) {
-		this.item_comment = item_comment;
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	/**
+	 * 商品フラグを取得するためのメソッド
+	 * @return item_flg 商品フラグ
+	 */
+	public boolean isItem_flg() {
+		return item_flg;
+	}
+
+	/**
+	 * 商品フラグを格納するためのメソッド
+	 * @param item_flg 商品フラグ
+	 */
+	public void setItem_flg(boolean item_flg) {
+		this.item_flg = item_flg;
+	}
+
+	/**
+	 * 公開フラグを取得するためのメソッド
+	 * @return release_flg 公開フラグ
+	 */
+	public boolean isRelease_flg() {
+		return release_flg;
+	}
+
+	/**
+	 * 公開フラグを格納するためのメソッド
+	 * @param release_flg 公開フラグ
+	 */
+	public void setRelease_flg(boolean release_flg) {
+		this.release_flg = release_flg;
 	}
 
 	/**
