@@ -28,18 +28,69 @@
 <meta charset="utf-8">
 
 <title><s:text name="lang.item_list.item_list" /></title>
+
 </head>
+
+
 <body>
 
-<head>
-<s:include value="header.jsp" />
-</head>
+	<ul class="outline">
+		<li>
+			<div class="category">
+				<s:text name="lang.test_item.SearchT" />
+			</div>
+			<ul class="menu">
+				<li><a
+					href="<s:url action="ItemListAction"><s:param name="category" value="1" /></s:url>"><s:text
+							name="lang.test_item.gourmet" /></a></li>
+				<li><a
+					href='<s:url action="ItemListAction"><s:param name="category" value="2"/></s:url>'><s:text
+							name="lang.test_item.spot" /></a></li>
+				<li><a
+					href='<s:url action="ItemListAction"><s:param name="category" value="3"/></s:url>'><s:text
+							name="lang.test_item.activity" /></a></li>
+			</ul>
+		</li>
 
-<ul>
-<li><a href='<s:url action="ItemListAction"><s:param name="item_category" value="%{'1'}"/></s:url>'><s:text name="lang.item_list.test"/></a></li>
-</ul>
+	</ul>
+	<script type="text/javascript" src="./js/sidebar.js"></script>
 
-<footer></footer>
+	<div id="contents">
+
+
+		<div class="subtitle">
+			<s:text name="lang.item_list.cart" />
+		</div>
+
+		<div class="display_list">
+			<s:iterator value="selectList">
+				<div class="template">
+					<div class="hvr-float-shadow">
+						<div class="item_img">
+							<a
+								href="<s:url action="ItemDetailAction"><s:param name="item_id" value="%{item_id}"/></s:url>"><img
+								class="item_img" src="<s:property value="img_path"/>"
+								height="250px"> <s:hidden value="item_id" /> </a>
+						</div>
+					</div>
+					<div class="item_name">
+						<s:property value="item_name" />
+					</div>
+					<div class="item_price">
+						￥
+						<fmt:formatNumber value="${price}" pattern="###,###,###" />
+					</div>
+				</div>
+			</s:iterator>
+		</div>
+
+		<footer style="padding-top: 110%; text-align: center;">
+			<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
+		</footer>
+
+	</div>
+
+
 
 </body>
 </html>

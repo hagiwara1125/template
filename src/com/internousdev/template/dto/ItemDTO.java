@@ -24,14 +24,24 @@ public class ItemDTO {
 	private int item_id;
 
 	/**
+	 * バリエーションID
+	 */
+	private int variation_id;
+
+	/**
 	 * 商品名
 	 */
 	private String item_name;
 
 	/**
-	 * 商品カテゴリー
+	 * 商品カテゴリ
 	 */
-	private int category;
+	private int item_category;
+
+	/**
+	 * 商品カラー
+	 */
+	private String item_color;
 
 	/**
 	 * 商品価格
@@ -51,7 +61,7 @@ public class ItemDTO {
 	/**
 	 * 商品説明
 	 */
-	private String comment;
+	private String item_comment;
 
 	/**
 	 * 商品フラグ
@@ -64,9 +74,14 @@ public class ItemDTO {
 	private boolean release_flg;
 
 	/**
+	 * 在庫数通知
+	 */
+	private String stock_alert;
+
+	/**
 	 * カート内の注文数を引いた商品在庫数
 	 */
-	private int cart_stock;
+	private int user_stock;
 
 
 
@@ -103,6 +118,22 @@ public class ItemDTO {
 	}
 
 	/**
+	 * バリエーションIDを取得するためのメソッド
+	 * @return variation_id バリエーションID
+	 */
+	public int getVariation_id() {
+		return variation_id;
+	}
+
+	/**
+	 * バリエーションIDを格納するためのメソッド
+	 * @param variation_id バリエーションID
+	 */
+	public void setVariation_id(int variation_id) {
+		this.variation_id = variation_id;
+	}
+
+	/**
 	 * 商品名を取得するためのメソッド
 	 * @return item_name 商品名
 	 */
@@ -119,19 +150,35 @@ public class ItemDTO {
 	}
 
 	/**
-	 * カテゴリを取得するためのメソッド
-	 * @return category カテゴリ
+	 * 商品カテゴリを取得するためのメソッド
+	 * @return item_category 商品カテゴリ
 	 */
-	public int getCategory() {
-		return category;
+	public int getItem_category() {
+		return item_category;
 	}
 
 	/**
-	 * カテゴリを格納するためのメソッド
-	 * @param category カテゴリ
+	 * 商品カテゴリを格納するためのメソッド
+	 * @param item_category 商品カテゴリ
 	 */
-	public void setCategory(int category) {
-		this.category = category;
+	public void setItem_category(int item_category) {
+		this.item_category = item_category;
+	}
+
+	/**
+	 * 商品カラーを取得するためのメソッド
+	 * @return item_color 商品カラー
+	 */
+	public String getItem_color() {
+		return item_color;
+	}
+
+	/**
+	 * 商品カラーを格納するためのメソッド
+	 * @param item_color 商品カラー
+	 */
+	public void setItem_color(String item_color) {
+		this.item_color = item_color;
 	}
 
 	/**
@@ -186,16 +233,16 @@ public class ItemDTO {
 	 * 商品説明を取得するためのメソッド
 	 * @return comment 商品説明
 	 */
-	public String getComment() {
-		return comment;
+	public String getItem_comment() {
+		return item_comment;
 	}
 
 	/**
 	 * 商品説明を格納するためのメソッド
 	 * @param comment 商品説明
 	 */
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setItem_comment(String item_comment) {
+		this.item_comment = item_comment;
 	}
 
 	/**
@@ -231,19 +278,35 @@ public class ItemDTO {
 	}
 
 	/**
-	 * カート内の注文数を引いた商品在庫数を取得するためのメソッド
-	 * @return cart_stock カート内の注文数を引いた商品在庫数
+	 * 在庫数通知を取得するためのメソッド
+	 * @return stock_alert 在庫数通知
 	 */
-	public int getCart_stock() {
-		return cart_stock;
+	public String getStock_alert() {
+		return stock_alert;
+	}
+
+	/**
+	 * 在庫数通知を格納するためのメソッド
+	 * @param stock_alert 在庫数通知
+	 */
+	public void setStock_alert(String stock_alert) {
+		this.stock_alert = stock_alert;
+	}
+
+	/**
+	 * カート内の注文数を引いた商品在庫数を取得するためのメソッド
+	 * @return user_stock カート内の注文数を引いた商品在庫数
+	 */
+	public int getUser_stock() {
+		return user_stock;
 	}
 
 	/**
 	 * カート内の注文数を引いた商品在庫数を格納するためのメソッド
-	 * @param cart_stock カート内の注文数を引いた商品在庫数
+	 * @param user_stock カート内の注文数を引いた商品在庫数
 	 */
-	public void setCart_stock(int cart_stock) {
-		this.cart_stock = cart_stock;
+	public void setUser_stock(int user_stock) {
+		this.user_stock = user_stock;
 	}
 
 }
