@@ -36,7 +36,7 @@ public class CartInsertDAO {
 			while(rs.next()) {
 				ItemDTO dto = new ItemDTO();
 				dto.setItem_name(rs.getString("item_name"));
-				dto.setItem_price(rs.getBigDecimal("Item_price"));
+				dto.setItem_price(rs.getBigDecimal("item_price"));
 				dto.setItem_stock(rs.getInt("item_stock"));
 				dto.setItem_comment(rs.getString("item_comment"));
 
@@ -69,7 +69,7 @@ public class CartInsertDAO {
 	public int addToCart(int user_id, int item_id, int order_count, BigDecimal sub_total) {
 		int addCount = 0;
 
-		MySQLConnector db = new MySQLConnector("con.mysql.jdbc.Driver", "jdbc:nysql://localhost/", "templatetest", "root", "mysql");
+		MySQLConnector db = new MySQLConnector("con.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
 		Connection con = db.getConnection();
 		String sql = "insert into cart(user_id, item_id, order_count, sub_total) values(?, ?, ?, ?)";
 
@@ -168,10 +168,10 @@ public class CartInsertDAO {
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, order_count);
-			ps.setBigDecimal(2, sub_total);
-			ps.setInt(3, user_id);
-			ps.setInt(4, item_id);
+			ps.setInt(1, user_id);
+			ps.setInt(2, item_id);
+			ps.setInt(3, order_count);
+			ps.setBigDecimal(4, sub_total);
 			addCount = ps.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();

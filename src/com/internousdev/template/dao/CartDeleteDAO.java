@@ -4,11 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.internousdev.template.util.DBConnector;
+import com.internousdev.template.util.MySQLConnector;
+
 
 
 /**
- * カートテーブル内情報の削除に関するクラス
+ * カートテーブル内情報の削除に関するDAOクラス
  * @author HINAKO HAGIWARA
  * @since 2017/10/16
  * @version 1.0
@@ -17,7 +18,7 @@ public class CartDeleteDAO {
 
 	public int delete(int user_id, int cart_id) {
 		int delCount = 0;
-		DBConnector db = new DBConnector();
+		MySQLConnector db = new MySQLConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
 		Connection con = db.getConnection();
 		String sql = "delete from cart where user_id = ? and cart_id = ?";
 

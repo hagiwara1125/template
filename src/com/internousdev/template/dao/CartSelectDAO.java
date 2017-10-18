@@ -49,7 +49,7 @@ public class CartSelectDAO {
 
 					dto.setItem_name(rs2.getString("item_name"));
 					dto.setItem_price(rs2.getBigDecimal("item_price"));
-					dto.setSub_total(rs2.getBigDecimal("sub_total"));
+					dto.setSub_total(rs.getBigDecimal("sub_total"));
 					dto.setImg_path(rs2.getString("img_path"));
 				}
 

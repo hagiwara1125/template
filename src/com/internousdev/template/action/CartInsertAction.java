@@ -12,14 +12,15 @@ import com.internousdev.template.dto.CartDTO;
 import com.internousdev.template.dto.ItemDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
+
+
 /**
- * カートに商品を格納するためのActionクラス
+ * カートに特定の商品を格納するためのActionクラス
  * @author HINAKO HAGIWARA
  * @since 2017/10/16
  * @version 1.0
  */
 public class CartInsertAction extends ActionSupport implements SessionAware {
-
 
 	/**
 	 * 生成されたシリアルID
@@ -67,20 +68,20 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 	private BigDecimal sub_total = BigDecimal.ZERO;
 
 	/**
-	 * カート情報リスト
-	 */
-	private ArrayList<CartDTO> cartList;
-
-	/**
 	 * 商品情報リスト
 	 */
 	private ArrayList<ItemDTO> itemList;
+
+	/**
+	 * カート情報リスト
+	 */
+	private ArrayList<CartDTO> cartList;
 
 
 
 	/**
 	 * 実行メソッド
-	 * カートに商品を追加できたらSUCCESSを返す
+	 * カートに特定の商品を追加できたらSUCCESSを返す
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/16
 	 * @version 1.0
@@ -101,8 +102,8 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 						order_count = itemList.get(i).getItem_stock();
 					} else {
 						order_count += cartList.get(i).getOrder_count();
-						if(order_count > 10) {
-							order_count = 10;
+						if(order_count > 30) {
+							order_count = 30;
 						}
 					}
 
@@ -258,22 +259,6 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 	}
 
 	/**
-	 * カート情報リストを取得するためのメソッド
-	 * @return cartList カート情報リスト
-	 */
-	public ArrayList<CartDTO> getCartList() {
-		return cartList;
-	}
-
-	/**
-	 * カート情報リストを格納するためのメソッド
-	 * @param cartList カート情報リスト
-	 */
-	public void setCartList(ArrayList<CartDTO> cartList) {
-		this.cartList = cartList;
-	}
-
-	/**
 	 * 商品情報リストを取得するためのメソッド
 	 * @return itemList 商品情報リスト
 	 */
@@ -289,6 +274,21 @@ public class CartInsertAction extends ActionSupport implements SessionAware {
 		this.itemList = itemList;
 	}
 
+	/**
+	 * カート情報リストを取得するためのメソッド
+	 * @return cartList カート情報リスト
+	 */
+	public ArrayList<CartDTO> getCartList() {
+		return cartList;
+	}
+
+	/**
+	 * カート情報リストを格納するためのメソッド
+	 * @param cartList カート情報リスト
+	 */
+	public void setCartList(ArrayList<CartDTO> cartList) {
+		this.cartList = cartList;
+	}
 
 
 }
