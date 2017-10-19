@@ -45,9 +45,7 @@ item_color varchar(255),
 item_price decimal(9,2) not null,
 item_stock int not null,
 img_path text not null,
-item_comment text,
-item_flg boolean not null default true,
-release_flg boolean not null default false
+item_comment text
 );
 
 
@@ -109,9 +107,9 @@ user_name, sex, postal, address, phone_number, oauth_id, oauth_name, oauth_accou
 -- variation_id(1:猫ネックレス)
 -- item_category(1:キッチン用品, 2:インテリア, 3:文房具, 4:ファッション小物, 5:アクセサリー, 6:ごはん, 7:おやつ, 8:おもちゃ, 9:日用品)
 -- item_user(1:飼い主, 2:猫)
-INSERT INTO item(variation_id, item_name, item_category, item_user, item_color, item_price, item_stock, img_path, item_comment, item_flg, release_flg) VALUE
-(1, 'CatMonn ネックレス', 3, 1, 'nomal', 1000, 100, 'img/item/bookmark.jpg,', 'にゃんこのネックレス', true, true),
-(1, 'CatMoon ネックレス', 3, 1, 'blue', 1000, 100, 'img/item/gosyuin_pink.jpg', 'にゃんこのネックレス', true, true),
-(1, 'CatMoon ネックレス', 3, 1, 'nomal', 1000, 100, 'img/item/gosyuinire_beju.jpg', 'にゃんこのネックレス', true, true),
-(1, 'CatMoon ネックレス', 3, 2, 'red', 1000, 100, 'img/item/passcase.jpg', 'にゃんこのネックレス', true, true),
-(1, 'CatMoon ネックレス', 3, 2, 'yellow', 1000, 100, 'img/item/ryuck_kuroneko.jpg', 'にゃんこのネックレス', true, true);
+INSERT INTO item(variation_id, item_name, item_category, item_user, item_color, item_price, item_stock, img_path, item_comment) VALUE
+(1, 'CatMonn ネックレス', 3, 1, 'nomal', 1000, 100, 'img/item/bookmark.jpg,', 'にゃんこのネックレス'),
+(1, 'CatMoon ネックレス', 3, 1, 'blue', 1000, 100, 'img/item/gosyuin_pink.jpg', 'にゃんこのネックレス'),
+(1, 'CatMoon ネックレス', 3, 1, 'nomal', 1000, 100, 'img/item/gosyuinire_beju.jpg', 'にゃんこのネックレス'),
+(1, 'CatMoon ネックレス', 3, 2, 'red', 1000, 100, 'img/item/passcase.jpg', 'にゃんこのネックレス'),
+(1, 'CatMoon ネックレス', 3, 2, 'yellow', 1000, 100, 'img/item/ryuck_kuroneko.jpg', 'にゃんこのネックレス');

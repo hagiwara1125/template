@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 
+#menulist {
+}
+
 #dropmenu {
 	list-style-type: none;
 	width: 800px;

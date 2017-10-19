@@ -3,11 +3,20 @@
 "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 "http://struts.apache.org/dtds/struts-2.3.dtd">
 
-<!-- Strutsの詳細設定 -->
 <struts>
+	<!-- 国際化 -->
+	<constant name="struts.custom.i18n.resources"
+		value="
+	com.internousdev.template.property.cart,
+	com.internousdev.template.property.item_list
+     " />
+
+
+	<!-- Strutsの詳細設定 -->
 	<constant name="struts.devMode" value="true" />
+
 	<!-- 対象のpackageを設定 -->
-	<package name="com.internousdev.template.action" extends="struts-default">
+	<package name="com.internousdev.tSemplate.action" extends="struts-default">
 
 		<!-- GoHomeAction -->
 		<action name="GoHomeAction" class="com.internousdev.template.action.GoHomeAction"
@@ -87,9 +96,10 @@
 		</action>
 
 		<!-- ItemListAction -->
-		<action name="ItemListAction" class="com.internousdev.template.action.ItemListAction" method="execute">
-		<result name="success">item_list.jsp</result>
-		<result name="error">item_list.jsp</result>
+		<action name="ItemListAction" class="com.internousdev.template.action.ItemListAction"
+			method="execute">
+			<result name="success">item_list.jsp</result>
+			<result name="error">item_list.jsp</result>
 		</action>
 
 	</package>

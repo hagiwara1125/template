@@ -3,15 +3,12 @@ package com.internousdev.template.action;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.apache.struts2.interceptor.SessionAware;
-
-import com.internousdev.template.dao.CartSelectDAO;
 import com.internousdev.template.dao.ItemListDAO;
 import com.internousdev.template.dto.CartDTO;
 import com.internousdev.template.dto.ItemDTO;
-import com.internousdev.template.util.ItemListAllPages;
-import com.internousdev.template.util.ItemListPageObject;
 import com.opensymphony.xwork2.ActionSupport;
+
+
 
 /**
  * 商品一覧を表示するActionクラス
@@ -21,7 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @version 1.0
  */
 
-public class ItemListAction extends ActionSupport implements SessionAware {
+public class ItemListAction extends ActionSupport {
 
 	/**
 	 * 生成されたシリアルID
@@ -42,6 +39,11 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 	 * 商品カテゴリー
 	 */
 	private int item_category = 0;
+
+	/**
+	 * 商品カラー
+	 */
+	private String item_color = "nomal";
 
 	/**
 	 * 在庫数メッセージ
@@ -88,80 +90,97 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 	 */
 	private int number;
 
+
+
 	/**
-	 * 商品情報を取得し、ページネーションを作成できたらSUCCESSを返すメソッド
+	 * 商品情報を取得するメソッド
 	 *
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/13
 	 * @version 1.0
 	 * @return ERROR or SUCCESS
 	 */
+
 	public String execute() {
 		String result = ERROR;
-
-		/* 動作確認 */System.out.println("ItemListAction - result :" + result);
-
-		if (session.containsKey("user_id")) {
-			user_id = (int) session.get("user_id");
-
-			// カート内情報の取得
-			CartSelectDAO cartDao = new CartSelectDAO();
-			cartList = cartDao.selectedItem(user_id);
-		}
+		/*動作確認*/System.out.println("ItemListAction - result : " + result);
 
 		ItemListDAO dao = new ItemListDAO();
+
 		selectList = dao.select(item_category);
 
-		for (int i = 0; i < selectList.size(); i++) {
-			if (selectList.get(i).isRelease_flg() == false || selectList.get(i).isItem_flg() == false) {
-				selectList.remove(i);
-				i--;
-				continue;
-			}
-
-			int userStock = selectList.get(i).getItem_stock();
-
-			for (int j = 0; j < cartList.size(); j++) {
-				if (selectList.get(i).getItem_id() == cartList.get(j).getItem_id()) {
-					userStock -= cartList.get(j).getOrder_count();
-				}
-			}
-			selectList.get(i).setUser_stock(userStock);
+		if(selectList.size() > 0) {
+			result = SUCCESS;
 		}
-		try {
-			number = selectList.size();
-			if (number > 0) {
-				ArrayList<ItemListPageObject> allPages = new ArrayList<ItemListPageObject>();
-				ItemListAllPages allp = new ItemListAllPages();
-				allPages = allp.paginate(selectList, 12);
-				maxPage = allp.getMaxPage(selectList, 12);
-				itemList = allPages.get(pageNum - 1).getPagenatedList();
-				if (maxPage <= 5) {
-					for (int i = 1; i <= maxPage; i++) {
-						list.add(i);
-					}
-				} else if (maxPage >= 6) {
-					if (pageNum <= 3) {
-						for (int i = 1; i <= 5; i++) {
-							list.add(i);
-						}
-					} else if (pageNum >= 4 && pageNum <= maxPage-3) {
-						for (int i = pageNum - 2; i <= pageNum + 2; i++) {
-							list.add(i);
-						}
-					} else if (pageNum >= maxPage-2) {
-						for (int i = maxPage-4; i <= maxPage; i++) {
-							list.add(i);
-						}
-					}
-				}
-			}
-		} catch (IndexOutOfBoundsException e) {
-			return ERROR;
-		}
-		result = SUCCESS;
 		return result;
 	}
+
+	/*		if(session.containsKey("iser_id")) {
+			user_id = (int) session.get("user_id");
+			ItemListDAO dao = new ItemListDAO();
+
+			itemList = dao.select();
+
+			number = itemList.size();
+			if (number > 0) {
+				//ページネーション処理
+				ArrayList<ItemListPageObject> allPages = new ArrayList<ItemListPageObject>();
+				ItemListAllPages allp = new ItemListAllPages();
+				allPages = allp.paginate(itemList, 12);
+				maxPage = allp.getMaxPage(itemList, 12);
+				displayList = allPages.get(pageNum - 1).getPagenatedList();
+				for(int i = 0; i < maxPage; i++) {
+					list.add(i);
+				}
+				result = SUCCESS;
+			}
+			result = SUCCESS;
+		}
+
+		return result;
+	}
+
+
+	 *//**
+	 * カテゴリ別に商品情報を取得するメソッド
+	 * @suthor HINAKO HAGIWARA
+	 * @since 2017/10/19
+	 * @version 1.0
+	 * @return ERROR or SUCCESS
+	 *//*
+
+	public String executeCategory() {
+		String result = ERROR;
+
+
+		if(session.containsKey("iser_id")) {
+			user_id = (int) session.get("user_id");
+
+			ItemListDAO dao = new ItemListDAO();
+
+			itemList = dao.select(item_category);
+
+			number = itemList.size();
+			if (number > 0) {
+				//ページネーション処理
+				ArrayList<ItemListPageObject> allPages = new ArrayList<ItemListPageObject>();
+				ItemListAllPages allp = new ItemListAllPages();
+				allPages = allp.paginate(itemList, 12);
+				maxPage = allp.getMaxPage(itemList, 12);
+				displayList = allPages.get(pageNum - 1).getPagenatedList();
+				for(int i = 0; i < maxPage; i++) {
+					list.add(i);
+				}
+				result = SUCCESS;
+			}
+			result = SUCCESS;
+
+		}
+		return result;
+
+	}*/
+
+
 
 	/**
 	 * @return session
@@ -207,6 +226,16 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 	public void setItem_category(int item_category) {
 		this.item_category = item_category;
 	}
+
+	public String getItem_color() {
+		return item_color;
+	}
+
+
+	public void setItem_color(String item_color) {
+		this.item_color = item_color;
+	}
+
 
 	/**
 	 * @return stock_alert

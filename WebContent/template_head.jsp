@@ -24,29 +24,13 @@
 
 <!-- 国際化 -->
 <fmt:setLocale value="${pageContext.request.locale.language}" />
-<fmt:setBundle basename="com.internousdev.template.property.item_list"
+<fmt:setBundle basename="com.internousdev.template.property.XXXXX"
 	var="lang" />
 
-<title><s:text name="lang.item_list.title" /></title>
+<title><s:text name="lang.XXXXX.title" /></title>
 
 </head>
-
 <body>
-
-<header>
-	<s:include value="dropmenu.jsp" />
-</header>
-
-<s:iterator value="selectList">
-	<a
-		href="<s:url action="ItemDetailAction"><s:param name="item_id" value="%{item_id}" /></s:url>"><img
-		class="img" src="<s:property value="img_path" />" height="250px">
-		<s:hidden value="item_id" /></a>
-	<s:property value="item_name" />
-	<fmt:formatNumber value="${item_price}" pattern="###,###,###" />
-</s:iterator>
-
-
 
 </body>
 </html>

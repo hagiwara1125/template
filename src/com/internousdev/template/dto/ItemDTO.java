@@ -83,6 +83,16 @@ public class ItemDTO {
 	 */
 	private int user_stock;
 
+	/**
+	 * ページ番号
+	 */
+	private int pageNum;
+
+	/**
+	 * カテゴリ別ページ番号
+	 */
+	private int categoryPageNum;
+
 
 
 	/**
@@ -307,6 +317,38 @@ public class ItemDTO {
 	 */
 	public void setUser_stock(int user_stock) {
 		this.user_stock = user_stock;
+	}
+
+	/**
+	 * ページ番号を取得するためのメソッド
+	 * @return pageNum ページ番号
+	 */
+	public int getPageNum() {
+		return pageNum;
+	}
+
+	/**
+	 * ページ番号を格納するためのメソッド
+	 * @param pageNum ページ番号
+	 */
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	/**
+	 * カテゴリ別ページ番号を取得するためのメソッド
+	 * @return categoryPageNum カテゴリ別ページ番号
+	 */
+	public int getCategoryPageNum() {
+		return categoryPageNum;
+	}
+
+	/**
+	 * カテゴリ別ページ番号を格納するためのメソッド
+	 * @param categoryPageNum カテゴリ別ページ番号
+	 */
+	public void setCategoryPageNum(int categoryPageNum) {
+		this.categoryPageNum = categoryPageNum;
 	}
 
 }

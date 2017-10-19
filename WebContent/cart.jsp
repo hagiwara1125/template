@@ -9,11 +9,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<!-- 国際化 ここから -->
+<!-- 国際化 -->
 <fmt:setLocale value="${pageContext.request.locale.language}" />
 <fmt:setBundle basename="com.internousdev.template.property.cart"
 	var="lang" />
-<!-- 国際化 ここまで -->
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA=Compativble" content="IE=edge">
