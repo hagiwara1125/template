@@ -46,11 +46,13 @@ item_name varchar(255) not null, /*商品名*/
 item_color varchar(255), /*色*/
 item_price decimal(9,2) not null, /*価格*/
 item_stock int, /*在庫数*/
-img_path text not null, /*画像*/
+img_path text not null, /*画像パス*/
 item_comment text, /*商品説明*/
 item_page int, /*ページ番号*/
 category_page int, /*カテゴリ別ページ番号*/
-item_flg boolean default FALSE /*削除フラグ*/
+registration_date datetime not null default current_timestamp,/*登録日*/
+updation_date datetime not null default current_timestamp on update current_timestamp,/*更新日*/
+deleted_flg boolean default FALSE /*削除フラグ*/
 );
 
 
@@ -68,7 +70,7 @@ foreign key(item_id) references item(item_id)
 
 /*購入履歴*/
 create table purchase(
-purchse_id int primary key not null auto_increment, /*購入ID*/
+purchase_id int primary key not null auto_increment, /*購入ID*/
 user_id int not null, /*ユーザーID*/
 item_id int not null, /*商品ID*/
 order_count int not null, /*注文数*/
@@ -97,7 +99,7 @@ deleted_date datetime not null /*削除日*/
 /*問い合わせ*/
 create table inquiry(
 inquiry_id int primary key not null auto_increment, /*問い合わせID*/
-inquiry_name varchar(255), /*氏名*/
+inquiry_name varchar(255), /*問い合わせ者氏名*/
 inquiry_email varchar(255), /*メールアドレス*/
 inquiry_title varchar(255), /*件名*/
 inquiry_comment text, /*内容*/
