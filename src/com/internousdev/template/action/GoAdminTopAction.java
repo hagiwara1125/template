@@ -9,18 +9,18 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 /**
- * トップ画面へ遷移するためのActionクラス
+ * 管理者TOP画面へ遷移するためのActionクラス
  * @author HINAKO HAGIWARA
  * @since 2017/10/20
  * @version 1.0
  */
 
-public class GoTopAction extends ActionSupport implements SessionAware {
+public class GoAdminTopAction extends ActionSupport implements SessionAware {
 
 	/**
 	 * 生成されたシリアルID
 	 */
-	private static final long serialVersionUID = -7880842103056151695L;
+	private static final long serialVersionUID = -5479504922026765803L;
 
 	/**
 	 * セッション情報
@@ -30,15 +30,19 @@ public class GoTopAction extends ActionSupport implements SessionAware {
 
 
 	/**
-	 * トップ画面に遷移するための実行メソッド
+	 * 管理者TOP画面に遷移するための実行メソッド
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/20
 	 * @version 1.0
-	 * @return success
+	 * @return ERROR or SUCCESS
 	 */
 
 	public String execute() {
-		String result = SUCCESS;
+		String result = ERROR;
+
+		if(session.get("user_id") != null) {
+			result = SUCCESS;
+		}
 
 		return result;
 	}

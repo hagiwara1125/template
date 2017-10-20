@@ -2,95 +2,227 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
+<!-- 国際化 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="Content-Style-Type" content="text/css" />
-	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	<meta http-equiv="imagetoolbar" content="no" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<meta charset="utf-8">
-	<title>Login画面</title>
-	<style type="text/css">
 
-		/* ========TAG LAYOUT======== */
-		body {
-		   margin:0;
-		   padding:0;
-		   line-height:1.6;
-		   letter-spacing:1px;
-		   font-family:Verdana, Helvetica, sans-serif;
-		   font-size:12px;
-		   color:#333;
-		   background:#fff;
-		}
+<meta charset="UTF-8">
+<meta http-equiv="X-UA=Compativble" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta charset="utf-8">
 
-		table {
-			text-align:center;
-			margin:0 auto;
-		}
+<!-- 国際化 -->
+<fmt:setLocale value="${pageContext.request.locale.language}" />
+<fmt:setBundle basename="com.internousdev.template.property.login"
+	var="lang" />
 
-		/* ========ID LAYOUT======== */
-		#top {
-		   width:780px;
-		   margin:30px auto;
-		   border:1px solid #333;
-		}
+<title><s:text name="lang.login.title" /></title>
 
-		#header {
-		   width: 100%;
-		   height: 80px;
-		   background-color: black;
-		}
+<style>
+#categorylist
+<s
+:property
 
-		#main {
-		   width: 100%;
-		   height: 500px;
-		   text-align: center;
-		}
+value
+="category"/
+>
+{
+background-color
+:
+#ffdb99
+;
 
-		#footer {
-			width: 100%;
-			height: 80px;
-			background-color: black;
-			clear:both;
-		}
 
-		#text-link {
-			display: inline-block;
-			text-align: right;
-		}
-	</style>
+}
+</style>
+<style>
+.navbar {
+	background-color: #ffb959;
+}
+
+.navbar .navbar-brand {
+	color: #ecf0f1;
+}
+
+.navbar .navbar-brand:hover, .navbar .navbar-brand:focus {
+	color: #ddd;
+}
+
+.navbar .navbar-text {
+	color: #ecf0f1;
+}
+
+.navbar .navbar-nav .nav-link {
+	color: #ecf0f1;
+	border-radius: .25rem;
+	margin: 0 0.25em;
+}
+
+.navbar .navbar-nav .nav-link:not (.disabled ):hover, .navbar .navbar-nav .nav-link:not
+	(.disabled ):focus {
+	color: #ecdbff;
+}
+
+.navbar .navbar-nav .nav-item.active .nav-link, .navbar .navbar-nav .nav-item.active .nav-link:hover,
+	.navbar .navbar-nav .nav-item.active .nav-link:focus, .navbar .navbar-nav .nav-item.show .nav-link,
+	.navbar .navbar-nav .nav-item.show .nav-link:hover, .navbar .navbar-nav .nav-item.show .nav-link:focus
+	{
+	color: #ecdbff;
+	background-color: #ddd;
+}
+
+.navbar .navbar-toggle {
+	border-color: #ddd;
+}
+
+.navbar .navbar-toggle:hover, .navbar .navbar-toggle:focus {
+	background-color: #ddd;
+}
+
+.navbar .navbar-toggle .navbar-toggler-icon {
+	color: #ecf0f1;
+}
+
+.navbar .navbar-collapse, .navbar .navbar-form {
+	border-color: #ecf0f1;
+}
+
+.navbar .navbar-link {
+	color: #ecf0f1;
+}
+
+.navbar .navbar-link:hover {
+	color: #ecdbff;
+}
+
+@media ( max-width : 575px) {
+	.navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
+		color: #ecf0f1;
+	}
+	.navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+		.navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus
+		{
+		color: #ecdbff;
+	}
+	.navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active
+		{
+		color: #ecdbff;
+		background-color: #8e44ad;
+	}
+}
+
+@media ( max-width : 767px) {
+	.navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
+		color: #ecf0f1;
+	}
+	.navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+		.navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus
+		{
+		color: #ecdbff;
+	}
+	.navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active
+		{
+		color: #ecdbff;
+		background-color: #8e44ad;
+	}
+}
+
+@media ( max-width : 991px) {
+	.navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
+		color: #ecf0f1;
+	}
+	.navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+		.navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus
+		{
+		color: #ecdbff;
+	}
+	.navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active
+		{
+		color: #ecdbff;
+		background-color: #8e44ad;
+	}
+}
+
+@media ( max-width : 1199px) {
+	.navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
+		color: #ecf0f1;
+	}
+	.navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+		.navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus
+		{
+		color: #ecdbff;
+	}
+	.navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active
+		{
+		color: #ecdbff;
+		background-color: #8e44ad;
+	}
+}
+
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
+	color: #ecf0f1;
+}
+
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+	.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+	color: #ecdbff;
+}
+
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
+	color: #ecdbff;
+	background-color: #8e44ad;
+}
+</style>
 </head>
 <body>
-	<div id="header">
-	 	<div id="pr">
-		</div>
-	</div>
-	<div id="main">
-		<div id="top">
-			<p>Login</p>
-		</div>
-		<div>
-			<h3>商品を購入する際にはログインをお願いします。</h3>
-			<s:form action="LoginAction">
-				<s:textfield name="loginUserId"/>
-				<s:password name="loginPassword"/>
-				<s:submit value="ログイン"/>
-			</s:form>
-			<br/>
-			<div id="text-link">
-				<p>新規ユーザー登録は<a href='<s:url action="UserCreateAction" />'>こちら</a></p>
-				<p>Homeへ戻る場合は<a href='<s:url action="GoHomeAction" />'>こちら</a></p>
+	<div id="pagecover">
+
+
+		<!-- <div class="container"> -->
+		<!-- 	<div class="row"> -->
+		<div id="loginbox">
+			<h1>
+				<s:text name="lang.login.login" />
+			</h1>
+			<div id="rightbox">
+				<p>
+					<s:text name="lang.login.loginwithyouremailaddress" />
+				</p>
+				<s:form action="LoginAction">
+					<input type="text" name="phoneemail" required="required"
+						placeholder=<s:text name="lang.login.mailadress"/> />
+					<br>
+					<br>
+					<input type="password" name="password" required="required"
+						placeholder=<s:text name="lang.login.password" /> />
+					<div style="color: red; font-size: 11px;">
+						<s:property value="errmsg1" />
+						<br>
+						<s:property value="errmsg2" />
+					</div>
+					<button class="button">
+						<s:text name="lang.login.login" />
+					</button>
+          <s:token/>
+				</s:form>
 			</div>
+
+
 		</div>
 	</div>
-	<div id="footer">
-	 	<div id="pr">
-		</div>
-	</div>
+	<!-- </div> -->
+	<!-- </div> -->
+
 </body>
 </html>

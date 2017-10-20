@@ -1,111 +1,257 @@
 package com.internousdev.template.action;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.internousdev.template.dao.BuyItemDAO;
-import com.internousdev.template.dao.LoginDAO;
-import com.internousdev.template.dto.BuyItemDTO;
-import com.internousdev.template.dto.LoginDTO;
+import com.internousdev.template.util.LoginConnector;
 import com.opensymphony.xwork2.ActionSupport;
 
+
+
 /**
- * ログイン認証処理
- * Login.jspからログインID、ログインパスワードを受け取り
- * DBへ問い合わせを行います。
- *
- * @author internous
- * @param loginUserId
- * @param loginPassword
- *
- * @return result
+ * ログイン画面からログインするためのActionクラス
+ * @author HINAKO HAGIWARA
+ * @since 2017/10/20
+ * @version 1.0
  */
-public class LoginAction extends ActionSupport implements SessionAware{
+
+public class LoginAction extends ActionSupport implements SessionAware {
 
 	/**
-	 * ログインID
+	 * 生成されたシリアルID
 	 */
-	public String loginUserId;
+	private static final long serialVersionUID = 4645576835938878193L;
 
 	/**
-	 * ログインパスワード
+	 * セッション情報
 	 */
-	public String loginPassword;
+	private Map<String, Object> session;
 
 	/**
-	 * 処理結果を格納
+	 * ユーザーID
 	 */
-	public String result;
+	private int user_id;
 
 	/**
-	 * ログイン情報を格納
+	 * メールアドレス
 	 */
-	public Map<String, Object> loginUserInfoMap = new HashMap<>();
+	private String phone_email;
 
 	/**
-	 * ログイン情報取得DAO
+	 * パスワード
 	 */
-	public LoginDAO loginDAO = new LoginDAO();
+	private String password;
 
 	/**
-	 * ログイン情報格納IDTO
+	 * 氏名
 	 */
-	private LoginDTO loginDTO = new LoginDTO();
+	private String user_name;
 
 	/**
-	 * アイテム情報を取得
+	 * ログインフラグ
 	 */
-	public BuyItemDAO buyItemDAO = new BuyItemDAO();
+	private boolean login_flg;
 
 	/**
-	 * 実行メソッド
+	 * ユーザーフラグ
 	 */
+	private int user_flg;
+
+	/**
+	 * エラーメッセージ(日本語)
+	 */
+	private String errmsg1;
+
+	/**
+	 * エラーメッセージ(英語)
+	 */
+	private String errmsg2;
+
+
+
+	/**
+	 * ユーザー認証できればSUCCESS, 管理者認証できればLOGINを返すメソッド
+	 * @author HINAKO HAGIWARA
+	 * @since 2017/10/20
+	 * @verion 1.0
+	 * @return ログイン成功=SUCCESS, ログイン失敗=ERROR, 管理者ログイン=LOGIN
+	 */
+
 	public String execute() {
+		String result = ERROR;
 
-		result = ERROR;
+		LoginConnector login = new LoginConnector(phone_email,password);
+		result = null;
+		result = login.login(session);
 
-		// ログイン実行
-		loginDTO = loginDAO.getLoginUserInfo(loginUserId, loginPassword);
+		if(result.equals("error")){
+			errmsg1 = "※入力が間違っているか、既にログインされています。";
+			errmsg2 = "(Incorrect Email/Password or you are already logged in)";
+			session.put("user", result);
 
-		loginUserInfoMap.put("loginUser", loginDTO);
+		} else if(result.equals("login")) {
+			session.put("user", result);
 
-		// ログイン情報を比較
-		if(((LoginDTO) loginUserInfoMap.get("loginUser")).getLoginFlg()) {
-			result = SUCCESS;
-
-			// アイテム情報を取得
-			BuyItemDTO buyItemDTO = buyItemDAO.getBuyItemInfo();
-			loginUserInfoMap.put("login_user_id",	loginDTO.getLoginId());
-			loginUserInfoMap.put("id", buyItemDTO.getId());
-			loginUserInfoMap.put("buyItem_name", buyItemDTO.getItemName());
-			loginUserInfoMap.put("buyItem_price", buyItemDTO.getItemPrice());
-
-			return result;
+		} else if(result.equals("success")) {
+			session.put("user", result);
 		}
 
 		return result;
 	}
 
-	public String getLoginUserId() {
-		return loginUserId;
+
+
+	/**
+	 * 生成されたシリアルIDを取得するためのメソッド
+	 * @return serialversionuid 生成されたシリアルID
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	public void setLoginUserId(String loginUserId) {
-		this.loginUserId = loginUserId;
+	/**
+	 * セッション情報を取得するためのメソッド
+	 * @return session セッション情報
+	 */
+	public Map<String, Object> getSession() {
+		return session;
 	}
 
-	public String getLoginPassword() {
-		return loginPassword;
+	/**
+	 * セッション情報を格納するためのメソッド
+	 * @param session セッション情報
+	 */
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 	}
 
-	public void setLoginPassword(String loginPassword) {
-		this.loginPassword = loginPassword;
+	/**
+	 * ユーザーIDを取得するためのメソッド
+	 * @return user_id
+	 */
+	public int getUser_id() {
+		return user_id;
 	}
 
-	@Override
-	public void setSession(Map<String, Object> loginUserInfoMap) {
-		this.loginUserInfoMap = loginUserInfoMap;
+	/**
+	 * ユーザーIDを格納するためのメソッド
+	 * @param user_id ユーザーID
+	 */
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
+
+	/**
+	 * メールアドレスを取得するためのメソッド
+	 * @return phone_email メールアドレス
+	 */
+	public String getPhone_email() {
+		return phone_email;
+	}
+
+	/**
+	 * メールアドレスを格納するためのメソッド
+	 * @param phone_email メールアドレス
+	 */
+	public void setPhone_email(String phone_email) {
+		this.phone_email = phone_email;
+	}
+
+	/**
+	 * パスワードを取得するためのメソッド
+	 * @return password パスワード
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * パスワードを格納するためのメソッド
+	 * @param password パスワード
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * 氏名を取得するためのメソッド
+	 * @return user_name 氏名
+	 */
+	public String getUser_name() {
+		return user_name;
+	}
+
+	/**
+	 * 氏名を格納するためのメソッド
+	 * @param user_name 氏名
+	 */
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	/**
+	 * ログインフラグを取得するためのメソッド
+	 * @return login_flg ログインフラグ
+	 */
+	public boolean isLogin_flg() {
+		return login_flg;
+	}
+
+	/**
+	 * ログインフラグを格納するためのメソッド
+	 * @param login_flg ログインフラグ
+	 */
+	public void setLogin_flg(boolean login_flg) {
+		this.login_flg = login_flg;
+	}
+
+	/**
+	 * ユーザーフラグを取得するためのメソッド
+	 * @return user_flg ユーザーフラグ
+	 */
+	public int getUser_flg() {
+		return user_flg;
+	}
+
+	/**
+	 * ユーザーフラグを格納するためのメソッド
+	 * @param user_flg ユーザーフラグ
+	 */
+	public void setUser_flg(int user_flg) {
+		this.user_flg = user_flg;
+	}
+
+	/**
+	 * エラーメッセージ(日本語)を取得するためのメソッド
+	 * @return errmsg1 エラーメッセージ(日本語)
+	 */
+	public String getErrmsg1() {
+		return errmsg1;
+	}
+
+	/**
+	 * エラーメッセージ(日本語)を格納するメソッド
+	 * @param errmsg1 エラーメッセージ(日本語)
+	 */
+	public void setErrmsg1(String errmsg1) {
+		this.errmsg1 = errmsg1;
+	}
+
+	/**
+	 * エラーメッセージ(英語)を取得するメソッド
+	 * @return errmsg2 エラーメッセージ(英語)
+	 */
+	public String getErrmsg2() {
+		return errmsg2;
+	}
+
+	/**
+	 * エラーメッセージ(英語)を格納するためのメソッド
+	 * @param errmsg2 エラーメッセージ(英語)
+	 */
+	public void setErrmsg2(String errmsg2) {
+		this.errmsg2 = errmsg2;
+	}
+
 }

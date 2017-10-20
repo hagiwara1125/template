@@ -5,18 +5,18 @@ import java.math.BigDecimal;
 
 
 /**
- * カート情報を取得・格納するためのDTOクラス
+ * 購入履歴情報を取得・格納するためのDTOクラス
  * @author HINAKO HAGIWARA
  * @since 2017/10/19
  * @version 1.0
  */
 
-public class CartDTO {
+public class Purchase {
 
 	/**
-	 * カートID
+	 * 購入ID
 	 */
-	private int cart_id;
+	private int purchase_id;
 
 	/**
 	 * ユーザーID
@@ -29,12 +29,17 @@ public class CartDTO {
 	private int item_id;
 
 	/**
+	 * カートID
+	 */
+	private int cart_id;
+
+	/**
 	 * 商品名
 	 */
 	private String item_name;
 
 	/**
-	 * 商品価格
+	 * 価格
 	 */
 	private BigDecimal item_price;
 
@@ -42,11 +47,6 @@ public class CartDTO {
 	 * 注文数
 	 */
 	private int order_count;
-
-	/**
-	 * 在庫数
-	 */
-	private int item_stock;
 
 	/**
 	 * 小計
@@ -59,26 +59,40 @@ public class CartDTO {
 	private BigDecimal total_price;
 
 	/**
+	 * 在庫数
+	 */
+	private int item_stock;
+
+	/**
 	 * 画像パス
 	 */
 	private String img_path;
 
+	/**
+	 * 購入日
+	 */
+	private String purchase_date;
+
+	/**
+	 * 支払い方法
+	 */
+	private int payment_method;
+
 
 
 	/**
-	 * カートIDを取得するためのメソッド
-	 * @return cart_id カートID
+	 * 購入IDを取得するためのメソッド
 	 */
-	public int getCart_id() {
-		return cart_id;
+	public int getPurchase_id() {
+		return purchase_id;
 	}
 
 	/**
-	 * カートIDを格納するためのメソッド
-	 * @param cart_id カートID
+	 * 購入IDを格納するためのメソッド
+	 * @param purchase_id 購入ID
 	 */
-	public void setCart_id(int cart_id) {
-		this.cart_id = cart_id;
+	public void setPurchase_id(int purchase_id) {
+		this.purchase_id = purchase_id;
 	}
 
 	/**
@@ -111,6 +125,22 @@ public class CartDTO {
 	 */
 	public void setItem_id(int item_id) {
 		this.item_id = item_id;
+	}
+
+	/**
+	 * カートIDを取得するためのメソッド
+	 * @return cart_id カートID
+	 */
+	public int getCart_id() {
+		return cart_id;
+	}
+
+	/**
+	 * カートIDを格納するためのメソッド
+	 * @param cart_id カートID
+	 */
+	public void setCart_id(int cart_id) {
+		this.cart_id = cart_id;
 	}
 
 	/**
@@ -162,23 +192,6 @@ public class CartDTO {
 	}
 
 	/**
-	 * 在庫数を取得するためのメソッド
-	 * @return item_stock 在庫数
-	 */
-	public int getItem_stock() {
-		return item_stock;
-	}
-
-	/**
-	 * 在庫数を格納するためのメソッド
-	 * @param item_stock 在庫数
-	 *
-	 */
-	public void setItem_stock(int item_stock) {
-		this.item_stock = item_stock;
-	}
-
-	/**
 	 * 小計を取得するためのメソッド
 	 * @return sub_total 小計
 	 */
@@ -211,6 +224,22 @@ public class CartDTO {
 	}
 
 	/**
+	 * 在庫数を取得するためのメソッド
+	 * @return item_stock 在庫数
+	 */
+	public int getItem_stock() {
+		return item_stock;
+	}
+
+	/**
+	 * 在庫数を格納するためのメソッド
+	 * @param item_stock 在庫数
+	 */
+	public void setItem_stock(int item_stock) {
+		this.item_stock = item_stock;
+	}
+
+	/**
 	 * 画像パスを取得するためのメソッド
 	 * @return img_path 画像パス
 	 */
@@ -224,6 +253,38 @@ public class CartDTO {
 	 */
 	public void setImg_path(String img_path) {
 		this.img_path = img_path;
+	}
+
+	/**
+	 * 購入日を取得するためのメソッ
+	 * @return purchase_date 購入日
+	 */
+	public String getPurchase_date() {
+		return purchase_date;
+	}
+
+	/**
+	 * 購入日を格納するためのメソッド
+	 * @param purchase_date 購入日
+	 */
+	public void setPurchase_date(String purchase_date) {
+		this.purchase_date = purchase_date;
+	}
+
+	/**
+	 * 支払い方法を取得するためのメソッド
+	 * @return payment_method 支払い方法
+	 */
+	public int getPayment_method() {
+		return payment_method;
+	}
+
+	/**
+	 * 支払い方法を格納するためのメソッド
+	 * @param payment_method 支払い方法
+	 */
+	public void setPayment_method(int payment_method) {
+		this.payment_method = payment_method;
 	}
 
 }

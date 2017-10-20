@@ -1,15 +1,13 @@
-/**
- *
- */
 package com.internousdev.template.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+
 /**
  * @author internousdev
- *
  */
 public class MySQLConnector {
 	private String driver = "com.mysql.jdbc.Driver";
