@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.internousdev.template.dto.CartDTO;
-import com.internousdev.template.util.MySQLConnector;
+import com.internousdev.template.util.DBConnector;
 
 
 
@@ -21,7 +21,7 @@ public class ZCartSelectDAO {
 
 	public ArrayList<CartDTO> selectedItem(int user_id) {
 
-		MySQLConnector db = new MySQLConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
 		Connection con = db.getConnection();
 
 		ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();

@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.internousdev.template.util.DBConnector;
+import com.internousdev.template.util.ZDBConnector;
 import com.internousdev.template.util.DateUtil;
 
 public class ZBuyItemComplateDAO {
 
-	private DBConnector dbConnector = new DBConnector();
+	private ZDBConnector dbConnector = new ZDBConnector();
 
 	private Connection connection = dbConnector.getConnection();
 

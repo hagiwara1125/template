@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import com.internousdev.template.dto.ZCartDTO;
 import com.internousdev.template.dto.ZItemDTO;
-import com.internousdev.template.util.MySQLConnector;
+import com.internousdev.template.util.DBConnector;
 
 
 
@@ -23,7 +23,7 @@ public class ZCartInsertDAO {
 
 	public ArrayList<ZItemDTO> itemStatus(int item_id) {
 
-		MySQLConnector db = new MySQLConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
 		Connection con = db.getConnection();
 		ArrayList<ZItemDTO> itemList = new ArrayList<ZItemDTO>();
 
@@ -69,7 +69,7 @@ public class ZCartInsertDAO {
 	public int addToCart(int user_id, int item_id, int order_count, BigDecimal sub_total) {
 		int addCount = 0;
 
-		MySQLConnector db = new MySQLConnector("con.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
+		DBConnector db = new DBConnector("con.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
 		Connection con = db.getConnection();
 		String sql = "insert into cart(user_id, item_id, order_count, sub_total) values(?, ?, ?, ?)";
 
@@ -107,7 +107,7 @@ public class ZCartInsertDAO {
 
 	public ArrayList<ZCartDTO> selected(int user_id) {
 
-		MySQLConnector db = new MySQLConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
 		Connection con = db.getConnection();
 		ArrayList<ZCartDTO> cartList = new ArrayList<ZCartDTO>();
 		String sql = "select * from cart where user_id = ?";
@@ -160,7 +160,7 @@ public class ZCartInsertDAO {
 	 */
 
 	public int update(int user_id, int item_id, int order_count, BigDecimal sub_total) {
-		MySQLConnector db = new MySQLConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
 		Connection con = db.getConnection();
 		String sql = "update cart set order_count = ?, sub_total = ? where user_id = ? and item_id = ?";
 

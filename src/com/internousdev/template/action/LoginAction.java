@@ -4,13 +4,14 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.internousdev.template.util.LoginConnector;
+import com.internousdev.template.dao.LoginDAO;
+import com.internousdev.template.dto.LoginDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 
 
 /**
- * ログイン画面からログインするためのActionクラス
+ * ログインするためのActionクラス
  * @author HINAKO HAGIWARA
  * @since 2017/10/20
  * @version 1.0
@@ -21,17 +22,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	/**
 	 * 生成されたシリアルID
 	 */
-	private static final long serialVersionUID = 4645576835938878193L;
+	private static final long serialVersionUID = -2623658405143610601L;
 
 	/**
 	 * セッション情報
 	 */
 	private Map<String, Object> session;
-
-	/**
-	 * ユーザーID
-	 */
-	private int user_id;
 
 	/**
 	 * メールアドレス
@@ -44,60 +40,61 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private String password;
 
 	/**
-	 * 氏名
-	 */
-	private String user_name;
-
-	/**
 	 * ログインフラグ
 	 */
-	private boolean login_flg;
+	private int login_flg;
 
 	/**
-	 * ユーザーフラグ
+	 * 管理者
 	 */
-	private int user_flg;
-
-	/**
-	 * エラーメッセージ(日本語)
-	 */
-	private String errmsg1;
-
-	/**
-	 * エラーメッセージ(英語)
-	 */
-	private String errmsg2;
+	private boolean admin = true;
 
 
 
 	/**
-	 * ユーザー認証できればSUCCESS, 管理者認証できればLOGINを返すメソッド
+	 * ログインするための実行メソッド
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/20
-	 * @verion 1.0
-	 * @return ログイン成功=SUCCESS, ログイン失敗=ERROR, 管理者ログイン=LOGIN
+	 * @version 1.0
+	 * @return SUCCESS:ログイン成功, ERROR:ログイン失敗, admin:管理者ログイン
 	 */
 
 	public String execute() {
 		String result = ERROR;
 
-		LoginConnector login = new LoginConnector(phone_email,password);
-		result = null;
-		result = login.login(session);
+		LoginDAO dao = new LoginDAO();
+		LoginDTO dto = new LoginDTO();
+		dto = dao.select(phone_email, password);
 
-		if(result.equals("error")){
-			errmsg1 = "※入力が間違っているか、既にログインされています。";
-			errmsg2 = "(Incorrect Email/Password or you are already logged in)";
-			session.put("user", result);
+		if(login_flg == 1) {
+			return ERROR;
+		}
 
-		} else if(result.equals("login")) {
-			session.put("user", result);
+		if(phone_email.equals(dto.getPhone_email())) {
+			if(password.equals(dto.getPassword())) {
+				if(dto.getLogin_flg() != 1) {
+					if(admin) {
+						dao.update(dto.getUser_id());
+						int user_flg = (int)dto.getUser_flg();
+						if(user_flg == 3) {
+							session.put("user_flg", dto.getUser_flg());
+							session.put("user_id", dto.getUser_id());
+							session.put("login_flg", dto.getLogin_flg());
+							result = "adimin";
 
-		} else if(result.equals("success")) {
-			session.put("user", result);
+						} else {
+							session.put("user_flg", dto.getUser_flg());
+							session.put("user_id", dto.getUser_id());
+							session.put("login_flg", dto.getLogin_flg());
+							result = SUCCESS;
+						}
+					}
+				}
+			}
 		}
 
 		return result;
+
 	}
 
 
@@ -127,22 +124,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
 
 	/**
-	 * ユーザーIDを取得するためのメソッド
-	 * @return user_id
-	 */
-	public int getUser_id() {
-		return user_id;
-	}
-
-	/**
-	 * ユーザーIDを格納するためのメソッド
-	 * @param user_id ユーザーID
-	 */
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
-
-	/**
 	 * メールアドレスを取得するためのメソッド
 	 * @return phone_email メールアドレス
 	 */
@@ -152,7 +133,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 	/**
 	 * メールアドレスを格納するためのメソッド
-	 * @param phone_email メールアドレス
+	 * @param phone_email メールアドレスl
 	 */
 	public void setPhone_email(String phone_email) {
 		this.phone_email = phone_email;
@@ -175,26 +156,10 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
 
 	/**
-	 * 氏名を取得するためのメソッド
-	 * @return user_name 氏名
-	 */
-	public String getUser_name() {
-		return user_name;
-	}
-
-	/**
-	 * 氏名を格納するためのメソッド
-	 * @param user_name 氏名
-	 */
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
-
-	/**
 	 * ログインフラグを取得するためのメソッド
 	 * @return login_flg ログインフラグ
 	 */
-	public boolean isLogin_flg() {
+	public int getLogin_flg() {
 		return login_flg;
 	}
 
@@ -202,56 +167,24 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	 * ログインフラグを格納するためのメソッド
 	 * @param login_flg ログインフラグ
 	 */
-	public void setLogin_flg(boolean login_flg) {
+	public void setLogin_flg(int login_flg) {
 		this.login_flg = login_flg;
 	}
 
 	/**
-	 * ユーザーフラグを取得するためのメソッド
-	 * @return user_flg ユーザーフラグ
+	 * 管理者を取得するためのメソッド
+	 * @return admin 管理者
 	 */
-	public int getUser_flg() {
-		return user_flg;
+	public boolean isAdmin() {
+		return admin;
 	}
 
 	/**
-	 * ユーザーフラグを格納するためのメソッド
-	 * @param user_flg ユーザーフラグ
+	 * 管理者を格納するためのメソッド
+	 * @param admin 管理者
 	 */
-	public void setUser_flg(int user_flg) {
-		this.user_flg = user_flg;
-	}
-
-	/**
-	 * エラーメッセージ(日本語)を取得するためのメソッド
-	 * @return errmsg1 エラーメッセージ(日本語)
-	 */
-	public String getErrmsg1() {
-		return errmsg1;
-	}
-
-	/**
-	 * エラーメッセージ(日本語)を格納するメソッド
-	 * @param errmsg1 エラーメッセージ(日本語)
-	 */
-	public void setErrmsg1(String errmsg1) {
-		this.errmsg1 = errmsg1;
-	}
-
-	/**
-	 * エラーメッセージ(英語)を取得するメソッド
-	 * @return errmsg2 エラーメッセージ(英語)
-	 */
-	public String getErrmsg2() {
-		return errmsg2;
-	}
-
-	/**
-	 * エラーメッセージ(英語)を格納するためのメソッド
-	 * @param errmsg2 エラーメッセージ(英語)
-	 */
-	public void setErrmsg2(String errmsg2) {
-		this.errmsg2 = errmsg2;
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 }

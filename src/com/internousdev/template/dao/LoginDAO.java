@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.internousdev.template.dto.LoginDTO;
-import com.internousdev.template.util.MySQLConnector;
+import com.internousdev.template.util.DBConnector;
 
 
 
@@ -21,13 +21,15 @@ public class LoginDAO {
 
 	/**
 	 * DBから会員情報を取得するためのメソッド
+	 * @author HINAKO HAGIWARA
+	 * @since 2017/10/20
 	 * @param phone_email メールアドレス
 	 * @param password パスワード
-	 * @return dto 会員情報を格納する
+	 * @return dto ユーザー情報
 	 */
 
 	public LoginDTO select(String phone_email, String password) {
-		MySQLConnector db = new MySQLConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 		LoginDTO dto = new LoginDTO();
 
@@ -40,22 +42,17 @@ public class LoginDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if(rs.next()) {
-				dto.setUser_id(rs.getInt("user_id"));
 				dto.setPhone_email(rs.getString("phone_email"));
 				dto.setPassword(rs.getString("password"));
-				dto.setUser_name(rs.getString("user_name"));
-				dto.setLogin_flg(rs.getBoolean("login_flg"));
+				dto.setUser_id(rs.getInt("user_id"));
+				dto.setUser_flg(rs.getInt("login_flg"));
 				dto.setUser_flg(rs.getInt("user_flg"));
-
 			}
-
-		}catch(SQLException e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-
 		try {
 			con.close();
-
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -65,25 +62,25 @@ public class LoginDAO {
 
 
 	/**
-	 * ログインフラグを更新するためのメソッド
+	 * ログインフラグを1に更新するメソッド
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/20
 	 * @version 1.0
 	 * @param phone_email メールアドレス
 	 * @param password パスワード
-	 * @return cound 更新回数
+	 * @return count 更新回数
 	 */
 
-	public int update(String phone_email, String password) {
+	public int update(int user_id) {
 		int count = 0;
-		MySQLConnector db = new MySQLConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost", "calicocat", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
-		String sql = "update users set login_flg = true where phone_email = ? and password = ?";
+
+		String sql = "update users set login_flg = 1 where user_id = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, phone_email);
-			ps.setString(2, password);
+			ps.setInt(1, user_id);
 			count = ps.executeUpdate();
 
 		} catch(SQLException e) {
@@ -98,25 +95,24 @@ public class LoginDAO {
 		}
 
 		return count;
+
 	}
 
 
 	/**
-	 * ログインフラグがtrueのままセッションが切れた時にログインフラグをfalseにするためのメソッド
-	 * @author HINAKO HAGIWARA
+	 * ログインフラグが1のままセッションが切られた時にログインフラグを0にするためのメソッド
 	 * @since 2017/10/20
 	 * @version 1.0
 	 * @param user_name 氏名
 	 * @param password パスワード
 	 * @return count 更新回数
 	 */
-
 	public int loginflg(String user_name, String password) {
 		int count = 0;
-		MySQLConnector db = new MySQLConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 
-		String sql = "update users set login_flg = false where family_name = ? and password = ?";
+		String sql = "update users set login_flg = 0 where famili_name = ? and password = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -130,12 +126,12 @@ public class LoginDAO {
 
 		try {
 			con.close();
-
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 
 		return count;
+
 	}
 
 }

@@ -59,9 +59,9 @@ public class ItemDTO {
 	private int item_stock;
 
 	/**
-	 * 販売数
+	 * カート内の注文数を引いた在庫数
 	 */
-	private int sales;
+	private int user_stock;
 
 	/**
 	 * 画像パス
@@ -245,19 +245,19 @@ public class ItemDTO {
 	}
 
 	/**
-	 * 販売数を取得するためのメソッド
-	 * @return sales 販売数
+	 * カート内の注文数を引いた在庫数を取得するためのメソッド
+	 * @return user_stock カート内の注文数を引いた在庫数
 	 */
-	public int getSales() {
-		return sales;
+	public int getUser_stock() {
+		return user_stock;
 	}
 
 	/**
-	 * 販売数を格納するためのメソッド
-	 * @param sales 販売数
+	 * カート内の注文数を引いた在庫数を格納するためのメソッド
+	 * @param user_stock カート内の注文数を引いた在庫数
 	 */
-	public void setSales(int sales) {
-		this.sales = sales;
+	public void setUser_stock(int user_stock) {
+		this.user_stock = user_stock;
 	}
 
 	/**

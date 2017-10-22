@@ -5,11 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.internousdev.template.dto.ZLoginDTO;
-import com.internousdev.template.util.DBConnector;
+import com.internousdev.template.util.ZDBConnector;
 
 public class ZLoginDAO {
 
-	private DBConnector dbConnector = new DBConnector();
+	private ZDBConnector dbConnector = new ZDBConnector();
 
 	private Connection connection = dbConnector.getConnection();
 

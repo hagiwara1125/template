@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.internousdev.template.dto.CartDTO;
-import com.internousdev.template.util.MySQLConnector;
+import com.internousdev.template.util.DBConnector;
 
 
 
@@ -24,7 +24,7 @@ public class ZCartUpdateDAO {
 	public int updateCart(int cart_id, int user_id, int order_count, BigDecimal sub_total) {
 		int updateCount = 0;
 
-		MySQLConnector db = new MySQLConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest",
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest",
 				"root", "mysql");
 		Connection con = db.getConnection();
 		String sql = "update cart set order_count = ?, sub_total = ?, where user_id = ?, cart_id = ?";
@@ -53,7 +53,7 @@ public class ZCartUpdateDAO {
 	}
 
 	public ArrayList<CartDTO> itemStatus(int cart_id) {
-		MySQLConnector db = new MySQLConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest",
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest",
 				"root", "mysql");
 		Connection con = db.getConnection();
 

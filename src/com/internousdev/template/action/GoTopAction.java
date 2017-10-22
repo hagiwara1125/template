@@ -9,7 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 /**
- * トップ画面へ遷移するためのActionクラス
+ * TOP画面へ遷移するためのActionクラス
  * @author HINAKO HAGIWARA
  * @since 2017/10/20
  * @version 1.0
@@ -30,11 +30,11 @@ public class GoTopAction extends ActionSupport implements SessionAware {
 
 
 	/**
-	 * トップ画面に遷移するための実行メソッド
+	 * TOP画面に遷移するための実行メソッド
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/20
 	 * @version 1.0
-	 * @return success
+	 * @return SUCCESS:遷移成功
 	 */
 
 	public String execute() {
@@ -44,6 +44,14 @@ public class GoTopAction extends ActionSupport implements SessionAware {
 	}
 
 
+
+	/**
+	 * 生成されたシリアルIDを取得するためのメソッド
+	 * @return serialversionuid 生成されたシリアルID
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	/**
 	 * セッション情報を取得するためのメソッド

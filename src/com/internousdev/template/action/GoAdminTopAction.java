@@ -34,7 +34,7 @@ public class GoAdminTopAction extends ActionSupport implements SessionAware {
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/20
 	 * @version 1.0
-	 * @return ERROR or SUCCESS
+	 * @return SUCCESS:管理者ログイン成功, ERROR:管理者ログイン失敗
 	 */
 
 	public String execute() {
@@ -48,6 +48,14 @@ public class GoAdminTopAction extends ActionSupport implements SessionAware {
 	}
 
 
+
+	/**
+	 * 生成されたシリアルIDを取得するためのメソッド
+	 * @return serialversionuid 生成されたシリアルIDS
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	/**
 	 * セッション情報を取得するためのメソッド

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.internousdev.template.util.MySQLConnector;
+import com.internousdev.template.util.DBConnector;
 
 
 
@@ -18,7 +18,7 @@ public class ZCartDeleteDAO {
 
 	public int delete(int user_id, int cart_id) {
 		int delCount = 0;
-		MySQLConnector db = new MySQLConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "templatetest", "root", "mysql");
 		Connection con = db.getConnection();
 		String sql = "delete from cart where user_id = ? and cart_id = ?";
 

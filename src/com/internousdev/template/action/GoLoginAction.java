@@ -9,7 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 /**
- * ログイン画面に遷移するためのクラス
+ * ログイン画面に遷移するためのActionクラス
  * @author HIANAKO HAGIWARA
  * @since 2017/10/20
  * @version 1.0
@@ -34,14 +34,23 @@ public class GoLoginAction extends ActionSupport implements SessionAware {
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/20
 	 * @version 1.0
-	 * @return success 成功
+	 * @return SUCCESS:遷移成功
 	 */
+
 	public String execute() {
 		return SUCCESS;
 
 	}
 
 
+
+	/**
+	 * 生成されたシリアルIDを取得するためのメソッド
+	 * @return serialversionuid 生成されたシリアルID
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	/**
 	 * セッション情報を取得するためのメソッド
@@ -58,6 +67,5 @@ public class GoLoginAction extends ActionSupport implements SessionAware {
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-
 
 }

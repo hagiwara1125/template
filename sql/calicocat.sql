@@ -16,7 +16,7 @@ create table users(
 user_id int primary key not null auto_increment, /*ユーザーID*/
 phone_email varchar(255) unique not null, /*ログイン用メールアドレス*/
 password varchar(255) not null, /*ログイン用パスワード*/
-login_flg boolean default FALSE, /*ログインフラグ*/
+login_flg int not null default 0, /*ログインフラグ*/
 user_flg int not null default 1, /*ユーザーフラグ*/
 delete_flg boolean not null default FALSE, /*削除フラグ*/
 family_name varchar(50) not null, /*姓*/
@@ -31,8 +31,8 @@ phone_number varchar(50), /*電話番号*/
 oauth_id varchar(255), /*OAuthID*/
 oauth_name int default 0, /*OAuth名*/
 oauth_account varchar(100), /*OAuthアカウント*/
-register_date datetime, /*登録日*/
-update_date datetime /*更新日*/
+register_date datetime not null default current_timestamp, /*登録日*/
+update_date datetime not null default current_timestamp on update current_timestamp /*更新日*/
 );
 
 
@@ -107,9 +107,10 @@ inqyiry_date datetime /*問い合わせ日*/
 );
 
 
+-- login_flg(0:未ログイン, 1:既ログイン)
 -- user_flg(1:顧客, 3:管理者)
-INSERT INTO users(phone_email, password, login_flg, user_flg, delete_flg, family_name, family_name_kana, given_name, given_name_kana, user_name, sex, postal, address, phone_number, oauth_id, oauth_name, oauth_account, register_date, update_date) VALUE
-('user.test01@gmail.com', 'testuser', false, 1, false, '田中', 'タナカ', '太郎', 'タロウ', '田中太郎', '男', '1130034', '東京都文京区湯島3-2-12　御茶ノ水天神ビル', '0123456798', '', 0, '' ,'2017-10-17 00:00:00', '2017/10/17 00:00:00');
+INSERT INTO users(phone_email, password, login_flg, user_flg, delete_flg, family_name, family_name_kana, given_name, given_name_kana, user_name, sex, postal, address, phone_number, register_date, update_date) VALUE
+('user.test01@gmail.com', 'testuser', 0, 1, false, '田中', 'タナカ', '太郎', 'タロウ', '田中太郎', '男', '1130034', '東京都文京区湯島3-2-12　御茶ノ水天神ビル', '0123456798', '2017-10-21 00:00:00', '2017-10-21 00:00:00');
 
 
 -- variation_id(1:,)

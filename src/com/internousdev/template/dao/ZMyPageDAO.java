@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.internousdev.template.dto.ZMyPageDTO;
-import com.internousdev.template.util.DBConnector;
+import com.internousdev.template.util.ZDBConnector;
 
 public class ZMyPageDAO {
-	private DBConnector dbConnector = new DBConnector();
+	private ZDBConnector dbConnector = new ZDBConnector();
 
 	private Connection connection = dbConnector.getConnection();
 

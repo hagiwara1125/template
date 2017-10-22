@@ -200,7 +200,7 @@ background-color
 					<s:text name="lang.login.loginwithyouremailaddress" />
 				</p>
 				<s:form action="LoginAction">
-					<input type="text" name="phoneemail" required="required"
+					<input type="text" name="phone_email" required="required"
 						placeholder=<s:text name="lang.login.mailadress"/> />
 					<br>
 					<br>
@@ -214,7 +214,6 @@ background-color
 					<button class="button">
 						<s:text name="lang.login.login" />
 					</button>
-          <s:token/>
 				</s:form>
 			</div>
 
