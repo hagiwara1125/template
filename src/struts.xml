@@ -24,7 +24,7 @@
 	<constant name="struts.devMode" value="true" />
 
 	<!-- 対象のpackageを設定 -->
-	<package name="com.internousdev.tSemplate.action" extends="struts-default">
+	<package name="com.internousdev.template.action" extends="struts-default">
 
 		<!-- TOP画面へ遷移するAction -->
 		<action name="GoTopAction" class="com.internousdev.template.action.GoTopAction"
@@ -46,7 +46,7 @@
 		</action>
 
 		<!-- ログアウトするAction -->
-		<action name="LogoutAction" class="com.internousdevtemplate.actionLogoutAction"
+		<action name="LogoutAction" class="com.internousdev.template.action.LogoutAction"
 			method="execute">
 			<result name="success">index.jsp</result>
 			<result name="error">index.jsp</result>

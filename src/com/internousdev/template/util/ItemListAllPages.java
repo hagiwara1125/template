@@ -4,12 +4,15 @@ import java.util.ArrayList;
 
 import com.internousdev.template.dto.ItemDTO;
 
+
+
 /**
- * 渡されたリストに対ｔしてページネーションを行うクラス
+ * 渡されたリストに対してページネーションを行うクラス
  * @author HINAKO HAGIWARA
- * @since 2017/10/15
+ * @since 2017/10/22
  * @version 1.0
  */
+
 public class ItemListAllPages {
 
 	/**
@@ -18,6 +21,7 @@ public class ItemListAllPages {
 	 * @param count 1ページあたりに掲載されるオブジェクトの個数
 	 * @return displayBook 渡されたリストを1ページにcount個までオブジェクトが刑された本の形
 	 */
+
 	public ArrayList<ItemListPageObject> paginate(ArrayList<ItemDTO> list, int count) {
 
 		ArrayList<ItemListPageObject> displayBook = new ArrayList<ItemListPageObject>();
@@ -25,13 +29,13 @@ public class ItemListAllPages {
 		int index = 0;
 		int maxPage = 0;
 
-		if(list.size() % count == 0) {
+		if((list.size() % count) == 0) {
 			maxPage = list.size() / count;
 		} else {
 			maxPage = (list.size() / count) +1;
 		}
 
-		for(int i = index; i < itemCount; i++) {
+		for(int i = 0; i < maxPage; i++) {
 			ItemListPageObject page = new ItemListPageObject();
 
 			for(int j = index; j <itemCount; j++) {
@@ -48,6 +52,7 @@ public class ItemListAllPages {
 			itemCount += count;
 		}
 		return displayBook;
+
 	}
 
 

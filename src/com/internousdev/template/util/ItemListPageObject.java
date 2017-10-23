@@ -7,7 +7,7 @@ import com.internousdev.template.dto.ItemDTO;
 /**
  * ページネーションが必要なリストのために、1ページごとの情報を保持するためのクラス
  * @author HINAKO HAGIWARA
- * @since 2017/10/15
+ * @since 2017/10/22
  * @version 1.0
  */
 
@@ -28,17 +28,18 @@ public class ItemListPageObject {
 	/**
 	 * ページネートされた商品リストを取得するメソッド
 	 * @author HINAKO HAGIWARA
-	 * @since 2017/10/15
+	 * @since 2017/10/22
+	 * @version 1.0
 	 * @return paginatedItemList ページネートされた商品リスト
 	 */
-	public ArrayList<ItemDTO> getPagenatedList() {
+	public ArrayList<ItemDTO> getPaginatedList() {
 		return paginatedItemList;
 	}
 
 	/**
 	 * ページネートされた商品を格納するメソッド
 	 * @author HINAKO HAGIWARA
-	 * @since 2017/10/15
+	 * @since 2017/10/22
 	 * @param list DTOに格納されたArrayList
 	 */
 	public void setPaginatedList(ArrayList<ItemDTO> list) {

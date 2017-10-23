@@ -12,7 +12,7 @@ import com.internousdev.util.DBConnector;
 
 
 /**
- * 商品一覧情報を取得するためのDAOクラス
+ * 商品一覧情報に関するDAOクラス
  * @author HINAKO HAGIWARA
  * @since 2017/10/22
  * @version 1.0

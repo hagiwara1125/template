@@ -5,9 +5,11 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.internousdev.template.dao.CartSelectDAO;
 import com.internousdev.template.dao.ItemListDAO;
 import com.internousdev.template.dto.CartDTO;
 import com.internousdev.template.dto.ItemDTO;
+import com.internousdev.template.util.ItemListAllPages;
 import com.internousdev.template.util.ItemListPageObject;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -21,6 +23,11 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 
 public class ItemListAction extends ActionSupport implements SessionAware {
+
+	/**
+	 * 生成されたシリアルID
+	 */
+	private static final long serialVersionUID = 8619602857814970859L;
 
 	/**
 	 * セッション情報
@@ -89,8 +96,8 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 			user_id = (int)session.get("user_id");
 
 			//カート情報の取得
-			GoCartDAO cartDao = new GoCartDAO();
-			cartList = cartDao.selectItem(user_id);
+			CartSelectDAO cartDao = new CartSelectDAO();
+			cartList = cartDao.selectedItem(user_id);
 
 		}
 
@@ -112,12 +119,12 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 
 				//ページネーション処理
 				ArrayList<ItemListPageObject> allPages = new ArrayList<ItemListPageObject>();
-				ItemListPages allp = new ItemListPages();
+				ItemListAllPages allp = new ItemListAllPages();
 				allPages = allp.paginate(selectList, 9);
 				maxPage = allp.getMaxPage(selectList, 9);
-				displayList = allPages.get(pageNum - 1).getPaginatedList();
-				for(int i = 0; i < maxPage; i++) {
-					list.add(i);
+				itemList = allPages.get(pageNum - 1).getPaginatedList();
+				for(int ｋ = 0; ｋ < maxPage; ｋ++) {
+					list.add(ｋ);
 				}
 				result = SUCCESS;
 			}
@@ -127,6 +134,195 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 		}
 
 		return result;
+	}
+
+
+
+	/**
+	 * @return serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+
+	/**
+	 * @return session
+	 */
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+
+
+	/**
+	 * @param session セットする session
+	 */
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+
+
+	/**
+	 * @return user_id
+	 */
+	public int getUser_id() {
+		return user_id;
+	}
+
+
+
+	/**
+	 * @param user_id セットする user_id
+	 */
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+
+
+
+	/**
+	 * @return item_category
+	 */
+	public int getItem_category() {
+		return item_category;
+	}
+
+
+
+	/**
+	 * @param item_category セットする item_category
+	 */
+	public void setItem_category(int item_category) {
+		this.item_category = item_category;
+	}
+
+
+
+	/**
+	 * @return selectList
+	 */
+	public ArrayList<ItemDTO> getSelectList() {
+		return selectList;
+	}
+
+
+
+	/**
+	 * @param selectList セットする selectList
+	 */
+	public void setSelectList(ArrayList<ItemDTO> selectList) {
+		this.selectList = selectList;
+	}
+
+
+
+	/**
+	 * @return itemList
+	 */
+	public ArrayList<ItemDTO> getItemList() {
+		return itemList;
+	}
+
+
+
+	/**
+	 * @param itemList セットする itemList
+	 */
+	public void setItemList(ArrayList<ItemDTO> itemList) {
+		this.itemList = itemList;
+	}
+
+
+
+	/**
+	 * @return cartList
+	 */
+	public ArrayList<CartDTO> getCartList() {
+		return cartList;
+	}
+
+
+
+	/**
+	 * @param cartList セットする cartList
+	 */
+	public void setCartList(ArrayList<CartDTO> cartList) {
+		this.cartList = cartList;
+	}
+
+
+
+	/**
+	 * @return number
+	 */
+	public int getNumber() {
+		return number;
+	}
+
+
+
+	/**
+	 * @param number セットする number
+	 */
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+
+
+	/**
+	 * @return list
+	 */
+	public ArrayList<Integer> getList() {
+		return list;
+	}
+
+
+
+	/**
+	 * @param list セットする list
+	 */
+	public void setList(ArrayList<Integer> list) {
+		this.list = list;
+	}
+
+
+
+	/**
+	 * @return pageNum
+	 */
+	public int getPageNum() {
+		return pageNum;
+	}
+
+
+
+	/**
+	 * @param pageNum セットする pageNum
+	 */
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+
+
+
+	/**
+	 * @return maxPage
+	 */
+	public int getMaxPage() {
+		return maxPage;
+	}
+
+
+
+	/**
+	 * @param maxPage セットする maxPage
+	 */
+	public void setMaxPage(int maxPage) {
+		this.maxPage = maxPage;
 	}
 
 }
