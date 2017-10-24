@@ -29,14 +29,14 @@ public class ItemListDAO {
 	 */
 
 	public ArrayList<ItemDTO> select(int item_category) {
-		DBConnector db = new DBConnector("com.mysql..jdbc.Driver", "jdbc:mysql://localhost/", "calico", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 		ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();
 
 		ItemDTO dto = null;
 		String sql;
 		if(item_category != 0) {
-			sql = "SELECT * FROM item WHERE category = ? ORDER BY item_name ASC";
+			sql = "SELECT * FROM item WHERE item_category = ? ORDER BY item_name ASC";
 		} else {
 			sql = "SELECT * FROM item ORDER BY item_name ASC";
 		}
@@ -58,7 +58,9 @@ public class ItemListDAO {
 				if(item_category != 0)dto.setItem_category(rs.getInt("item_category"));
 				itemList.add(dto);
 
+				System.out.println("ItemListAction - 取得商品一覧 : " + itemList);
 			}
+
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

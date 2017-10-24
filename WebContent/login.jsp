@@ -31,19 +31,34 @@
 
 <style>
 #categorylist
-<s
+
+
+<
+s
+
+
 :property
 
+
+
 value
-="category"/
+
+
+="
+category
+"/
 >
 {
 background-color
+
+
 :
+
+
 #ffdb99
+
+
 ;
-
-
 }
 </style>
 <style>
@@ -70,7 +85,7 @@ background-color
 }
 
 .navbar .navbar-nav .nav-link:not (.disabled ):hover, .navbar .navbar-nav .nav-link:not
-	(.disabled ):focus {
+	 (.disabled ):focus {
 	color: #ecdbff;
 }
 
@@ -206,14 +221,11 @@ background-color
 					<br>
 					<input type="password" name="password" required="required"
 						placeholder=<s:text name="lang.login.password" /> />
-					<div style="color: red; font-size: 11px;">
-						<s:property value="errmsg1" />
-						<br>
-						<s:property value="errmsg2" />
-					</div>
+					<div style="color: red; font-size: 11px;"></div>
 					<button class="button">
 						<s:text name="lang.login.login" />
 					</button>
+					<s:token />
 				</s:form>
 			</div>
 

@@ -15,6 +15,8 @@
 </head>
 <body>
 
+
+<s:if test="#session.user_flg==1">
 <div id="menulist">
 	<ul id="dropmenu">
 		<li><a href="#">当サイトについて</a>
@@ -52,8 +54,14 @@
 		<li><a href="<s:url action="LogoutAction"><s:param name="item_category" value="1" /></s:url>">ログアウト</a></li>
 	</ul>
 	</div>
+	</s:if>
 
-<%-- 	<ul id="dropmenu">
+	<s:elseif test="#session.user_flg==3">
+	</s:elseif>
+
+
+<s:else>
+<ul id="dropmenu">
 		<li><a href="#">当サイトについて</a>
 			<ul>
 				<li><a href="#">ヘルプ</a></li>
@@ -86,8 +94,9 @@
 				<li><a href="#">カート</a></li>
 			</ul>
 		</li>
-		<li><a href="<s:url action="LogoutAction"><s:param name="item_category" value="1" /></s:url>">ログイン</a></li>
-	</ul> --%>
+		<li><a href="<s:url action="LoginAction"><s:param name="item_category" value="1" /></s:url>">ログイン</a></li>
+	</ul>
+	</s:else>
 
 </body>
 </html>

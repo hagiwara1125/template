@@ -8,14 +8,10 @@
 	<constant name="struts.custom.i18n.resources"
 		value="
 		com.internousdev.template.property.index,
-		com.internousdev.template.property.about,
 		com.internousdev.template.property.login,
 		com.internousdev.template.property.item_list,
 		com.internousdev.template.property.item_detail,
-		com.internousdev.template.property.cart,
-		com.internousdev.template.property.credit,
-		com.internousdev.template.property.purchase,
-		com.internousdev.template.property.admin
+	com.internousdev.template.property.cart
 
      " />
 
@@ -24,32 +20,37 @@
 	<constant name="struts.devMode" value="true" />
 
 	<!-- 対象のpackageを設定 -->
-	<package name="com.internousdev.template.action" extends="struts-default">
+	<package name="com.internousdev.tSemplate.action" extends="struts-default">
 
-		<!-- TOP画面へ遷移するAction -->
+		<!-- トップ画面へ遷移 -->
 		<action name="GoTopAction" class="com.internousdev.template.action.GoTopAction"
 			method="execute">
-			<result name="success">index.jsp</result>
+			<result name="success">intdex.jsp</result>
 		</action>
 
-		<!-- ログイン画面へ遷移するAction -->
-		<action name="GoLoginAction" class="com.internousdev.template.action.GoLoginAction"
-		method="execute">
-		<result name="success">login.jsp</result></action>
-
-		<!-- ログインするAction -->
+		<!-- ログイン画面からログイン成功画面に遷移 -->
 		<action name="LoginAction" class="com.internousdev.template.action.LoginAction"
 			method="execute">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="token" />
+			<result name="invalid.token" type="chain">index.jsp</result>
 			<result name="success">login_check.jsp</result>
 			<result name="login">admin_top_check.jsp</result>
 			<result name="error">login.jsp</result>
 		</action>
 
-		<!-- ログアウトするAction -->
-		<action name="LogoutAction" class="com.internousdev.template.action.LogoutAction"
+		<!-- 商品一覧を表示するAction -->
+		<action name="ItemListAction" class="com.internousdev.template.action.ItemListAction"
 			method="execute">
-			<result name="success">index.jsp</result>
-			<result name="error">index.jsp</result>
+			<result name="success">item_list.jsp</result>
+			<result name="error">item_list.jsp</result>
+		</action>
+
+		<!-- 商品詳細を表示するAction -->
+		<action name="ItemDetailAction"
+			class="com.internousdev.template.action.ItemDetailAction" method="execute">
+			<result name="success">item_detail.jsp</result>
+			<result name="error">item_list.jsp</result>
 		</action>
 
 
