@@ -57,65 +57,103 @@
 				<s:text name="lang.item_detail.subtitle" />
 			</div>
 
-			<s:form action="CartInsertAction">
-				<s:iterator value="displayList">
 
-					<p class="item_name">
-						<s:property value="item_name" />
-					</p>
+			<s:iterator value="displayList">
+				<form action="CartInsertAction"
+					name="cartInsertForm<s:property value="#st.count"/>">
 
-
-					<img src="<s:property value= "img_path"/>" class="img">
-
-
-					<table style="border: solid 1px white">
-						<tr>
-							<th><s:text name="lang.item_detail.comment" /></th>
-							<td><s:property escape="false" value="item_comment" /></td>
-						</tr>
-						<tr>
-							<th class="priceth"><s:text name="lang.item_detail.price" /></th>
-							<td><div class="pricetd">
-									￥
-									<fmt:formatNumber value="${item_price}" pattern="###,###,###" />
-									<span class="tax"> <s:text name="lang.item_detail.tax" />
-									</span>
-								</div></td>
-						</tr>
-					</table>
-
-					<div class="shoppingcart">
-
-						<input type="hidden" name="item_id"
-							value="<s:property value="item_id"/>" />
-
-
-						<!-- 参加人数 必要か不必要か -->
-						<s:text name="lang.item_detail.persons" />
-						<select name="order_count">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-							<option>6</option>
-							<option>7</option>
-							<option>8</option>
-							<option>9</option>
-							<option>10</option>
-						</select> <input type="submit" class="btn btn-warning"
-							value="<s:text name= "lang.item_detail.cart"/>" />
-
+					<div class="modal-body">
+						<!-- 商品詳細 -->
+						<div style="width: 100%; margin-bottom: 10px;" align="center">
+						</div>
+						<div class="alt-table-responsive">
+							<table style="margin: 0 auto;">
+								<tbody>
+									<tr class="row">
+										<td class="col-xs-8 col-sm-8 col-md-8" width="250" rowspan="2"
+											align="center" valign="top"><img style="width: 100%;"
+											src="<s:property value="img_path"/>" class="img-responsive"></td>
+										<td class="col-xs-4 col-sm-4 col-md-4" align="left"
+											valign="top">
+											<div>
+												<span class="product-detail-price1"
+													style="boder-bottom: solid;"><s:text
+														name="lang.itemlist.price" /></span> <br> <span
+													class="product-detail-price2">￥<script>
+																					decimal_floor(<s:property value="price"/>);
+																				</script></span> <span class="product-detail-price3">（<s:text
+														name="lang.itemlist.etax" />）
+												</span> <br> <br> <span class="product-detail-comment">
+													<s:property value="item_comment" />
+												</span>
+												<div>
+													<s:if test="user_stock<=10 && user_stock>0">
+														<font color="red"><s:text
+																name="lang.itemlist.small" />:<s:property
+																value="user_stock" /></font>
+													</s:if>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr class="row">
+										<td class=col-xs- align="left" valign="top">
+											<div class=col-xs-12>
+												<s:if test="user_stock > 0">
+													<p class="product-detail-amount-p">
+														<s:text name="lang.itemlist.quantity" />
+														<select name="order_count"
+															id="orderCount<s:property value="#st.count"/>"
+															class="form-control">
+														</select>
+													</p>
+													<font color="red"><div
+															id="stock_error<s:property value="#st.count"/>"></div></font>
+												</s:if>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">
+							<s:text name="lang.itemlist.close" />
+						</button>
+						<s:if test="user_stock > 0">
+							<s:hidden name="item_id" value="%{item_id}" />
+							<span id="cartsw<s:property value="#st.count"/>"><input
+								type="submit" class="btn btn-default" id="cartbtn"
+								value="<s:text name="lang.itemlist.cart"/>"></span>
+						</s:if>
+						<s:else>
+							<div class="btn btn-default active" id="emptybtn">
+								<s:text name="lang.itemlist.outofstock" />
+							</div>
+						</s:else>
+					</div>
+					<s:token />
+				</form>
 
-				</s:iterator>
+				<script>
+									var sel = document.forms.cartInsertForm<s:property value="#st.count"/>.order_count;
+									sel.options.length = 0;
+									for (var i = 1; i <= <s:property value="user_stock"/>
+											&& i <= 10; i++) {
+										sel.options[i - 1] = new Option(i);
+									}
+								</script>
 
-			</s:form>
+			</s:iterator>
+
 
 		</div>
 	</div>
-</body>
-<footer style="text-align: center;">
+
+
+	<footer style="text-align: center;">
 		<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
 	</footer>
+</body>
 </html>

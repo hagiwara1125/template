@@ -73,6 +73,48 @@
 				</s:iterator>
 			</div>
 
+			<div class="col-xs-12 col-sm-12 col-md-12">
+							<nav>
+								<ul class="pagination">
+
+									<s:if test="pageNum==1">
+										<li class="disabled"><span aria-hidden="true">&laquo;</span>
+										</li>
+									</s:if>
+
+									<s:else>
+										<li><a
+											href="<s:url action="ItemListAction"><s:param name="pageNum" value="1"/><s:param name="item_category" value="%{item_category}"/></s:url>"
+											aria-label="1ページへ"> <span aria-hidden="true">&laquo;</span>
+										</a></li>
+									</s:else>
+
+									<s:iterator value="list" status="st">
+										<s:if test="list.get(#st.index) == pageNum">
+											<li class="active"><a><s:property
+														value="list.get(#st.index)" /></a></li>
+										</s:if>
+										<s:else>
+											<li><a
+												href="<s:url action="ItemListAction"><s:param name="pageNum" value="%{list.get(#st.index)}"/><s:param name="item_category" value="%{item_category}"/></s:url>"><s:property
+														value="list.get(#st.index)" /></a></li>
+										</s:else>
+									</s:iterator>
+
+									<s:if test="pageNum==maxPage">
+										<li class="disabled"><span aria-hidden="true">&raquo;</span>
+										</li>
+									</s:if>
+									<s:else>
+										<li><a
+											href="<s:url action="ItemListAction"><s:param name="pageNum" value="%{maxPage}"/><s:param name="item_category" value="%{item_category}"/></s:url>"
+											aria-label="1ページへ"> <span aria-hidden="true">&raquo;</span>
+										</a></li>
+									</s:else>
+								</ul>
+							</nav>
+						</div>
+
 		<footer style="padding-top: 110%; text-align: center;">
 			<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
 		</footer>
