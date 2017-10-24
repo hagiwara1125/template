@@ -32,14 +32,11 @@
 </head>
 <body>
 
-	<!-- ヘッダーここから -->
-
 	<header>
 		<s:include value="header.jsp" />
 	</header>
 
 	<!-- ヘッダーここまで -->
-
 
 	<div class="center">
 
@@ -57,7 +54,7 @@
 					</p>
 
 
-					<img src="<s:property value= "img_path"/>" class="img">
+					<img src="<s:property value= "img_path" />" class="img">
 
 
 					<table style="border: solid 1px white">
@@ -108,6 +105,6 @@
 	</div>
 </body>
 <footer style="text-align: center;">
-		<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
-	</footer>
+	<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
+</footer>
 </html>

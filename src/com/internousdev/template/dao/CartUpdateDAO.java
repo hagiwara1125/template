@@ -33,18 +33,18 @@ public class CartUpdateDAO {
 	 * @return cartList カート情報リスト
 	 */
 
-	public int updateCart(int user_id, int cart_id, int order_count, BigDecimal sub_total) {
+	public int updateCart(int cart_id, int user_id, int order_count, BigDecimal sub_total) {
 		int updateCount = 0;
 
 		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 
-		String sql = "UPDATE cart SET order_count = ?, sub_total = ? WHERE user_id = ? and cart_id = ?";
+		String sql = "UPDATE cart SET order_count = ?, sub_total = ? WHERE user_id = ? AND cart_id = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, user_id);
-			ps.setInt(2, cart_id);
+			ps.setInt(1, cart_id);
+			ps.setInt(2, user_id);
 			ps.setInt(3, order_count);
 			ps.setBigDecimal(4, sub_total);
 			updateCount = ps.executeUpdate();
@@ -77,11 +77,11 @@ public class CartUpdateDAO {
 	 */
 
 	public ArrayList<CartDTO> itemStatus(int cart_id) {
-		DBConnector db = new DBConnector("com.mysql.jdcb.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 		ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
 
-		String sql = "SLECT * FROM cart WHERE cart_id = ?";
+		String sql = "SELECT * FROM cart WHERE cart_id = ?";
 		String sql2 = "SELECT * FROM item WHERE item_id = ?";
 
 		try {
@@ -93,7 +93,7 @@ public class CartUpdateDAO {
 				dto.setUser_id(rs.getInt("user_id"));
 				dto.setCart_id(rs.getInt("cart_id"));
 				dto.setItem_id(rs.getInt("item_id"));
-				dto.setOrder_count(rs.getInt("order_cpount"));
+				dto.setOrder_count(rs.getInt("order_count"));
 				cartList.add(dto);
 
 				PreparedStatement ps2 = con.prepareStatement(sql2);

@@ -100,6 +100,8 @@ public class ItemDetailAction extends ActionSupport implements SessionAware {
         displayList = dao.select(item_id);
 
         if(displayList.size() != 0) {
+        	this.item_name = displayList.get(0).getItem_name();
+        	this.img_path = displayList.get(0).getImg_path();
             result = SUCCESS;
             }
 

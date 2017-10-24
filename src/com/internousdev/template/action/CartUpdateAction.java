@@ -50,6 +50,11 @@ public class CartUpdateAction extends ActionSupport implements SessionAware {
 	private int item_id;
 
 	/**
+	 * 商品名
+	 */
+	private String item_name;
+
+	/**
 	 * 価格
 	 */
 	private BigDecimal item_price;
@@ -60,19 +65,29 @@ public class CartUpdateAction extends ActionSupport implements SessionAware {
 	private int order_count;
 
 	/**
+	 * 画像パス
+	 */
+	private String img_path;
+
+	/**
 	 * 小計
 	 */
-	private BigDecimal sub_total  = BigDecimal.ZERO;
+	private BigDecimal sub_total = BigDecimal.ZERO;
+
+	/**
+	 * 合計金額
+	 */
+	private BigDecimal total_price = BigDecimal.ZERO;
 
 	/**
 	 * カート情報リスト
 	 */
-	ArrayList<CartDTO> cartList;
+	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
 
 	/**
 	 * 商品情報リスト
 	 */
-	ArrayList<ItemDTO> itemList;
+	private ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();
 
 	/**
 	 * 更新処理件数
@@ -103,22 +118,25 @@ public class CartUpdateAction extends ActionSupport implements SessionAware {
 				sub_total = itemStatus.get(0).getItem_price().multiply(BigDecimal.valueOf(order_count));
 
 				//商品情報をカートに追加
-				updateCount = cUpDao.updateCart(user_id, cart_id, order_count, sub_total);
+				updateCount = cUpDao.updateCart(cart_id, user_id, order_count, sub_total);
 				//アレイリストに追加
 				cartList = cSeDao.selectedItem(user_id);
 
 				if(updateCount > 0) {
-					for(int i = 0; i < cartList.size(); i++) {
-						sub_total = (cartList.get(i).getItem_price()).multiply(BigDecimal.valueOf(cartList.get(i).getOrder_count()));
-						cartList.get(i).setSub_total(sub_total);
+					if(cartList.size() > 0) {
+						for(int i = 0; i < cartList.size(); i++) {
+							sub_total = (cartList.get(i).getItem_price()).multiply(BigDecimal.valueOf(cartList.get(i).getOrder_count()));
+							cartList.get(i).setSub_total(sub_total);
+						}
+						result = SUCCESS;
 					}
-					result = SUCCESS;
 				}
-			}
 
-		} else {
-			result = LOGIN;
+			}
 		}
+
+
+		System.out.println("CartUpdateAction - result : " + result);
 
 		return result;
 
@@ -199,6 +217,24 @@ public class CartUpdateAction extends ActionSupport implements SessionAware {
 
 
 	/**
+	 * @return item_name
+	 */
+	public String getItem_name() {
+		return item_name;
+	}
+
+
+
+	/**
+	 * @param item_name セットする item_name
+	 */
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+
+
+
+	/**
 	 * @param item_id セットする item_id
 	 */
 	public void setItem_id(int item_id) {
@@ -244,6 +280,24 @@ public class CartUpdateAction extends ActionSupport implements SessionAware {
 
 
 	/**
+	 * @return img_path
+	 */
+	public String getImg_path() {
+		return img_path;
+	}
+
+
+
+	/**
+	 * @param img_path セットする img_path
+	 */
+	public void setImg_path(String img_path) {
+		this.img_path = img_path;
+	}
+
+
+
+	/**
 	 * @return sub_total
 	 */
 	public BigDecimal getSub_total() {
@@ -257,6 +311,24 @@ public class CartUpdateAction extends ActionSupport implements SessionAware {
 	 */
 	public void setSub_total(BigDecimal sub_total) {
 		this.sub_total = sub_total;
+	}
+
+
+
+	/**
+	 * @return total_price
+	 */
+	public BigDecimal getTotal_price() {
+		return total_price;
+	}
+
+
+
+	/**
+	 * @param total_price セットする total_price
+	 */
+	public void setTotal_price(BigDecimal total_price) {
+		this.total_price = total_price;
 	}
 
 
