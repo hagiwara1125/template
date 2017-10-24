@@ -1,0 +1,87 @@
+@CHARSET "UTF-8";
+
+body {
+	width: 100%;
+}
+
+.kago {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.cartlist {
+	position: relative;
+	dispay: block;
+	margin: 100px auto 50px;
+	width: 1200px;
+	border-collapse: collapse;
+	border-right: 1px solid #999;
+}
+
+.cartlist th {
+	padding: 10px;
+	text-align: center;
+	color: #fff;
+	background-color: orange;
+	border-top: 1px solid orange;
+	border-left: 1px solid white;
+}
+
+.cartlist td {
+	padding: 10px;
+	text-align: center;
+	background-color: #fff;
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+}
+
+.img2 {
+	width: 200px;
+}
+
+.okisa {
+	width: 130px;
+}
+
+.order {
+	width:130px;
+}
+
+.row {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.total {
+	color: #ff6215;
+	text-align: right;
+	margin-right: 150px;
+	margin-top: 35px;
+	font-size: 30px;
+	margin-bottom: 60px;
+}
+
+.empty {
+	padding-top: 260px;
+	padding-bottom: 179px;
+	text-align: center;
+}
+
+.saigo {
+	position: relative;
+	padding-top: 30px;
+	bottom: 0;
+}
+
+.kaimonobox {
+	margin: 0 auto 0;
+}
+
+.kaimonotd {
+	padding: 10px;
+}
+
+a {
+	text-decoration: none;
+}
