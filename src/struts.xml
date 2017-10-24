@@ -8,6 +8,7 @@
 	<constant name="struts.custom.i18n.resources"
 		value="
 		com.internousdev.template.property.index,
+		com.internousdev.template.property.header,
 		com.internousdev.template.property.login,
 		com.internousdev.template.property.item_list,
 		com.internousdev.template.property.item_detail,
