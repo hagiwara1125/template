@@ -91,6 +91,8 @@ public class CartSelectAction extends ActionSupport implements SessionAware {
 	public String execute() {
 		String result = ERROR;
 
+		System.out.println("CartSelectAction - ユーザーID :" + user_id);
+
 		if(session.containsKey("use_id")) {
 			user_id = (int)session.get("user_id");
 
@@ -106,9 +108,8 @@ public class CartSelectAction extends ActionSupport implements SessionAware {
 
 			result = SUCCESS;
 
-		} else {
+		} else
 			result = LOGIN;
-		}
 
 		return result;
 

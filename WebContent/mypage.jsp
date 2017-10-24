@@ -24,11 +24,10 @@
 
 <!-- 国際化 -->
 <fmt:setLocale value="${pageContext.request.locale.language}" />
-<fmt:setBundle basename="com.internousdev.template.property.index"
+<fmt:setBundle basename="com.internousdev.template.property.mypage"
 	var="lang" />
 
-<title><s:text name="lang.index.title" /></title>
-
+<title><s:text name="lang.mypage.title" /></title>
 
 </head>
 <body>
@@ -36,8 +35,6 @@
 	<header>
 		<s:include value="header.jsp"></s:include>
 	</header>
-
-
 
 </body>
 </html>

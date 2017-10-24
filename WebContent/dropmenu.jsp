@@ -16,6 +16,8 @@
 <body>
 
 
+<!-- ログイン時 -->
+
 <s:if test="#session.user_flg==1">
 <div id="menulist">
 	<ul id="dropmenu">
@@ -24,7 +26,7 @@
 				<li><a href="#">ヘルプ</a></li>
 				<li><a href="#">お問い合わせ</a></li>
 			</ul></li>
-		<li><a href="<s:url action="ItemListAstion"><s:param name="item_category" value="0" /></s:url>">商品一覧</a>
+		<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">商品一覧</a>
 				<ul>
 					<li><a href="<s:url action="ItemListAction"><s:param name="item_user" value="1" /></s:url>">愛猫家さんへ</a>
 						<ul>
@@ -47,8 +49,8 @@
 		</li>
 		<li><a href="#">アカウントサービス</a>
 			<ul>
-				<li><a href="#">マイページ</a></li>
-				<li><a href="#">カート</a></li>
+				<li><a href="<s:url action="GoMyPageAction"></s:url>">マイページ</a></li>
+				<li><a href="<s:url action="CartSelectAction"></s:url>">カート</a></li>
 			</ul>
 		</li>
 		<li><a href="<s:url action="LogoutAction"></s:url>">ログアウト</a></li>
@@ -56,9 +58,12 @@
 	</div>
 	</s:if>
 
+<!-- 管理者ログイン時 -->
+
 	<s:elseif test="#session.user_flg==3">
 	</s:elseif>
 
+<!-- 未ログイン時 -->
 
 <s:else>
 <ul id="dropmenu">
@@ -67,7 +72,7 @@
 				<li><a href="#">ヘルプ</a></li>
 				<li><a href="#">お問い合わせ</a></li>
 			</ul></li>
-		<li><a href="<s:url action="ItemListAstion"><s:param name="item_category" value="0" /></s:url>">商品一覧</a>
+		<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">商品一覧</a>
 				<ul>
 					<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">愛猫家さんへ</a>
 						<ul>

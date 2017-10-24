@@ -40,6 +40,7 @@ public class CartSelectDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, user_id);
 			ResultSet rs = ps.executeQuery();
+
 			while(rs.next()) {
 				CartDTO dto = new CartDTO();
 				dto.setUser_id(rs.getInt("user_id"));

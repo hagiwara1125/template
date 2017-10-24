@@ -201,6 +201,13 @@ background-color
 </style>
 </head>
 <body>
+
+
+	<header>
+		<s:include value="header.jsp"></s:include>
+	</header>
+
+
 	<div id="pagecover">
 
 

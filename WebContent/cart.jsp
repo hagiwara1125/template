@@ -28,214 +28,18 @@
 	var="lang" />
 
 <title><s:text name="lang.cart.title" /></title>
-<style>
-#categorylist<s:property value="category"/>{
-	background-color:#ffdb99;
-}
 
-</style>
-<style>
-.navbar {
-  background-color: #ffb959;
-}
-.navbar .navbar-brand {
-  color: #ecf0f1;
-}
-.navbar .navbar-brand:hover,
-.navbar .navbar-brand:focus {
-  color: #ddd;
-}
-.navbar .navbar-text {
-  color: #ecf0f1;
-}
-.navbar .navbar-nav .nav-link {
-  color: #ecf0f1;
-  border-radius: .25rem;
-  margin: 0 0.25em;
-}
-.navbar .navbar-nav .nav-link:not(.disabled):hover,
-.navbar .navbar-nav .nav-link:not(.disabled):focus {
-  color: #ecdbff;
-}
-.navbar .navbar-nav .nav-item.active .nav-link,
-.navbar .navbar-nav .nav-item.active .nav-link:hover,
-.navbar .navbar-nav .nav-item.active .nav-link:focus,
-.navbar .navbar-nav .nav-item.show .nav-link,
-.navbar .navbar-nav .nav-item.show .nav-link:hover,
-.navbar .navbar-nav .nav-item.show .nav-link:focus {
-  color: #ecdbff;
-  background-color: #ddd;
-}
-.navbar .navbar-toggle {
-  border-color: #ddd;
-}
-.navbar .navbar-toggle:hover,
-.navbar .navbar-toggle:focus {
-  background-color: #ddd;
-}
-.navbar .navbar-toggle .navbar-toggler-icon {
-  color: #ecf0f1;
-}
-.navbar .navbar-collapse,
-.navbar .navbar-form {
-  border-color: #ecf0f1;
-}
-.navbar .navbar-link {
-  color: #ecf0f1;
-}
-.navbar .navbar-link:hover {
-  color: #ecdbff;
-}
-
-@media (max-width: 575px) {
-  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
-    color: #ecf0f1;
-  }
-  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
-  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-    color: #ecdbff;
-  }
-  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
-    color: #ecdbff;
-    background-color: #8e44ad;
-  }
-}
-
-@media (max-width: 767px) {
-  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
-    color: #ecf0f1;
-  }
-  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
-  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-    color: #ecdbff;
-  }
-  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
-    color: #ecdbff;
-    background-color: #8e44ad;
-  }
-}
-
-@media (max-width: 991px) {
-  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
-    color: #ecf0f1;
-  }
-  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
-  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-    color: #ecdbff;
-  }
-  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
-    color: #ecdbff;
-    background-color: #8e44ad;
-  }
-}
-
-@media (max-width: 1199px) {
-  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
-    color: #ecf0f1;
-  }
-  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
-  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-    color: #ecdbff;
-  }
-  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active {
-    color: #ecdbff;
-    background-color: #8e44ad;
-  }
-}
-
-.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
-  color: #ecf0f1;
-}
-.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
-.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-  color: #ecdbff;
-}
-.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
-  color: #ecdbff;
-  background-color: #8e44ad;
-}
-</style>
 </head>
+
 <body>
-<div id="pagecover">
+
+
 	<header>
-			<!-- ログインの場合 -->
-	<s:if test="session.get(\"user\").equals(\"success\")">
-				<nav class="navbar navbar-default">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
-								<span class="sr-only">ナビゲーション</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a href="GoTopAction" class="navbar-brand">BentoPad</a>
-						</div>
-						<div class="collapse navbar-collapse" id="gnavi">
-							<ul class="navbar-right nav navbar-nav">
-								<li>
-									<a href="GoTopAction"><span class="glyphicon glyphicon-home"></span>Top</a>
-								</li>
-								<li>
-									<a href="GoRecipeListAction"><span class="glyphicon glyphicon-cutlery"></span>Recipes</a>
-								</li>
-								<li>
-									<a href="UserItemListAction"><span class="glyphicon glyphicon-briefcase"></span>Products</a>
-								</li>
-								<li>
-									<a href="GoMypageAction"><span class="glyphicon glyphicon-th-list"></span>Mypage</a>
-								</li>
-								<li class="active">
-									<a href="GoCartAction"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a>
-								</li>
-								<li>
-									<a href="GoContactAction"><span class="glyphicon glyphicon-earphone"></span>Contact</a>
-								</li>
-								<li>
-									<a href="LogoutAction"><span class="glyphicon glyphicon-leaf"></span>Logout</a>
-								</li>
-							</ul>
-		      			 </div>
-				</nav>
-		</s:if>
-		<!-- 未ログインの場合 -->
-		<s:else>
-				<nav class="navbar navbar-default">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
-								<span class="sr-only">ナビゲーション</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a href="GoTopAction" class="navbar-brand">BentoPad</a>
-						</div>
-						<div class="collapse navbar-collapse" id="gnavi">
-							<ul class="navbar-right nav navbar-nav">
-								<li>
-									<a href="index.jsp"><span class="glyphicon glyphicon-home"></span>Top</a>
-								</li>
-								<li>
-									<a href="GoRecipeListAction"><span class="glyphicon glyphicon-cutlery"></span>Recipes</a>
-								</li>
-								<li>
-									<a href="UserItemListAction"><span class="glyphicon glyphicon-briefcase"></span>Products</a>
-								</li>
-                <li>
-                  <a href="about.jsp"><span class="glyphicon glyphicon-th-list"></span>About</a>
-                </li>
-								<li>
-									<a href="contact.jsp"><span class="glyphicon glyphicon-earphone"></span>Contact</a>
-								</li>
-								<li>
-									<a href="login.jsp"><span class="glyphicon glyphicon-leaf"></span>Login</a>
-								</li>
-							</ul>
-						</div>
-				</nav>
-		</s:else>
+		<s:include value="header.jsp"></s:include>
 	</header>
-	<s:if test="%{cartList!=null && session,userId != null}">
+
+<div class="cartselectlist">
+	<s:if test="%{cartList != null && session,user_id != null}">
 		<section class="contents">
 			<div class="container">
 				<h1><s:text name="lang.cart.cart" /></h1>
@@ -245,8 +49,8 @@
 							<tr class="bg-warning">
 								<th><s:text name="lang.cart.item" /></th>
 								<th><s:text name="lang.cart.price" /></th>
-								<th><s:text name="lang.cart.quantity" /></th>
-								<th><s:text name="lang.cart.subtotal" /></th>
+								<th><s:text name="lang.cart.order_count" /></th>
+								<th><s:text name="lang.cart.sub_total" /></th>
 								<th><s:text name="lang.cart.delete" /></th>
 							</tr>
 						</thead>
@@ -256,18 +60,18 @@
 								<tr>
 									<th><s:property value="item_name" /></th>
 									<th><script>
-										decimal_floor(<s:property value="price" />);
+										decimal_floor(<s:property value="item_price" />);
 									</script><s:text name="lang.cart.yen" /><s:text name="lang.cart.excludetax" /></th>
 									<th>
 										<s:form action="CartUpdateAction">
-											<s:select list="{\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"17\",\"18\",\"19\",\"20\"}"
+											<s:select list="{\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\,\"12\,\"13\,\"14\,\"15\,\"16\,\"17\,\"18\,\"19\,\"20\}"
  												name="order_count" Value="%{order_count}"
 	 											onChange="this.form.submit()" />
 	 											<s:hidden name="cart_id" value="%{cart_id}" />
 	 									</s:form>
 									</th>
 									<th><script>
-										decimal_floor(<s:property value="subtotal" />);
+										decimal_floor(<s:property value="sub_total" />);
 									</script>
 									<s:text name="lang.cart.yen" />
 									</th>
@@ -289,11 +93,11 @@
   <div class="row">
 <div class="col-xs-8 col-sm-5 col-md-3 pull-right" >
         <ul class="list-group" class="text-right">
-  <li class="list-group-item"><h4 class="text-right"><s:text name="lang.cart.totalfee" />&nbsp;<script>decimal_floor(<s:property value="amountAll" />);</script>
+  <li class="list-group-item"><h4 class="text-right"><s:text name="lang.cart.totalfee" />&nbsp;<script>decimal_floor(<s:property value="total_price" />);</script>
             &nbsp;<s:text name="lang.cart.yen" /></h4></li>
   <li class="list-group-item"><h4  class="text-right" style="color:red; "> <s:text name="lang.cartcheck.Shippingtaxexclusion" />&nbsp;<s:text name="constant.postage" />&nbsp;<s:text name="lang.cart.yen" /></h4></li>
   <li class="list-group-item"><h4  class="text-right"  style="font-weight:bold; "><s:text name="lang.cart.totalwithpos" />&nbsp;<script type="text/javascript">
-                              add(<s:property value="amountAll" />,
+                              add(<s:property value="total_price" />,
                                   <s:text name="constant.postage"/>);
                             </script>&nbsp;<s:text name="lang.cart.yen" /></h4></li>
 </ul>
@@ -328,10 +132,6 @@
   <footer>
     <s:include value="footerload.jsp" />
   </footer>
-</body>
-</html>
-</head>
-<body>
 
 </body>
 </html>

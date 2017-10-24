@@ -11,7 +11,7 @@
 		com.internousdev.template.property.login,
 		com.internousdev.template.property.item_list,
 		com.internousdev.template.property.item_detail,
-	com.internousdev.template.property.cart
+	    com.internousdev.template.property.cart
 
      " />
 
@@ -25,7 +25,8 @@
 		<!-- トップ画面へ遷移するAction -->
 		<action name="GoTopAction" class="com.internousdev.template.action.GoTopAction"
 			method="execute">
-			<result name="success">intdex.jsp</result>
+			<result name="success">index.jsp</result>
+			<result name="error">index.jsp</result>
 		</action>
 
 		<!-- ログイン画面からログイン成功画面に遷移するAction -->
@@ -34,7 +35,7 @@
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="token" />
 			<result name="invalid.token" type="chain">index.jsp</result>
-			<result name="success">index.jsp</result>
+			<result name="success">login_check.jsp</result>
 			<result name="login">admin_top_check.jsp</result>
 			<result name="error">login.jsp</result>
 		</action>
@@ -60,6 +61,20 @@
 			<result name="error">item_list.jsp</result>
 		</action>
 
+		<!-- マイページへ遷移するAction -->
+		<action name="GoMyPageAction" class="com.internousdev.template.action.GoMyPageAction"
+			method="execute">
+			<result name="success">mypage.jsp</result>
+			<result name="error">login.jsp</result>
+		</action>
+
+		<!-- カート画面へ遷移するAction -->
+		<action name="CartSelectAction"
+			class="com.internousdev.template.action.CartSelectAction" method="execute">
+			<result name="success">cart.jsp</result>
+			<result name="error">index.jsp</result>
+			<result name="login">login.jsp</result>
+		</action>
 
 
 
