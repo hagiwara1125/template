@@ -13,18 +13,18 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 /**
- * カート画面から決済画面へ遷移するためのActionクラス
+ * 購入確認画面に必要な情報を取得し遷移するためのActionクラス
  * @author HINAKO HAGIWARA
  * @since 2017/10/24
  * @version 1.0
  */
 
-public class GoPurchaseAction extends ActionSupport implements SessionAware {
+public class PurchaseCheckAction extends ActionSupport implements SessionAware {
 
 	/**
 	 * 生成されたシリアルID
 	 */
-	private static final long serialVersionUID = 1903007236270315645L;
+	private static final long serialVersionUID = 5351535579005550240L;
 
 	/**
 	 * セッション情報
@@ -35,6 +35,11 @@ public class GoPurchaseAction extends ActionSupport implements SessionAware {
 	 * ユーザーID
 	 */
 	private int user_id;
+
+	/**
+	 * 商品ID
+	 */
+	private int item_id;
 
 	/**
 	 * 小計
@@ -53,9 +58,8 @@ public class GoPurchaseAction extends ActionSupport implements SessionAware {
 
 
 
-
 	/**
-	 * 商品情報とカート情報を格納するための実行メソッド
+	 * クレジットカード情報を照合し、格納するための実行メソッド
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/24
 	 * @version 1.0
@@ -66,26 +70,30 @@ public class GoPurchaseAction extends ActionSupport implements SessionAware {
 		String result = ERROR;
 
 		if(session.containsKey("user_id")) {
-			user_id = (int) session.get("user_id");
+			user_id = (int)session.get("user_id");
 
 			CartSelectDAO dao = new CartSelectDAO();
 
+			//アレイリストに情報を入れる
 			cartList = dao.selectedItem(user_id);
 
 			for(int i = 0; i < cartList.size(); i++) {
-				total_price = total_price.add(cartList.get(i).getSub_total());
+
+				sub_total = (cartList.get(i).getItem_price()).multiply(BigDecimal.valueOf(cartList.get(i).getOrder_count()));
+				cartList.get(i).setSub_total(sub_total);
+
+				total_price = total_price.add(sub_total);
 			}
 
-			if(cartList.size() > 0) {
-				return SUCCESS;
-			}
+			result = SUCCESS;
+
+
 		} else {
-			return LOGIN;
+			result = LOGIN;
 		}
 
 		return result;
 	}
-
 
 
 
@@ -98,14 +106,12 @@ public class GoPurchaseAction extends ActionSupport implements SessionAware {
 
 
 
-
 	/**
 	 * @param session セットする session
 	 */
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-
 
 
 
@@ -118,7 +124,6 @@ public class GoPurchaseAction extends ActionSupport implements SessionAware {
 
 
 
-
 	/**
 	 * @param user_id セットする user_id
 	 */
@@ -126,6 +131,23 @@ public class GoPurchaseAction extends ActionSupport implements SessionAware {
 		this.user_id = user_id;
 	}
 
+
+
+	/**
+	 * @return item_id
+	 */
+	public int getItem_id() {
+		return item_id;
+	}
+
+
+
+	/**
+	 * @param item_id セットする item_id
+	 */
+	public void setItem_id(int item_id) {
+		this.item_id = item_id;
+	}
 
 
 
@@ -138,14 +160,12 @@ public class GoPurchaseAction extends ActionSupport implements SessionAware {
 
 
 
-
 	/**
 	 * @param sub_total セットする sub_total
 	 */
 	public void setSub_total(BigDecimal sub_total) {
 		this.sub_total = sub_total;
 	}
-
 
 
 
@@ -158,14 +178,12 @@ public class GoPurchaseAction extends ActionSupport implements SessionAware {
 
 
 
-
 	/**
 	 * @param total_price セットする total_price
 	 */
 	public void setTotal_price(BigDecimal total_price) {
 		this.total_price = total_price;
 	}
-
 
 
 
@@ -178,14 +196,12 @@ public class GoPurchaseAction extends ActionSupport implements SessionAware {
 
 
 
-
 	/**
 	 * @param cartList セットする cartList
 	 */
 	public void setCartList(ArrayList<CartDTO> cartList) {
 		this.cartList = cartList;
 	}
-
 
 
 
