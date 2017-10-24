@@ -65,7 +65,6 @@ public class GoMyPageAction extends ActionSupport implements SessionAware {
 
 
 
-
 	/**
 	 * 会員情報を表示するための実行メソッド
 	 * @author HINAKO HAGIWARA
@@ -85,11 +84,13 @@ public class GoMyPageAction extends ActionSupport implements SessionAware {
 
 		if(userList.size() == 0) {
 			return ERROR;
+
 		} else {
+
 			return SUCCESS;
 		}
-	}
 
+	}
 
 
 

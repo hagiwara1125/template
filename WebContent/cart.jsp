@@ -39,7 +39,7 @@
 	</header>
 
 <div class="cartselectlist">
-	<s:if test="%{cartList != null && session,user_id != null}">
+	<s:if test="%{cartList != null && session.user_id != null}">
 		<section class="contents">
 			<div class="container">
 				<h1><s:text name="lang.cart.cart" /></h1>

@@ -91,9 +91,7 @@ public class CartSelectAction extends ActionSupport implements SessionAware {
 	public String execute() {
 		String result = ERROR;
 
-		System.out.println("CartSelectAction - ユーザーID :" + user_id);
-
-		if(session.containsKey("use_id")) {
+		if(session.containsKey("user_id")) {
 			user_id = (int)session.get("user_id");
 
 			CartSelectDAO dao = new CartSelectDAO();
@@ -110,6 +108,10 @@ public class CartSelectAction extends ActionSupport implements SessionAware {
 
 		} else
 			result = LOGIN;
+
+
+		System.out.println("CartSelectAction - ユーザーID :" + user_id);
+		System.out.println("CartSelectAction - result :" + result);
 
 		return result;
 

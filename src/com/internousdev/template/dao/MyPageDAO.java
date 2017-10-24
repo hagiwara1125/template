@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.internousdev.template.dto.UserDTO;
-import com.internousdev.util.DBConnector;
+import com.internousdev.template.util.DBConnector;
+
+
 
 /**
  * 会員情報に関するDAOクラス
@@ -18,14 +20,21 @@ import com.internousdev.util.DBConnector;
 
 public class MyPageDAO {
 
-
+	/**
+	 * 会員情報を取得してリストに格納するためのメソッド
+	 * @author HINAKO HAGIWARA
+	 * @since 2017/10/23
+	 * @version 1.0
+	 * @param user_id ユーザーID
+	 * @return userList ユーザーリスト
+	 */
 
 	public ArrayList<UserDTO> select(int user_id) {
-		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost", "calicocat", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 		ArrayList<UserDTO> userList = new ArrayList<UserDTO>();
 
-		String sql = "SELECT * FROM uesrs WHERE user_id = ?";
+		String sql = "SELECT * FROM users WHERE user_id = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);

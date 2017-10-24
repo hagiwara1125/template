@@ -45,7 +45,7 @@ public class CartSelectDAO {
 				CartDTO dto = new CartDTO();
 				dto.setUser_id(rs.getInt("user_id"));
 				dto.setCart_id(rs.getInt("cart_id"));
-				dto.setItem_id(rs.getInt("cart_id"));
+				dto.setItem_id(rs.getInt("item_id"));
 				dto.setOrder_count(rs.getInt("order_count"));
 				dto.setSub_total(rs.getBigDecimal("sub_total"));
 

@@ -35,6 +35,8 @@
 
 <body>
 
+<!-- ログイン時 -->
+
 	<s:if test="#session.user_flg==1">
 		<div id="menulist">
 			<ul id="dropmenu">
@@ -83,9 +85,12 @@
 		</div>
 	</s:if>
 
+<!-- 管理者ログイン -->
+
 	<s:elseif test="#session.user_flg==3">
 	</s:elseif>
 
+<!-- 未ログイン時 -->
 
 	<s:else>
 		<ul id="dropmenu">
