@@ -30,7 +30,10 @@
 <title><s:text name="lang.item_detail.title" /></title>
 
 </head>
+
 <body>
+
+	<!-- ヘッダーここから -->
 
 	<header>
 		<s:include value="header.jsp" />
@@ -38,7 +41,13 @@
 
 	<!-- ヘッダーここまで -->
 
+
 	<div class="center">
+
+		<div class="sidebar">
+			<s:include value="item.jsp" />
+		</div>
+
 
 		<div class="contents">
 
@@ -54,7 +63,7 @@
 					</p>
 
 
-					<img src="<s:property value= "img_path" />" class="img">
+					<img src="<s:property value= "img_path"/>" class="img">
 
 
 					<table style="border: solid 1px white">
@@ -105,6 +114,6 @@
 	</div>
 </body>
 <footer style="text-align: center;">
-	<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
-</footer>
+		<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
+	</footer>
 </html>
