@@ -9,8 +9,6 @@ import com.internousdev.template.dao.CartSelectDAO;
 import com.internousdev.template.dao.ItemListDAO;
 import com.internousdev.template.dto.CartDTO;
 import com.internousdev.template.dto.ItemDTO;
-import com.internousdev.template.util.ItemListAllPages;
-import com.internousdev.template.util.ItemListPageObject;
 import com.opensymphony.xwork2.ActionSupport;
 
 
@@ -60,24 +58,14 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
 
 	/**
-	 * 総データ数
+	 * ページネーションする全体のページ数
 	 */
-	private int number;
+	private int pageCount;
 
 	/**
-	 * ページネーション番号表示リスト
+	 * ページの限界値
 	 */
-	private ArrayList<Integer> list = new ArrayList<Integer>();
-
-	/**
-	 * 現在のページ
-	 */
-	private int pageNum = 1;
-
-	/**
-	 * 総ページ数
-	 */
-	private int maxPage;
+	private int pageLimit = 12;
 
 
 
@@ -114,19 +102,10 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 			}
 			selectList.get(i).setUser_stock(userStock);
 
-			number = selectList.size();
-			if(number > 0) {
+			pageCount = itemList.size() / pageLimit;
+			if(itemList.size() % pageLimit != 0) {
+				pageCount++;
 
-				//ページネーション処理
-				ArrayList<ItemListPageObject> allPages = new ArrayList<ItemListPageObject>();
-				ItemListAllPages allp = new ItemListAllPages();
-				allPages = allp.paginate(selectList, 9);
-				maxPage = allp.getMaxPage(selectList, 9);
-				itemList = allPages.get(pageNum - 1).getPaginatedList();
-				for(int ｋ = 0; ｋ < maxPage; ｋ++) {
-					list.add(ｋ);
-				}
-				result = SUCCESS;
 			}
 
 			result = SUCCESS;
@@ -134,6 +113,7 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 		}
 
 		return result;
+
 	}
 
 
@@ -253,76 +233,32 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 		this.cartList = cartList;
 	}
 
-
-
 	/**
-	 * @return number
+	 * @return pageCount
 	 */
-	public int getNumber() {
-		return number;
+	public int getPageCount() {
+		return pageCount;
 	}
 
-
-
 	/**
-	 * @param number セットする number
+	 * @param pageCount セットする pageCount
 	 */
-	public void setNumber(int number) {
-		this.number = number;
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
 	}
 
-
-
 	/**
-	 * @return list
+	 * @return pageLimit
 	 */
-	public ArrayList<Integer> getList() {
-		return list;
+	public int getPageLimit() {
+		return pageLimit;
 	}
 
-
-
 	/**
-	 * @param list セットする list
+	 * @param pageLimit セットする pageLimit
 	 */
-	public void setList(ArrayList<Integer> list) {
-		this.list = list;
-	}
-
-
-
-	/**
-	 * @return pageNum
-	 */
-	public int getPageNum() {
-		return pageNum;
-	}
-
-
-
-	/**
-	 * @param pageNum セットする pageNum
-	 */
-	public void setPageNum(int pageNum) {
-		this.pageNum = pageNum;
-	}
-
-
-
-	/**
-	 * @return maxPage
-	 */
-	public int getMaxPage() {
-		return maxPage;
-	}
-
-
-
-	/**
-	 * @param maxPage セットする maxPage
-	 */
-	public void setMaxPage(int maxPage) {
-		this.maxPage = maxPage;
+	public void setPageLimit(int pageLimit) {
+		this.pageLimit = pageLimit;
 	}
 
 }

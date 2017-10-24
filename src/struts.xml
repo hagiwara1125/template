@@ -22,20 +22,27 @@
 	<!-- 対象のpackageを設定 -->
 	<package name="com.internousdev.tSemplate.action" extends="struts-default">
 
-		<!-- トップ画面へ遷移 -->
+		<!-- トップ画面へ遷移するAction -->
 		<action name="GoTopAction" class="com.internousdev.template.action.GoTopAction"
 			method="execute">
 			<result name="success">intdex.jsp</result>
 		</action>
 
-		<!-- ログイン画面からログイン成功画面に遷移 -->
+		<!-- ログイン画面からログイン成功画面に遷移するAction -->
 		<action name="LoginAction" class="com.internousdev.template.action.LoginAction"
 			method="execute">
 			<interceptor-ref name="defaultStack" />
 			<interceptor-ref name="token" />
 			<result name="invalid.token" type="chain">index.jsp</result>
-			<result name="success">login_check.jsp</result>
+			<result name="success">index.jsp</result>
 			<result name="login">admin_top_check.jsp</result>
+			<result name="error">login.jsp</result>
+		</action>
+
+		<!-- ログアウトするAction -->
+		<action name="LogoutAction" class="com.internousdev.template.action.LogoutAction"
+			method="execute">
+			<result name="success">index.jsp</result>
 			<result name="error">login.jsp</result>
 		</action>
 

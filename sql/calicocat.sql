@@ -41,9 +41,8 @@ create table item(
 item_id int primary key not null auto_increment, /*商品ID*/
 variation_id int, /*バリエーションID*/
 item_category int not null, /*商品カテゴリ*/
-item_user int not null, /*使用者*/
 item_name varchar(255) not null, /*商品名*/
-item_color varchar(255), /*色*/
+/*item_color varchar(255), 色*/
 item_price decimal(9,2) not null, /*価格*/
 item_stock int, /*在庫数*/
 img_path text not null, /*画像パス*/
@@ -127,5 +126,5 @@ INSERT INTO users(phone_email, password, login_flg, user_flg, delete_flg, family
 -- variation_id(1:,)
 -- item_category(1:キッチン用品, 2:インテリア, 3:文房具, 4:ファッション小物, 5:アクセサリー, 11:ごはん, 12:おやつ, 13:おもちゃ, 14:日用品)
 -- item_user(1:愛猫家, 3:ねこ)
-INSERT INTO item(variation_id, item_category, item_user, item_name, item_color, item_price, item_stock, img_path, item_comment, category_page) VALUE
-(1, 1, 1, 'グラス', 'nomal', 1000, 100, './img/item/glass.jpg', 'グラスペアセット', 1);
+INSERT INTO item(variation_id, item_category, item_name, /*item_color,*/ item_price, item_stock, img_path, item_comment, category_page) VALUE
+(1, 1, 'グラス', /*'nomal',*/1000, 100, './img/item/glass.jpg', 'グラスペアセット', 1);

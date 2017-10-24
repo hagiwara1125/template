@@ -51,7 +51,7 @@
 				<li><a href="#">カート</a></li>
 			</ul>
 		</li>
-		<li><a href="<s:url action="LogoutAction"><s:param name="item_category" value="1" /></s:url>">ログアウト</a></li>
+		<li><a href="<s:url action="LogoutAction"></s:url>">ログアウト</a></li>
 	</ul>
 	</div>
 	</s:if>
@@ -69,7 +69,7 @@
 			</ul></li>
 		<li><a href="<s:url action="ItemListAstion"><s:param name="item_category" value="0" /></s:url>">商品一覧</a>
 				<ul>
-					<li><a href="<s:url action="ItemListAction"><s:param name="item_user" value="1" /></s:url>">愛猫家さんへ</a>
+					<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">愛猫家さんへ</a>
 						<ul>
 							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="1" /></s:url>">キッチン用品</a></li>
 							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="2" /></s:url>">インテリア</a></li>
@@ -78,7 +78,7 @@
 							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="5" /></s:url>">アクセサリー</a></li>
 						</ul>
 					</li>
-					<li><a href="<s:url action="ItemListAction"><s:param name="item_user" value="2" /></s:url>">ねこちゃんへ</a>
+					<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">ねこちゃんへ</a>
 						<ul>
 							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="6" /></s:url>">ごはん</a></li>
 							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="7" /></s:url>">おやつ</a></li>
@@ -90,11 +90,11 @@
 		</li>
 		<li><a href="#">アカウントサービス</a>
 			<ul>
-				<li><a href="#">マイページ</a></li>
-				<li><a href="#">カート</a></li>
+				<li><a href="<s:url action="GoMyPageAction"></s:url>">マイページ</a></li>
+				<li><a href="<s:url action="CartSelectAction"></s:url>">カート</a></li>
 			</ul>
 		</li>
-		<li><a href="<s:url action="LoginAction"><s:param name="item_category" value="1" /></s:url>">ログイン</a></li>
+		<li><a href="login.jsp">ログイン</a></li>
 	</ul>
 	</s:else>
 
