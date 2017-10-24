@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import com.internousdev.template.dto.ItemDTO;
 import com.internousdev.template.util.DBConnector;
 
+
+
 /**
  * 商品詳細情報に関するDAOクラス
  * @author HINAKO HAGIWARA
@@ -19,10 +21,11 @@ import com.internousdev.template.util.DBConnector;
 public class ItemDetailDAO {
 
 	public ArrayList<ItemDTO> select(int item_id) {
-		DBConnector db = new DBConnector("com.mysql.jdbc.1Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 		ItemDTO dto = new ItemDTO();
-		ArrayList<ItemDTO> itemDetailList = new ArrayList<ItemDTO>();
+		ArrayList<ItemDTO> displayList = new ArrayList<ItemDTO>();
+
 
 		String sql = "SELECT * FROM item WHERE item_id = ?";
 
@@ -33,30 +36,27 @@ public class ItemDetailDAO {
 
 			while(rs.next()) {
 				dto.setItem_id(rs.getInt("item_id"));
-				dto.setVariation_id(rs.getInt("variation_id"));
 				dto.setItem_category(rs.getInt("item_category"));
-				dto.setItem_user(rs.getInt("item_user"));
 				dto.setItem_name(rs.getString("item_name"));
-				dto.setItem_color(rs.getString("item_color"));
 				dto.setItem_price(rs.getBigDecimal("item_price"));
 				dto.setItem_stock(rs.getInt("item_stock"));
 				dto.setImg_path(rs.getString("img_path"));
 				dto.setItem_comment(rs.getString("item_comment"));
-				itemDetailList.add(dto);
+				displayList.add(dto);
 			}
 
 		} catch(SQLException e) {
 			e.printStackTrace();
 
-	} finally {
+	}
 		try {
 			con.close();
 
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-		return itemDetailList;
+
+		return displayList;
 
 	}
 

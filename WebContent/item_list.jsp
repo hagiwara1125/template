@@ -29,12 +29,6 @@
 
 <title><s:text name="lang.item_list.title" /></title>
 
-<%-- <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="./bootstrap/js/bootstrap.min.js"></script> --%>
-
-</head>
 
 <body>
 
@@ -43,22 +37,26 @@
 	</header>
 
 	<div class="center">
+		<div class="sidebar">
+			<s:include value="item.jsp" />
+		</div>
+
 
 		<div id="contents">
 
 
 			<div class="subtitle">
-				<s:text name="lang.tour_list.cart" />
+				<s:text name="lang.item_list.cart" />
 			</div>
 
 			<div class="display_list">
-				<s:iterator value="itemList">
+				<s:iterator value="selectList">
 					<div class="template">
 						<div class="hvr-float-shadow">
 							<div class="item_img">
 								<a
 									href="<s:url action="ItemDetailAction"><s:param name="item_id" value="%{item_id}"/></s:url>"><img
-									class="tour_img" src="<s:property value="img_path"/>" height="250px">
+									class="item_img" src="<s:property value="img_path"/>" height="250px">
 									<s:hidden value="item_id" /> </a>
 							</div>
 						</div>
@@ -73,14 +71,13 @@
 				</s:iterator>
 			</div>
 
-		<footer style="padding-top: 110%; text-align: center;">
-			<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
-		</footer>
+			<footer style="padding-top: 110%; text-align: center;">
+				<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
+			</footer>
 
 		</div>
 
 	</div>
-
 
 </body>
 </html>

@@ -24,13 +24,90 @@
 
 <!-- 国際化 -->
 <fmt:setLocale value="${pageContext.request.locale.language}" />
-<fmt:setBundle basename="com.internousdev.template.property.XXXXX"
+<fmt:setBundle basename="com.internousdev.template.property.item_detal"
 	var="lang" />
 
-<title><s:text name="lang.XXXXX.title" /></title>
+<title><s:text name="lang.item_detail.title" /></title>
 
 </head>
 <body>
 
+	<!-- ヘッダーここから -->
+
+	<header>
+		<s:include value="header.jsp" />
+	</header>
+
+	<!-- ヘッダーここまで -->
+
+
+	<div class="center">
+
+		<div class="contents">
+
+			<div class="subtitle">
+				<s:text name="lang.item_detail.subtitle" />
+			</div>
+
+			<s:form action="CartInsertAction">
+				<s:iterator value="displayList">
+
+					<p class="item_name">
+						<s:property value="item_name" />
+					</p>
+
+
+					<img src="<s:property value= "img_path"/>" class="img">
+
+
+					<table style="border: solid 1px white">
+						<tr>
+							<th><s:text name="lang.item_detail.comment" /></th>
+							<td><s:property escape="false" value="comment" /></td>
+						</tr>
+						<tr>
+							<th class="priceth"><s:text name="lang.item_detail.price" /></th>
+							<td><div class="pricetd">
+									￥
+									<fmt:formatNumber value="${item_price}" pattern="###,###,###" />
+									<span class="tax"> <s:text name="lang.item_detail.tax" />
+									</span>
+								</div></td>
+						</tr>
+					</table>
+
+					<div class="shoppingcart">
+
+						<input type="hidden" name="item_id"
+							value="<s:property value="item_id"/>" />
+
+
+						<!-- 参加人数 必要か不必要か -->
+						<s:text name="lang.item_detail.persons" />
+						<select name="order_count">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+						</select> <input type="submit" class="btn btn-warning"
+							value="<s:text name= "lang.item_detail.cart"/>" />
+
+					</div>
+
+				</s:iterator>
+
+			</s:form>
+
+		</div>
+	</div>
 </body>
+<footer style="text-align: center;">
+		<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
+	</footer>
 </html>

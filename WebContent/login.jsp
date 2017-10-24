@@ -219,7 +219,7 @@ background-color
 			</h1>
 			<div id="rightbox">
 				<p>
-					<s:text name="lang.login.loginwithyouremailaddress" />
+					<s:text name="lang.login.input" />
 				</p>
 				<s:form action="LoginAction">
 					<input type="text" name="phone_email" required="required"

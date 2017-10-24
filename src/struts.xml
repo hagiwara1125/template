@@ -58,7 +58,7 @@
 		<action name="ItemDetailAction"
 			class="com.internousdev.template.action.ItemDetailAction" method="execute">
 			<result name="success">item_detail.jsp</result>
-			<result name="error">item_list.jsp</result>
+			<result name="error">item_detail.jsp</result>
 		</action>
 
 		<!-- マイページへ遷移するAction -->
