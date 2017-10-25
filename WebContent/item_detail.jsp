@@ -79,9 +79,9 @@
 												<span class="product-detail-price1"
 													style="boder-bottom: solid;"><s:text
 														name="lang.itemlist.price" /></span> <br> <span
-													class="product-detail-price2">￥<script>
-																					decimal_floor(<s:property value="price"/>);
-																				</script></span> <span class="product-detail-price3">（<s:text
+													class="product-detail-price2">￥ <fmt:formatNumber
+														value="${item_price}" pattern="###,###,###" /></span> <span
+													class="product-detail-price3">（<s:text
 														name="lang.itemlist.etax" />）
 												</span> <br> <br> <span class="product-detail-comment">
 													<s:property value="item_comment" />
@@ -137,13 +137,13 @@
 				</form>
 
 				<script>
-									var sel = document.forms.cartInsertForm<s:property value="#st.count"/>.order_count;
-									sel.options.length = 0;
-									for (var i = 1; i <= <s:property value="user_stock"/>
-											&& i <= 10; i++) {
-										sel.options[i - 1] = new Option(i);
-									}
-								</script>
+					var sel = document.forms.cartInsertForm<s:property value="#st.count"/>.order_count;
+					sel.options.length = 0;
+					for (var i = 1; i <= <s:property value="user_stock"/>
+							&& i <= 10; i++) {
+						sel.options[i - 1] = new Option(i);
+					}
+				</script>
 
 			</s:iterator>
 

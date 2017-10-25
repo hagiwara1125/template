@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.internousdev.template.dao.CartSelectDAO;
 import com.internousdev.template.dao.ItemDetailDAO;
 import com.internousdev.template.dto.CartDTO;
 import com.internousdev.template.dto.ItemDTO;
@@ -83,6 +84,11 @@ public class ItemDetailAction extends ActionSupport implements SessionAware {
 	 */
 	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
 
+	/**
+	 * データベースから取得した商品情報リスト
+	 */
+	private ArrayList<ItemDTO> selectList = new ArrayList<>();
+
 
 
 	/**
@@ -96,8 +102,27 @@ public class ItemDetailAction extends ActionSupport implements SessionAware {
 	public String execute() throws SQLException {
 		String result = ERROR;
 
+		if (session.containsKey("user_id")) {
+			user_id = (int) session.get("user_id");
+			//カート情報の取得
+			CartSelectDAO cartDao = new CartSelectDAO();
+			cartList = cartDao.selectedItem(user_id);
+		}
+
         ItemDetailDAO dao = new ItemDetailDAO();
         displayList = dao.select(item_id);
+
+        for(int i=0;i < selectList.size();i++){
+
+			int userStock = selectList.get(i).getItem_stock();
+
+			for(int j=0;j<cartList.size();j++){
+				if(selectList.get(i).getItem_id() == cartList.get(j).getItem_id()){
+					userStock -= cartList.get(j).getOrder_count();
+				}
+			}
+			selectList.get(i).setUser_stock(userStock);
+		}
 
         if(displayList.size() != 0) {
         	this.item_name = displayList.get(0).getItem_name();
@@ -297,6 +322,22 @@ public class ItemDetailAction extends ActionSupport implements SessionAware {
 	 */
 	public void setCartList(ArrayList<CartDTO> cartList) {
 		this.cartList = cartList;
+	}
+
+
+	/**
+	 * @return selectList
+	 */
+	public ArrayList<ItemDTO> getSelectList() {
+		return selectList;
+	}
+
+
+	/**
+	 * @param selectList セットする selectList
+	 */
+	public void setSelectList(ArrayList<ItemDTO> selectList) {
+		this.selectList = selectList;
 	}
 
 }

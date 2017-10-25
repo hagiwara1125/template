@@ -21,10 +21,10 @@ import com.internousdev.template.util.DBConnector;
 public class ItemDetailDAO {
 
 	public ArrayList<ItemDTO> select(int item_id) {
-		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
-		Connection con = db.getConnection();
-		ItemDTO dto = new ItemDTO();
-		ArrayList<ItemDTO> displayList = new ArrayList<ItemDTO>();
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/","calicocat", "root", "mysql");
+		Connection con =db.getConnection();
+		ArrayList<ItemDTO> displayList =new ArrayList<ItemDTO>();
+		ItemDTO dto = null;
 
 
 		String sql = "SELECT * FROM item WHERE item_id = ?";
@@ -35,6 +35,7 @@ public class ItemDetailDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()) {
+				dto =new ItemDTO();
 				dto.setItem_id(rs.getInt("item_id"));
 				dto.setItem_category(rs.getInt("item_category"));
 				dto.setItem_name(rs.getString("item_name"));
