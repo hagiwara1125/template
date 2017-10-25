@@ -3,7 +3,7 @@
 #contents {
 	position: absolute;
 	width: 100%;
-	height: 250px;
+	height: 100px;
 	background: #c27c27;
 	color: white;
 	top: 0;
@@ -17,7 +17,7 @@
 	list-style-type: none;
 	width: 1000px;
 	height: 50px;
-	margin: 10px auto 30px;
+	margin: 26px auto;
 	padding: 0px;
 }
 

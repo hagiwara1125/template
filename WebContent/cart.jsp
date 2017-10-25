@@ -47,7 +47,7 @@
 		<s:include value="header.jsp" />
 	</header>
 
-	<div id="contents" style="margin-bottom: 50px;">
+	<div id="contents" style="margin-bottom: 50px; color: #000000;">
 
 		<div class="col-sm-12 center">
 
@@ -150,6 +150,9 @@
 
 	</div>
 
+	<footer style="text-align: center;">
+		<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
+	</footer>
 
 </body>
 </html>
