@@ -16,91 +16,107 @@
 <body>
 
 
-<!-- ログイン時 -->
+	<!-- ログイン時 -->
 
-<s:if test="#session.user_flg==1">
-<div id="menulist">
-	<ul id="dropmenu">
-		<li><a href="#">当サイトについて</a>
-			<ul>
-				<li><a href="#">ヘルプ</a></li>
-				<li><a href="#">お問い合わせ</a></li>
-			</ul></li>
-		<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">商品一覧</a>
-				<ul>
-					<li><a href="<s:url action="ItemListAction"><s:param name="item_user" value="1" /></s:url>">愛猫家さんへ</a>
-						<ul>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="1" /></s:url>">キッチン用品</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="2" /></s:url>">インテリア</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="3" /></s:url>">文房具</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="4" /></s:url>">ファッション小物</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="5" /></s:url>">アクセサリー</a></li>
-						</ul>
-					</li>
-					<li><a href="<s:url action="ItemListAction"><s:param name="item_user" value="2" /></s:url>">ねこちゃんへ</a>
-						<ul>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="6" /></s:url>">ごはん</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="7" /></s:url>">おやつ</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="8" /></s:url>">おもちゃ</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="9" /></s:url>">日用品</a>
-						</ul>
-					</li>
-				</ul>
-		</li>
-		<li><a href="#">アカウントサービス</a>
-			<ul>
-				<li><a href="<s:url action="GoMyPageAction"></s:url>">マイページ</a></li>
-				<li><a href="<s:url action="CartSelectAction"></s:url>">カート</a></li>
+	<s:if test="#session.user_flg==1">
+		<div id="menulist">
+			<ul id="dropmenu">
+				<li><a href="#">当サイトについて</a>
+					<ul>
+						<li><a href="#">ヘルプ</a></li>
+						<li><a href="#">お問い合わせ</a></li>
+					</ul></li>
+				<li><a
+					href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">商品一覧</a>
+					<ul>
+						<li><a
+							href="<s:url action="ItemListAction"><s:param name="item_user" value="1" /></s:url>">愛猫家さんへ</a>
+							<ul>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="1" /></s:url>">キッチン用品</a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="2" /></s:url>">インテリア</a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="3" /></s:url>">文房具</a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="4" /></s:url>">ファッション小物</a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="5" /></s:url>">アクセサリー</a></li>
+							</ul></li>
+						<li><a
+							href="<s:url action="ItemListAction"><s:param name="item_user" value="2" /></s:url>">ねこちゃんへ</a>
+							<ul>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="6" /></s:url>">ごはん</a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="7" /></s:url>">おやつ</a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="8" /></s:url>">おもちゃ</a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="9" /></s:url>">日用品</a>
+							</ul></li>
+					</ul></li>
+				<li><a href="#">アカウントサービス</a>
+					<ul>
+						<li><a href="<s:url action="GoMyPageAction"></s:url>">マイページ</a></li>
+						<li><a href="<s:url action="CartSelectAction"></s:url>">カート</a></li>
+					</ul></li>
+				<li><a href="<s:url action="LogoutAction"></s:url>">ログアウト</a></li>
 			</ul>
-		</li>
-		<li><a href="<s:url action="LogoutAction"></s:url>">ログアウト</a></li>
-	</ul>
-	</div>
+		</div>
 	</s:if>
 
-<!-- 管理者ログイン時 -->
+	<!-- 管理者ログイン時 -->
 
 	<s:elseif test="#session.user_flg==3">
 	</s:elseif>
 
-<!-- 未ログイン時 -->
+	<!-- 未ログイン時 -->
 
-<s:else>
-<ul id="dropmenu">
-		<li><a href="#">当サイトについて</a>
-			<ul>
-				<li><a href="#">ヘルプ</a></li>
-				<li><a href="#">お問い合わせ</a></li>
-			</ul></li>
-		<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">商品一覧</a>
+	<s:else>
+		<ul id="dropmenu">
+			<li><a href="#">当サイトについて</a>
 				<ul>
-					<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">愛猫家さんへ</a>
+					<li><a href="#">ヘルプ</a></li>
+					<li><a href="#">お問い合わせ</a></li>
+				</ul></li>
+			<li><a
+				href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">商品一覧</a>
+				<ul>
+					<li><a
+						href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">愛猫家さんへ</a>
 						<ul>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="1" /></s:url>">キッチン用品</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="2" /></s:url>">インテリア</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="3" /></s:url>">文房具</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="4" /></s:url>">ファッション小物</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="5" /></s:url>">アクセサリー</a></li>
-						</ul>
-					</li>
-					<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">ねこちゃんへ</a>
+							<li><a
+								href="<s:url action="ItemListAction"><s:param name="item_category" value="1" /></s:url>">キッチン用品</a></li>
+							<li><a
+								href="<s:url action="ItemListAction"><s:param name="item_category" value="2" /></s:url>">インテリア</a></li>
+							<li><a
+								href="<s:url action="ItemListAction"><s:param name="item_category" value="3" /></s:url>">文房具</a></li>
+							<li><a
+								href="<s:url action="ItemListAction"><s:param name="item_category" value="4" /></s:url>">ファッション小物</a></li>
+							<li><a
+								href="<s:url action="ItemListAction"><s:param name="item_category" value="5" /></s:url>">アクセサリー</a></li>
+						</ul></li>
+					<li><a
+						href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>">ねこちゃんへ</a>
 						<ul>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="6" /></s:url>">ごはん</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="7" /></s:url>">おやつ</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="8" /></s:url>">おもちゃ</a></li>
-							<li><a href="<s:url action="ItemListAction"><s:param name="item_category" value="9" /></s:url>">日用品</a>
-						</ul>
-					</li>
-				</ul>
-		</li>
-		<li><a href="#">アカウントサービス</a>
-			<ul>
-				<li><a href="<s:url action="GoMyPageAction"></s:url>">マイページ</a></li>
-				<li><a href="<s:url action="CartSelectAction"></s:url>">カート</a></li>
-			</ul>
-		</li>
-		<li><a href="login.jsp">ログイン</a></li>
-	</ul>
+							<li><a
+								href="<s:url action="ItemListAction"><s:param name="item_category" value="6" /></s:url>">ごはん</a></li>
+							<li><a
+								href="<s:url action="ItemListAction"><s:param name="item_category" value="7" /></s:url>">おやつ</a></li>
+							<li><a
+								href="<s:url action="ItemListAction"><s:param name="item_category" value="8" /></s:url>">おもちゃ</a></li>
+							<li><a
+								href="<s:url action="ItemListAction"><s:param name="item_category" value="9" /></s:url>">日用品</a>
+						</ul></li>
+				</ul></li>
+			<li><a href="#">アカウントサービス</a>
+				<ul>
+					<li><a href="<s:url action="GoMyPageAction"></s:url>">マイページ</a></li>
+					<li><a href="<s:url action="CartSelectAction"></s:url>">カート</a></li>
+				</ul></li>
+			<li><a href="login.jsp">ログイン</a></li>
+		</ul>
 	</s:else>
 
 </body>

@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-
-<!-- 国際化 -->
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="java.util.Calendar"%>
 <%
 	Calendar calendar = Calendar.getInstance();
@@ -15,47 +13,31 @@
 		year++;
 	}
 %>
-
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-
 <meta charset="UTF-8">
-<meta http-equiv="X-UA=Compativble" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
-<meta http-equiv="imagetoolbar" content="no" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
-<meta charset="utf-8">
-
-<!-- 国際化 -->
-<fmt:setLocale value="${pageContext.request.locale.language}" />
-<fmt:setBundle basename="com.internousdev.template.property.purchase"
-	var="lang" />
-
 <title><s:text name="lang.purchase.title" /></title>
 
 <link rel="stylesheet" type="text/css" href="css/purchase.css">
-<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="./bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/payment.js"></script>
+<script type="text/javascript" src="js/cart_check.js"></script>
 
 </head>
+
 <body>
+		<!-- ヘッダーここから -->
 
-	<div id="pagecover">
-
-		<!-------------- ヘッダー -------------->
 		<header>
 			<s:include value="header.jsp" />
 		</header>
 
+		<!-- ここまで -->
 
 		<script>
 			jQuery(function() {
@@ -131,14 +113,6 @@
 					this.setCustomValidity("");
 				});
 
-				$("#usepointform").on("invalid", function(e) {
-					if (e.currentTarget.validity.patternMismatch) {
-						this.setCustomValidity("※半角数値のみ入力可能です");
-					}
-				}).on("input", function() {
-					this.setCustomValidity("");
-				});
-
 			});
 		</script>
 		<script>
@@ -148,6 +122,8 @@
 				}
 			}
 		</script>
+
+
 
 		<!-- クレジットカート情報入力フォーム -->
 
@@ -291,7 +267,8 @@
 				<s:text name="lang.purchase.error" />
 			</h2>
 		</s:else>
-	</div>
-
+	<footer>
+		<s:include value="footerload.jsp" />
+	</footer>
 </body>
 </html>
