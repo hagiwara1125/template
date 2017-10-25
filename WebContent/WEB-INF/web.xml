@@ -18,9 +18,10 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-<!-- 	<listener>
-		<listener-class>com.intersnousdev.template.util.AutoLogout</listener-class>
-	</listener> -->
+
+	<listener>
+		<listener-class>com.internousdev.template.util.AutoLogout</listener-class>
+	</listener>
 
 	<session-config>
 		<session-timeout>60</session-timeout>

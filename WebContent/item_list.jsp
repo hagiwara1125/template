@@ -114,9 +114,5 @@
 		</div>
 	</div>
 
-	<footer>
-		<s:include value="footerload.jsp" />
-	</footer>
-
 </body>
 </html>

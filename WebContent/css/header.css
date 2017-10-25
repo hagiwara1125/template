@@ -126,8 +126,15 @@
 	border-right-color: #ff0000;
 }
 
-.saigo {
-	position: relative;
-	padding-top: 30px;
-	bottom: 0;
+header a:link{
+	              color:#ffffff;
+}
+header a:visited{
+	              color:#ffffff;
+}
+header a:hover{
+	              color:#ffffff;
+}
+header a:active{
+	              color:#ffffff;
 }
