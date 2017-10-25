@@ -81,17 +81,15 @@ foreign key(item_id) references item(item_id)
 
 
 /*クレジットカード*/
-create table credit(
-credit_id int primary key not null auto_increment, /*クレジットカードID*/
+create table credits(
+credit_id int not null primary key auto_increment, /*クレジットカードID*/
 credit_type int not null, /*クレジットカード種類*/
-credit_number varchar(16), /*クレジットカード番号*/
-credit_name varchar(50) not null, /*名義人*/
-security_code int, /*セキュリティコード*/
-expiration_month int not null, /*有効期限(月)*/
+credit_name varchar(100) not null, /*クレジットカードブランド*/
+created_at datetime not null default current_timestamp, /*登録日*/
+updated_at datetime not null, /*更新日*/
+deleted_at datetime not null, /*削除日*/
 expiration_year int not null, /*有効期限(年)*/
-created_date datetime not null default current_timestamp, /*登録日*/
-updated_date datetime not null, /*更新日*/
-deleted_date datetime not null /*削除日*/
+expiration_month int not null /*有効期限(月)*/
 );
 
 

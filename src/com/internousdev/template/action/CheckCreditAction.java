@@ -81,10 +81,18 @@ public class CheckCreditAction extends ActionSupport implements SessionAware {
 
 
 
+	/**
+	 * クレジットカードの種類を判別するための実行メソッド
+	 * @author HINAKO HAGIWARA
+	 * @since 2017/10/24
+	 * @version 1.0
+	 * @retunr SUCCESS or ERROR
+	 */
 
 	public String execute() {
 		if(session.containsKey("user_id")) {
 			user_id = (int)session.get("user_id");
+
 			CartSelectDAO dao = new CartSelectDAO();
 			cartList = dao.selectedItem(user_id);
 
@@ -112,7 +120,7 @@ public class CheckCreditAction extends ActionSupport implements SessionAware {
 			//クレジットカード番号上6桁の照合
 			if(util.brandCheck()) {
 				//クレジットカード番号16桁、セキュリティコード、有効期限、名義人の照合
-				if(util.creditCheck(securityCode, expirationMonth, expirationYear, nameE)) {
+				if(util.creditCheck(securityCode, expirationYear, expirationMonth, nameE)) {
 
 					return SUCCESS;
 
