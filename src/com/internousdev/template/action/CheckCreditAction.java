@@ -37,37 +37,37 @@ public class CheckCreditAction extends ActionSupport implements SessionAware {
 	/**
 	 * クレジットカード種類
 	 */
-	private int credit_id;
+	private int creditId;
 
 	/**
 	 * クレジットカードブランド
 	 */
-	private String credit_brand;
+	private String creditBrand;
 
 	/**
 	 * クレジットカード番号
 	 */
-	private String credit_number;
+	private String creditNumber;
 
 	/**
 	 * 名義人
 	 */
-	private String credit_name;
+	private String nameE;
 
 	/**
 	 * セキュリティコード
 	 */
-	private String security_code;
+	private String securityCode;
 
 	/**
 	 * 有効期限(月)
 	 */
-	private int expiration_month;
+	private int expirationMonth;
 
 	/**
 	 * 有効期限(年)
 	 */
-	private int expiration_year;
+	private int expirationYear;
 
 	/**
 	 * エラーフラグ
@@ -88,31 +88,31 @@ public class CheckCreditAction extends ActionSupport implements SessionAware {
 			CartSelectDAO dao = new CartSelectDAO();
 			cartList = dao.selectedItem(user_id);
 
-			if(credit_number.startsWith("4")) {
-				credit_id = 1;
-			} else if(credit_number.startsWith("5")) {
-				credit_id = 2;
-			} else if(credit_number.startsWith("3")) {
-				credit_id = 3;
+			if(creditNumber.startsWith("4")) {
+				creditId = 1;
+			} else if(creditNumber.startsWith("5")) {
+				creditId = 2;
+			} else if(creditNumber.startsWith("3")) {
+				creditId = 3;
 			} else {
 				err_flg = 1;
 				return ERROR;
 			}
 
-			if(credit_id == 1) {
-				credit_brand = "Visa";
-			} else if(credit_id == 2) {
-				credit_brand = "MasterCard";
-			} else if(credit_id == 3) {
-				credit_brand = "AmericanExpress";
+			if(creditId == 1) {
+				creditBrand = "Visa";
+			} else if(creditId == 2) {
+				creditBrand = "MasterCard";
+			} else if(creditId == 3) {
+				creditBrand = "AmericanExpress";
 			}
 
-			CreditUtil util = new CreditUtil(credit_id, credit_number);
+			CreditUtil util = new CreditUtil(creditId, creditNumber);
 
 			//クレジットカード番号上6桁の照合
 			if(util.brandCheck()) {
 				//クレジットカード番号16桁、セキュリティコード、有効期限、名義人の照合
-				if(util.creditCheck(security_code, expiration_month, expiration_year, credit_name)) {
+				if(util.creditCheck(securityCode, expirationMonth, expirationYear, nameE)) {
 
 					return SUCCESS;
 
@@ -174,140 +174,140 @@ public class CheckCreditAction extends ActionSupport implements SessionAware {
 
 
 	/**
-	 * @return credit_id
+	 * @return creditId
 	 */
-	public int getCredit_id() {
-		return credit_id;
+	public int getCreditId() {
+		return creditId;
 	}
 
 
 
 
 	/**
-	 * @param credit_id セットする credit_id
+	 * @param creditId セットする creditId
 	 */
-	public void setCredit_id(int credit_id) {
-		this.credit_id = credit_id;
+	public void setCreditId(int creditId) {
+		this.creditId = creditId;
 	}
 
 
 
 
 	/**
-	 * @return credit_brand
+	 * @return creditBrand
 	 */
-	public String getCredit_brand() {
-		return credit_brand;
+	public String getCreditBrand() {
+		return creditBrand;
 	}
 
 
 
 
 	/**
-	 * @param credit_brand セットする credit_brand
+	 * @param creditBrand セットする creditBrand
 	 */
-	public void setCredit_brand(String credit_brand) {
-		this.credit_brand = credit_brand;
+	public void setCreditBrand(String creditBrand) {
+		this.creditBrand = creditBrand;
 	}
 
 
 
 
 	/**
-	 * @return credit_number
+	 * @return creditNumber
 	 */
-	public String getCredit_number() {
-		return credit_number;
+	public String getCreditNumber() {
+		return creditNumber;
 	}
 
 
 
 
 	/**
-	 * @param credit_number セットする credit_number
+	 * @param creditNumber セットする creditNumber
 	 */
-	public void setCredit_number(String credit_number) {
-		this.credit_number = credit_number;
+	public void setCreditNumber(String creditNumber) {
+		this.creditNumber = creditNumber;
 	}
 
 
 
 
 	/**
-	 * @return credit_name
+	 * @return nameE
 	 */
-	public String getCredit_name() {
-		return credit_name;
+	public String getNameE() {
+		return nameE;
 	}
 
 
 
 
 	/**
-	 * @param credit_name セットする credit_name
+	 * @param nameE セットする nameE
 	 */
-	public void setCredit_name(String credit_name) {
-		this.credit_name = credit_name;
+	public void setNameE(String nameE) {
+		this.nameE = nameE;
 	}
 
 
 
 
 	/**
-	 * @return security_code
+	 * @return securityCode
 	 */
-	public String getSecurity_code() {
-		return security_code;
+	public String getSecurityCode() {
+		return securityCode;
 	}
 
 
 
 
 	/**
-	 * @param security_code セットする security_code
+	 * @param securityCode セットする securityCode
 	 */
-	public void setSecurity_code(String security_code) {
-		this.security_code = security_code;
+	public void setSecurityCode(String securityCode) {
+		this.securityCode = securityCode;
 	}
 
 
 
 
 	/**
-	 * @return expiration_month
+	 * @return expirationMonth
 	 */
-	public int getExpiration_month() {
-		return expiration_month;
+	public int getExpirationMonth() {
+		return expirationMonth;
 	}
 
 
 
 
 	/**
-	 * @param expiration_month セットする expiration_month
+	 * @param expirationMonth セットする expirationMonth
 	 */
-	public void setExpiration_month(int expiration_month) {
-		this.expiration_month = expiration_month;
+	public void setExpirationMonth(int expirationMonth) {
+		this.expirationMonth = expirationMonth;
 	}
 
 
 
 
 	/**
-	 * @return expiration_year
+	 * @return expirationYear
 	 */
-	public int getExpiration_year() {
-		return expiration_year;
+	public int getExpirationYear() {
+		return expirationYear;
 	}
 
 
 
 
 	/**
-	 * @param expiration_year セットする expiration_year
+	 * @param expirationYear セットする expirationYear
 	 */
-	public void setExpiration_year(int expiration_year) {
-		this.expiration_year = expiration_year;
+	public void setExpirationYear(int expirationYear) {
+		this.expirationYear = expirationYear;
 	}
 
 
