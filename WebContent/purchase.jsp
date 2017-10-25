@@ -30,11 +30,12 @@
 
 </head>
 
-<body>
+<body style="margin:0 auto;">
+	<div id="pagecover">
 		<!-- ヘッダーここから -->
 
 		<header>
-			<s:include value="header.jsp" />
+			<s:include value="header.jsp"></s:include>
 		</header>
 
 		<!-- ここまで -->
@@ -113,6 +114,14 @@
 					this.setCustomValidity("");
 				});
 
+				$("#usepointform").on("invalid", function(e) {
+					if (e.currentTarget.validity.patternMismatch) {
+						this.setCustomValidity("※半角数値のみ入力可能です");
+					}
+				}).on("input", function() {
+					this.setCustomValidity("");
+				});
+
 			});
 		</script>
 		<script>
@@ -121,11 +130,20 @@
 					i.form.elements[n].focus();
 				}
 			}
+
+			function checkPoint(total, point) {
+				if (document.paymentForm.use_point.value >= total
+						|| document.paymentForm.use_point.value >= point) {
+					if (point < total) {
+						document.paymentForm.use_point.value = point;
+					} else {
+						document.paymentForm.use_point.value = total;
+					}
+				}
+			}
 		</script>
 
-
-
-		<!-- クレジットカート情報入力フォーム -->
+		<!-- クレジットカード情報入力フォーム -->
 
 
 		<!-- ログイン時 -->
@@ -134,33 +152,15 @@
 				<div id="container" style="margin-top: 40px;">
 					<div class="panel-title">
 						<span class="glyphicon glyphicon-pencil"></span>&nbsp;
-						<s:text name="lang.purchase.fillin" />
+						<s:text name="lang.user_pay.fillin" />
 					</div>
-					<s:if test="%{err_flg==1}">
-						<div class="errormsg">
-							<h4>
-								<s:text name="lang.purchase.errmsg" />
-							</h4>
-						</div>
-					</s:if>
 					<div id="freme">
-						<div class="row" id="pricearea1">
-							<div class="col-sm-4" id="pricetitle">
-								<h2>
-									<s:text name="lang.purchase.producttotal" />
-								</h2>
-							</div>
-							<div id="textform" class="col-sm-8">
-								<font color="#000;">&emsp;<span id="totalprice"><fmt:formatNumber
-											value="${total_price}" pattern="###,###,###" /></span>&nbsp;<s:text
-										name="lang.purchase.yen" />
-								</font>
-							</div>
+						<div class="row" id="pricearea">
 						</div>
 						<div class="row">
 							<div class="col-sm-4" id="formtitle">
 								<h2>
-									<s:text name="lang.purchase.creditcardnumber" />
+									<s:text name="lang.user_pay.creditcardnumber" />
 									<font color="red">*</font>
 								</h2>
 							</div>
@@ -179,33 +179,27 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-sm-offset-4 col-sm-8" id="paycaution">
-								<font color="red"><s:text name="lang.purchase.caution" /></font><br>
-								<font color="red"><s:text name="lang.purchase.caution2" /></font>
-							</div>
-						</div>
-						<div class="row">
 							<div class="col-sm-4" id="formtitle">
 								<h2>
-									<s:text name="lang.purchase.name" />
+									<s:text name="lang.user_pay.name" />
 									<font color="red">*</font>
 								</h2>
 							</div>
 							<div id="textform" class="col-sm-8">
 								<input name="nameE" class="form-control" type="text" size="15"
-									maxlength="40" placeholder="TARO YAMADA" required
+									maxlength="40" placeholder="TARO TANAKA" required
 									pattern="[a-z\s]+$" id="nameE">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-4" id="formtitle">
 								<h2>
-									<s:text name="lang.purchase.securitycode" />
+									<s:text name="lang.user_pay.securitycode" />
 									<font color="red">*</font>
 								</h2>
 							</div>
 							<div id="textform" class="col-sm-8">
-								<input name="securityCode" class="form-control" type="password"
+								<input  name="securityCode" type="password" class="form-control"
 									size="5" maxlength="4" placeholder="123" pattern="[0-9]{3,4}"
 									required id="securityCode">
 							</div>
@@ -213,7 +207,7 @@
 						<div class="row">
 							<div class="col-sm-4" id="formtitle">
 								<h2>
-									<s:text name="lang.purchase.cardexpiration" />
+									<s:text name="lang.user_pay.cardexpiration" />
 									<font color="red">*</font>
 								</h2>
 							</div>
@@ -232,7 +226,7 @@
 									<option value="11">11</option>
 									<option value="12">12</option>
 								</select>&nbsp;
-								<s:text name="lang.purchase.month" />
+								<s:text name="lang.user_pay.month" />
 								&emsp;/&nbsp; <select class="form-control" id="se1"
 									name="expirationYear">
 									<%
@@ -243,18 +237,19 @@
 										}
 									%>
 								</select>&nbsp;
-								<s:text name="lang.purchase.year" />
+								<s:text name="lang.user_pay.year" />
 							</div>
 						</div>
+
 
 					</div>
 
 					<!-- カートの中身画面へ遷移 -->
 					<div class="buttonfreme">
-						<span class="back"><a href="CartSelectAction"
-							class="backlink"><s:text name="lang.purchase.back" /></a></span>
+						<span class="back"><a href="SelectCartAction" class="backlink"><s:text
+									name="lang.user_pay.back" /></a></span>
 						<!-- 購入確認画面へ遷移 -->
-						<input type="submit" value="<s:text name="lang.purchase.next"/>"
+						<input type="submit" value="<s:text name="lang.user_pay.next"/>"
 							id="insertButton" class="nextlink" />
 					</div>
 				</div>
@@ -264,11 +259,12 @@
 		<!-- 未ログイン時 -->
 		<s:else>
 			<h2 style="text-align: center; margin-top: 200px;">
-				<s:text name="lang.purchase.error" />
+				<s:text name="lang.user_pay.error" />
 			</h2>
 		</s:else>
-	<footer>
-		<s:include value="footerload.jsp" />
+	</div>
+	<footer style="text-align: center;">
+		<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
 	</footer>
 </body>
 </html>

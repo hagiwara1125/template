@@ -29,11 +29,6 @@
 
 <title><s:text name="lang.cart.title" /></title>
 
-<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="./bootstrap/js/bootstrap.min.js"></script>
-
 <link rel="stylesheet" type="text/css" href="css/cart.css">
 
 </head>
@@ -66,7 +61,6 @@
 						<th class="img"><s:text name="lang.cart.img" /></th>
 						<th><s:text name="lang.cart.item_name" /></th>
 						<th class="okisa"><s:text name="lang.cart.price" /></th>
-						<th class="okisa"><s:text name="lang.cart.order_count" /></th>
 						<th class="okisa"><s:text name="lang.cart.sub_total" /></th>
 						<th class="okisa"><s:text name="lang.cart.order_count" /></th>
 						<th class="okisa"><s:text name="lang.cart.delete" /></th>
@@ -84,8 +78,6 @@
 							<td><fmt:formatNumber value="${item_price}"
 									pattern="###,###,###" /> <s:text name="lang.cart.yen" /></td>
 
-							<td><s:property value="order_count" /></td>
-
 							<td><fmt:formatNumber value="${sub_total}"
 									pattern="###,###,###" /> <s:text name="lang.cart.yen" /></td>
 
@@ -98,8 +90,6 @@
 								</s:form></td>
 
 							<td><s:form action="CartDeleteAction">
-									<!--  --<input id="order" type="hidden" name="order_count"
-								value="<s:property value="order_count"/>">-->
 									<s:hidden name="user_id" value="%{user_id}" />
 									<s:hidden name="cart_id" value="%{cart_id}" />
 									<button type="submit" class="btn btn-default">
@@ -124,13 +114,6 @@
 			<table class="kaimonobox">
 				<tr>
 
-					<!-- 購入ボタンフォーム -->
-					<td class="kaimonotd"><s:form action="GoPurchaseAction">
-							<button type="submit" class="btn btn-warning center-block">
-								<s:text name="lang.cart.payment" />
-							</button>
-						</s:form></td>
-
 					<!-- ツアーリストへ戻る -->
 					<td class="kaimonotd"><s:form action="ItemListAction">
 							<s:param name="item_category" value="0" />
@@ -138,6 +121,14 @@
 								<s:text name="lang.cart.item_list" />
 							</button>
 						</s:form></td>
+
+					<!-- 購入ボタンフォーム -->
+					<td class="kaimonotd"><s:form action="GoPurchaseAction">
+							<button type="submit" class="btn btn-warning center-block">
+								<s:text name="lang.cart.payment" />
+							</button>
+						</s:form></td>
+
 				</tr>
 			</table>
 		</s:if>
@@ -150,9 +141,11 @@
 
 	</div>
 
-	<footer style="text-align: center;">
-		<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
-	</footer>
+	<div class="saigo">
+		<footer style="text-align: center;">
+			<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
+		</footer>
+	</div>
 
 </body>
 </html>
