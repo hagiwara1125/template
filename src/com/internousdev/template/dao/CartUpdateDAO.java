@@ -43,10 +43,10 @@ public class CartUpdateDAO {
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, cart_id);
-			ps.setInt(2, user_id);
-			ps.setInt(3, order_count);
-			ps.setBigDecimal(4, sub_total);
+			ps.setInt(1, order_count);
+			ps.setBigDecimal(2, sub_total);
+			ps.setInt(3, user_id);
+			ps.setInt(4, cart_id);
 			updateCount = ps.executeUpdate();
 
 		} catch(SQLException e) {
@@ -101,7 +101,7 @@ public class CartUpdateDAO {
 				ResultSet rs2 = ps2.executeQuery();
 
 				while(rs2.next()) {
-					dto.setItem_name(rs.getString("item_name"));
+					dto.setItem_name(rs2.getString("item_name"));
 					dto.setItem_price(rs2.getBigDecimal("item_price"));
 					dto.setSub_total(rs.getBigDecimal("sub_total"));
 					dto.setItem_stock(rs2.getInt("item_stock"));

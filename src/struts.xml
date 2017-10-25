@@ -106,6 +106,14 @@
 			<result name="login">login.jsp</result>
 		</action>
 
+		<!-- カートから決済画面へ遷移するAction -->
+		<action name="GoPurchaseAction"
+			class="com.internousdev.template.action.GoPurchaseAction" method="execute">
+			<result name="success"></result>
+			<result name="error"></result>
+			<result name="login">login.jsp</result>
+		</action>
+
 
 
 

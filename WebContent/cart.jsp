@@ -28,12 +28,11 @@
 	var="lang" />
 
 <title><s:text name="lang.cart.title" /></title>
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="./bootstrap/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/cart.css">
 
@@ -48,35 +47,24 @@
 		<s:include value="header.jsp" />
 	</header>
 
-	<script type="text/javascript">
-		function no2click(form) {
-			var e = form.elements;
-			for (var i = 0; i < e.length; i++) {
-				if (e[i].type == 'submit') {
-					e[i].disabled = true;
-				}
-			}
-		}
-	</script>
-
 	<div id="contents" style="margin-bottom: 50px;">
 
 		<div class="col-sm-12 center">
 
 
 			<h1 class="kago">
-				<s:text name="lang.cart.itscart" />
+				<s:text name="lang.cart.cart" />
 			</h1>
 		</div>
 
-		<s:if test="%{cartList.size() > 0 && #session.userId != null}">
+		<s:if test="%{cartList.size() > 0 && #session.user_id != null}">
 
 			<table class="cartlist">
 
 				<thead>
 					<tr>
 						<th class="img"><s:text name="lang.cart.img" /></th>
-						<th><s:text name="lang.cart.tour_name" /></th>
+						<th><s:text name="lang.cart.item_name" /></th>
 						<th class="okisa"><s:text name="lang.cart.price" /></th>
 						<th class="okisa"><s:text name="lang.cart.order_count" /></th>
 						<th class="okisa"><s:text name="lang.cart.sub_total" /></th>
@@ -87,49 +75,29 @@
 
 				<tbody>
 
-					<s:iterator value="cartList">
+					<s:iterator value="cartList" status="st">
 						<tr>
-							<td class="img2"><img src="<s:property value="img" />"
+							<td class="img2"><img src="<s:property value="img_path" />"
 								alt="" width="130" height="100"></td>
-							<td><s:property value="tour_name" /></td>
+							<td><s:property value="item_name" /></td>
 
-							<td><fmt:formatNumber value="${price}" pattern="###,###,###" />
-								<s:text name="lang.cart.yen" /></td>
+							<td><fmt:formatNumber value="${item_price}"
+									pattern="###,###,###" /> <s:text name="lang.cart.yen" /></td>
 
 							<td><s:property value="order_count" /></td>
 
 							<td><fmt:formatNumber value="${sub_total}"
 									pattern="###,###,###" /> <s:text name="lang.cart.yen" /></td>
 
-							<td><s:form action="UpdateCartAction">
+							<td><s:form action="CartUpdateAction">
+									<s:select
+										list="{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}"
+										name="order_count" value="%{order_count}" theme="simple"
+										onChange="this.form.submit()" />
 									<s:hidden name="cart_id" value="%{cart_id}" />
-									<s:hidden name="tour_id" value="%{tour_id}" />
-									<s:hidden name="price" value="%{price}" />
-									<div class="row">
-										<select name="order_count">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-											<option>6</option>
-											<option>7</option>
-											<option>8</option>
-											<option>9</option>
-											<option>10</option>
-										</select>
-									</div>
+								</s:form></td>
 
-									<div class="count">
-
-										<input type="submit" class="btn btn-primary"
-											value="<s:text name="lang.cart.update"/>" />
-									</div>
-
-								</s:form> <br> <br></td>
-
-							<td><s:form action="DeleteCartAction"
-									onSubmit="return no2click(this)">
+							<td><s:form action="CartDeleteAction">
 									<!--  --<input id="order" type="hidden" name="order_count"
 								value="<s:property value="order_count"/>">-->
 									<s:hidden name="user_id" value="%{user_id}" />
@@ -137,7 +105,7 @@
 									<button type="submit" class="btn btn-default">
 										<s:text name="lang.cart.delete" />
 									</button>
-
+									<s:token />
 								</s:form></td>
 						</tr>
 
@@ -167,7 +135,7 @@
 					<td class="kaimonotd"><s:form action="ItemListAction">
 							<s:param name="item_category" value="0" />
 							<button type="submit" class="btn btn-default center-block">
-								<s:text name="lang.cart.tour" />
+								<s:text name="lang.cart.item_list" />
 							</button>
 						</s:form></td>
 				</tr>

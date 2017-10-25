@@ -166,12 +166,14 @@ public class CartInsertDAO {
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/23
 	 * @version 1.0
-	 * @param
+	 * @param user_id ユーザーID
 	 * @param item_id 商品ID
-	 * @param
+	 * @param order_count 注文数
+	 * @param sub_total 小計
+	 * @return 更新件数
 	 */
 
-	public int update(int user_id, int item_id, int order_count, BigDecimal sub_total) {
+	public int update(int order_count, int user_id, int item_id, BigDecimal sub_total) {
 		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 
@@ -181,10 +183,10 @@ public class CartInsertDAO {
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, user_id);
-			ps.setInt(2, item_id);
-			ps.setInt(3, order_count);
-			ps.setBigDecimal(4, sub_total);
+			ps.setInt(1, order_count);
+			ps.setBigDecimal(2, sub_total);
+			ps.setInt(3, user_id);
+			ps.setInt(4, item_id);
 			addCount = ps.executeUpdate();
 
 		} catch(SQLException e) {
