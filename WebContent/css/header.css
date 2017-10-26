@@ -1,28 +1,34 @@
 @CHARSET "UTF-8";
 
 body {
-	height: 100%;
+  min-height: 100%;
+  background: #fdf7ea;
+  font-family: 'メイリオ', Meiryo,sans-serif;
 }
 
 #contents {
 	position: absolute;
 	width: 100%;
-	height: 100px;
-	background: #c27c27;
-	color: white;
+	height: 170px;
+	background: black;
 	top: 0;
-	right: 0;
+	left: 0;
 }
 
-#menulist {
+.icon {
+	margin-left: 80px;
+	margin-top: 25px;
 }
 
 #dropmenu {
+	position: absolute;
 	list-style-type: none;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 118px auto 0;
 	width: 1000px;
 	height: 50px;
-	margin: 26px auto;
-	padding: 0px;
 }
 
 #dropmenu li {
@@ -38,9 +44,9 @@ body {
 	display: block;
 	margin: 0;
 	padding: 16px 0;
-	background: #c27c27;
+	background: black;
 	color: #fff;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: bold;
 	line-height: 1;
 	text-decoration: none;
@@ -71,24 +77,25 @@ body {
 
 #dropmenu li ul li a {
 	padding: 13px 15px;
-	background: #804040;
+	background: #db8c4d;
 	text-align: left;
-	font-size: 12px;
+	font-size: 15px;
 	font-weight: nomal;
 }
 
 #dropmenu > li:hover > a {
-	background: #ffffff;
+	background: #fdf7ea;
 	color: black;
 }
 
 #dropmenu >li:hover li:hover > a {
-	background: #ff8000;
+	background: #fcd5a5;
+	color: black
 }
 
 #dropmenu li:hover > ul > li {
 	overflow: visible;
-	height: 38px;
+	height: 41px;
 }
 
 #dropmenu li ul li ul {
@@ -102,7 +109,7 @@ body {
 }
 
 #dropmenu li ul li ul li a {
-	background: #ff8040;
+	background: #804040;
 }
 
 #dropmenu li:hover ul li ul li:hover > a {

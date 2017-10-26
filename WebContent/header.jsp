@@ -11,16 +11,9 @@
 <head>
 
 <meta charset="UTF-8">
-<meta http-equiv="X-UA=Compativble" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
-<meta http-equiv="imagetoolbar" content="no" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <!-- 国際化 -->
 <fmt:setLocale value="${pageContext.request.locale.language}" />
@@ -39,85 +32,82 @@
 
 	<div id="contents">
 
-		<div class="calicocat">
-			<a href="GoTopAction"><s:text name="lang.header.title" /></a>
+		<div class="icon">
+			<a href="GoTopAction"><img src="./img/icon_kari.png" height="120"
+				width="120"></a>
 		</div>
 
 		<s:if test="#session.user_flg==1">
-			<div id="menulist">
-				<ul id="dropmenu">
-					<li><a href="#"><s:text name="lang.header.calicocat" /></a>
-						<ul>
-							<li><a href="#"><s:text name="lang.header.help" /></a></li>
-							<li><a href="#"><s:text name="lang.header.inquiry" /></a></li>
-						</ul></li>
-					<li><a
-						href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>"><s:text
-								name="lang.header.product_list" /></a>
-						<ul>
-							<li><a
-								href="<s:url action="ItemListAction"><s:param name="item_user" value="1" /></s:url>"><s:text
-										name="lang.header.lover" /></a>
-								<ul>
-									<li><a
-										href="<s:url action="ItemListAction"><s:param name="item_category" value="1" /></s:url>"><s:text
-												name="lang.header.kitchen" /></a></li>
-									<li><a
-										href="<s:url action="ItemListAction"><s:param name="item_category" value="2" /></s:url>"><s:text
-												name="lang.header.interior" /></a></li>
-									<li><a
-										href="<s:url action="ItemListAction"><s:param name="item_category" value="3" /></s:url>"><s:text
-												name="lang.header.stationery" /></a></li>
-									<li><a
-										href="<s:url action="ItemListAction"><s:param name="item_category" value="4" /></s:url>"><s:text
-												name="lang.header.fashion" /></a></li>
-									<li><a
-										href="<s:url action="ItemListAction"><s:param name="item_category" value="5" /></s:url>"><s:text
-												name="lang.header.accessories" /></a></li>
-								</ul></li>
-							<li><a
-								href="<s:url action="ItemListAction"><s:param name="item_user" value="2" /></s:url>"><s:text
-										name="lang.header.cats" /></a>
-								<ul>
-									<li><a
-										href="<s:url action="ItemListAction"><s:param name="item_category" value="6" /></s:url>"><s:text
-												name="lang.header.food" /></a></li>
-									<li><a
-										href="<s:url action="ItemListAction"><s:param name="item_category" value="7" /></s:url>"><s:text
-												name="lang.header.snack" /></a></li>
-									<li><a
-										href="<s:url action="ItemListAction"><s:param name="item_category" value="8" /></s:url>"><s:text
-												name="lang.header.toy" /></a></li>
-									<li><a
-										href="<s:url action="ItemListAction"><s:param name="item_category" value="9" /></s:url>"><s:text
-												name="lang.header.daily" /></a>
-								</ul></li>
-						</ul></li>
-					<li><a href="#"><s:text name="lang.header.service" /></a>
-						<ul>
-							<li><a href="GoMyPageAction"><s:text
-										name="lang.header.mypage" /></a></li>
-							<li><a href="CartSelectAction"><s:text
-										name="lang.header.cart" /></a></li>
-						</ul></li>
-					<li><a href="<s:url action="LogoutAction"></s:url>"><s:text
-								name="lang.header.logout" /></a></li>
-				</ul>
-			</div>
+			<ul id="dropmenu">
+				<li><a href="#"><s:text name="lang.header.calicocat" /></a>
+					<ul>
+						<li><a href="#"><s:text name="lang.header.help" /></a></li>
+						<li><a href="#"><s:text name="lang.header.inquiry" /></a></li>
+					</ul></li>
+				<li><a
+					href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>"><s:text
+							name="lang.header.product_list" /></a>
+					<ul>
+						<li><a
+							href="<s:url action="ItemListAction"><s:param name="item_user" value="1" /></s:url>"><s:text
+									name="lang.header.lover" /></a>
+							<ul>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="1" /></s:url>"><s:text
+											name="lang.header.kitchen" /></a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="2" /></s:url>"><s:text
+											name="lang.header.interior" /></a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="3" /></s:url>"><s:text
+											name="lang.header.stationery" /></a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="4" /></s:url>"><s:text
+											name="lang.header.fashion" /></a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="5" /></s:url>"><s:text
+											name="lang.header.accessories" /></a></li>
+							</ul></li>
+						<li><a
+							href="<s:url action="ItemListAction"><s:param name="item_user" value="2" /></s:url>"><s:text
+									name="lang.header.cats" /></a>
+							<ul>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="6" /></s:url>"><s:text
+											name="lang.header.food" /></a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="7" /></s:url>"><s:text
+											name="lang.header.snack" /></a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="8" /></s:url>"><s:text
+											name="lang.header.toy" /></a></li>
+								<li><a
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="9" /></s:url>"><s:text
+											name="lang.header.daily" /></a>
+							</ul></li>
+					</ul></li>
+				<li><a href="#"><s:text name="lang.header.service" /></a>
+					<ul>
+						<li><a href="GoMyPageAction"><s:text
+									name="lang.header.mypage" /></a></li>
+						<li><a href="CartSelectAction"><s:text
+									name="lang.header.cart" /></a></li>
+					</ul></li>
+				<li><a href="<s:url action="LogoutAction"></s:url>"><s:text
+							name="lang.header.logout" /></a></li>
+			</ul>
 		</s:if>
 
 		<!-- 管理者ログイン -->
 
 		<s:elseif test="#session.user_flg==3">
-			<div id="menulist">
-				<ul id="dropmenu">
-					<li><a href="#">工事中</a></li>
-					<li><a href="#">工事中</a></li>
-					<li><a href="#">工事中</a></li>
-					<li><a href="<s:url action="LogoutAction"></s:url>"><s:text
-								name="lang.header.logout" /></a></li>
-				</ul>
-			</div>
+			<ul id="dropmenu">
+				<li><a href="#">工事中</a></li>
+				<li><a href="#">工事中</a></li>
+				<li><a href="#">工事中</a></li>
+				<li><a href="<s:url action="LogoutAction"></s:url>"><s:text
+							name="lang.header.logout" /></a></li>
+			</ul>
 		</s:elseif>
 
 		<!-- 未ログイン時 -->
