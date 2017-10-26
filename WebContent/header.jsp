@@ -109,6 +109,15 @@
 		<!-- 管理者ログイン -->
 
 		<s:elseif test="#session.user_flg==3">
+			<div id="menulist">
+				<ul id="dropmenu">
+					<li><a href="#">工事中</a></li>
+					<li><a href="#">工事中</a></li>
+					<li><a href="#">工事中</a></li>
+					<li><a href="<s:url action="LogoutAction"></s:url>"><s:text
+								name="lang.header.logout" /></a></li>
+				</ul>
+			</div>
 		</s:elseif>
 
 		<!-- 未ログイン時 -->

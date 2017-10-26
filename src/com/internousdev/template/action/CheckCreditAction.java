@@ -1,6 +1,5 @@
 package com.internousdev.template.action;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -24,201 +23,294 @@ public class CheckCreditAction extends ActionSupport implements SessionAware{
 	 * 生成されたシリアルID
 	 */
 	private static final long serialVersionUID = -5391032299857437684L;
-		private int creditId;
-
-		private int user_id;
-
-		private BigDecimal total_price = BigDecimal.ZERO;
-
-		private String creditNumber;
-
-		private String nameE;
-
-		private String securityCode;
-
-		private int expirationMonth;
-
-		private int expirationYear;
-
-		private Map<String, Object> session;
-
-		private String errmsg1;
-
-		private String creditBrand;
-
-		private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
 
 
-		/**
-		 * クレジットカード番号、セキュリティコード、有効期限、名義人の照合
-		 * @return ERROR or SUCCESS
-		 */
-		public String execute() {
-			CreditUtil util = new CreditUtil(creditId, creditNumber);
+	/**
+	 * クレジット種類
+	 */
+	private int creditId;
+	/**
+	 * クレジット番号
+	 */
+	private String creditNumber;
+	/**
+	 * クレジット名義
+	 */
+	private String nameE;
+	/**
+	 * セキュリティコード
+	 */
+	private String securityCode;
+	/**
+	 * 有効期限（月）
+	 */
+	private int expirationMonth;
+	/**
+	 * 有効期限（年）
+	 */
+	private int expirationYear;
+	/**
+	 * セッション情報
+	 */
+	private Map<String,Object>session;
+	/**
+	 * エラーメッセージ
+	 */
+	private int err_flg=0;
+	/**
+	 * クレジットブランド
+	 */
+	private String creditBrand;
 
-			if(util.brandCheck()) {
-				if(util.creditCheck(securityCode, expirationYear, expirationMonth, nameE )) {
+	/**
+	 * カートリスト
+	 */
+	ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
+	/**
+	 * ユーザーID
+	 */
+	private int user_id;
 
 
 
-					String result = ERROR;
-					if(session.containsKey("user_id")){
-						user_id = (int)session.get("user_id");
+	/**
+	 * 実行メソッド クレジットの種類を判別
+	 * @author MARI KAMBE
+	 * @return ERROR SUCCESS
+	 * @since 2017/09/06
+	 * @version 1.1
+	 */
+	public String execute() {
 
-						CartSelectDAO cartDao = new CartSelectDAO();
+		if (session.containsKey("user_id")) {
+			user_id = (int) session.get("user_id");
+			CartSelectDAO cartDao = new CartSelectDAO();
+			cartList = cartDao.selectedItem(user_id);
 
-						//アレイリストに情報を入れる
-						cartList = cartDao.selectedItem(user_id);
-						if(cartList.size() > 0){
-
-							for(int i = 0; i < cartList.size(); i++) {
-
-								total_price = total_price.add(cartList.get(i).getItem_price().multiply(BigDecimal.valueOf(cartList.get(i).getOrder_count())));
-
-								//CartDAOに合計金額を格納する
-								CartDTO dto = new CartDTO();
-
-								dto.setTotal_price(total_price);
-							}
-							String lastCreditNumber = creditNumber.substring(12, creditNumber.length());
-							creditNumber = "************" + lastCreditNumber;
-
-							result = SUCCESS;
-						}else{
-							result = LOGIN;
-						}
-					}
-					return result;
-				} else {
-					errmsg1="*入力された情報に間違いがあります。";
-					return ERROR;
-				}
-
-			} else {
-				errmsg1="*入力された情報に間違いがあります。";
+			if(creditNumber.startsWith("4")){
+				creditId = 1;
+			}else if(creditNumber.startsWith("5")){
+				creditId = 2;
+			} else if(creditNumber.startsWith("3")){
+				creditId = 3;
+			}else{
+				err_flg=1;
 				return ERROR;
 			}
+
+			if(creditId == 1){
+				creditBrand = "Visa";
+			}else if(creditId == 2){
+				creditBrand = "MasterCard";
+			}else if(creditId == 3){
+				creditBrand = "AmericanExpress";
+			}
+
+
+
+			CreditUtil util = new CreditUtil(creditId, creditNumber);
+			//クレジットカード番号上6ケタの照合
+			if(util.brandCheck()){
+				//クレジットカード番号16ケタ、セキュリティコード、有効期限、名義人の照合
+				if(util.creditCheck(securityCode, expirationYear, expirationMonth, nameE)){
+
+					return SUCCESS;
+
+				}else{
+					err_flg=1;
+					return ERROR;
+				}
+			}else{
+				err_flg=1;
+				return ERROR;
+			}
+
+		}else{
+			return ERROR;
 		}
-
-
-
-
-		public int getCreditId() {
-			return creditId;
-		}
-
-
-		public void setCreditId(int creditId) {
-			this.creditId = creditId;
-		}
-
-		public int getUser_id() {
-			return user_id;
-		}
-
-
-		public void setUser_id(int user_id) {
-			this.user_id = user_id;
-		}
-
-
-		public BigDecimal getTotal_price() {
-			return total_price;
-		}
-
-
-		public void setTotal_price(BigDecimal total_price) {
-			this.total_price = total_price;
-		}
-
-
-		public String getCreditNumber() {
-			return creditNumber;
-		}
-
-
-		public void setCreditNumber(String creditNumber) {
-			this.creditNumber = creditNumber;
-		}
-
-
-		public String getNameE() {
-			return nameE;
-		}
-
-
-		public void setNameE(String nameE) {
-			this.nameE = nameE;
-		}
-
-
-		public String getSecurityCode() {
-			return securityCode;
-		}
-
-
-		public void setSecurityCode(String securityCode) {
-			this.securityCode = securityCode;
-		}
-
-
-		public int getExpirationMonth() {
-			return expirationMonth;
-		}
-
-
-		public void setExpirationMonth(int expirationMonth) {
-			this.expirationMonth = expirationMonth;
-		}
-
-
-		public int getExpirationYear() {
-			return expirationYear;
-		}
-
-
-		public void setExpirationYear(int expirationYear) {
-			this.expirationYear = expirationYear;
-		}
-
-
-		public Map<String, Object> getSession() {
-			return session;
-		}
-
-
-		public void setSession(Map<String, Object> session) {
-			this.session = session;
-		}
-
-
-		public String getErrmsg1() {
-			return errmsg1;
-		}
-
-
-		public void setErrmsg1(String errmsg1) {
-			this.errmsg1 = errmsg1;
-		}
-
-
-		public String getCreditBrand() {
-			return creditBrand;
-		}
-
-
-		public void setCreditBrand(String creditBrand) {
-			this.creditBrand = creditBrand;
-		}
-
-
-		public ArrayList<CartDTO> getCartList() {
-			return cartList;
-		}
-
-
-		public void setCartList(ArrayList<CartDTO> cartList) {
-			this.cartList = cartList;
-		}
-
 	}
+
+
+
+	/**
+	 * エラーメッセージを取得するメソッド
+	 * @return err_flg エラーメッセージ
+	 */
+	public int getErr_flg() {
+		return err_flg;
+	}
+
+	/**
+	 * エラーメッセージを格納するメソッド
+	 * @param errmsg1 エラーメッセージ
+	 */
+	public void setErr_flg(int err_flg) {
+		this.err_flg = err_flg;
+	}
+
+	/**
+	 * クレジット種類を取得するメソッド
+	 * @return creditId クレジット種類
+	 */
+	public int getCreditId() {
+		return creditId;
+	}
+
+	/**
+	 * クレジット種類を格納するメソッド
+	 * @param creditId クレジット種類
+	 */
+	public void setCreditId(int creditId) {
+		this.creditId = creditId;
+	}
+
+	/**
+	 * クレジット番号を取得するメソッド
+	 * @return creditNumber クレジット番号
+	 */
+	public String getCreditNumber() {
+		return creditNumber;
+	}
+
+	/**
+	 * クレジット番号を格納するメソッド
+	 * @param creditNumber クレジット番号
+	 */
+	public void setCreditNumber(String creditNumber) {
+		this.creditNumber = creditNumber;
+	}
+
+	/**
+	 * クレジット名義を取得するメソッド
+	 * @return nameE クレジット名義
+	 */
+	public String getNameE() {
+		return nameE;
+	}
+
+	/**
+	 * クレジット名義を格納するメソッド
+	 * @param nameE クレジット名義
+	 */
+	public void setNameE(String nameE) {
+		this.nameE = nameE;
+	}
+
+	/**
+	 * セキュリティコードを取得するメソッド
+	 * @return securityCode セキュリティコード
+	 */
+	public String getSecurityCode() {
+		return securityCode;
+	}
+
+	/**
+	 * セキュリティコードを格納するメソッド
+	 * @param securityCode セキュリティコード
+	 */
+	public void setSecurityCode(String securityCode) {
+		this.securityCode = securityCode;
+	}
+
+	/**
+	 * 有効期限（月）を取得するメソッド
+	 * @return expirationMonth  有効期限（月）
+	 */
+	public int getExpirationMonth() {
+		return expirationMonth;
+	}
+
+	/**
+	 * 有効期限（月）を格納するメソッド
+	 * @param expirationMonth  有効期限（月）
+	 */
+	public void setExpirationMonth(int expirationMonth) {
+		this.expirationMonth = expirationMonth;
+	}
+
+	/**
+	 * 有効期限（年）を取得するメソッド
+	 * @return expirationYear 有効期限（年）
+	 */
+	public int getExpirationYear() {
+		return expirationYear;
+	}
+
+	/**
+	 * 有効期限（年）を格納するメソッド
+	 * @param expirationYear 有効期限（年）
+	 */
+	public void setExpirationYear(int expirationYear) {
+		this.expirationYear = expirationYear;
+	}
+
+	/**
+	 * セッションを取得するメソッド
+	 * @return session セッション
+	 */
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+	/**
+	 * セッションを格納するメソッド
+	 * @param session セッション
+	 */
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+	/**
+	 * クレジットブランドを取得するメソッド
+	 * @return creditBrand クレジットブランド
+	 */
+	public String getCreditBrand() {
+		return creditBrand;
+	}
+
+	/**
+	 * クレジットブランドを格納するメソッド
+	 * @param creditBrand クレジットブランド
+	 */
+	public void setCreditBrand(String creditBrand) {
+		this.creditBrand = creditBrand;
+	}
+
+	/**
+	 * cartListを取得するメソッド
+	 * @return cartList
+	 */
+	public ArrayList<CartDTO> getCartList() {
+		return cartList;
+	}
+
+
+
+	/**
+	 * cartListを格納するメソッド
+	 * @param cartList
+	 */
+	public void setCartList(ArrayList<CartDTO> cartList) {
+		this.cartList = cartList;
+	}
+
+
+
+	/**
+	 * user_idを取得するメソッド
+	 * @return user_id
+	 */
+	public int getUser_id() {
+		return user_id;
+	}
+
+
+
+	/**
+	 * user_idを格納するメソッド
+	 * @param user_id
+	 */
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+}

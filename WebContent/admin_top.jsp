@@ -24,13 +24,17 @@
 
 <!-- 国際化 -->
 <fmt:setLocale value="${pageContext.request.locale.language}" />
-<fmt:setBundle basename="com.internousdev.template.property.XXXXX"
+<fmt:setBundle basename="com.internousdev.template.property.admin"
 	var="lang" />
 
-<title><s:text name="lang.XXXXX.title" /></title>
+<title><s:text name="lang.admin.title" /></title>
 
 </head>
 <body>
+
+	<header>
+		<s:include value="header.jsp" />
+	</header>
 
 </body>
 </html>

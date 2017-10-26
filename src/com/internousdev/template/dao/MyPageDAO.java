@@ -46,6 +46,7 @@ public class MyPageDAO {
 				dto.setPhone_email(rs.getString("phone_email"));
 				dto.setPassword(rs.getString("password"));
 				dto.setUser_name(rs.getString("user_name"));
+				dto.setPhone_number(rs.getString("phone_number"));
 				dto.setPostal(rs.getString("postal"));
 				dto.setAddress(rs.getString("address"));
 				dto.setUser_flg(rs.getInt("user_flg"));

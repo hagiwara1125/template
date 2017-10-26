@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+body {
+	height: 100%;
+}
+
 #contents {
 	position: absolute;
 	width: 100%;

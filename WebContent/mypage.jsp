@@ -29,12 +29,46 @@
 
 <title><s:text name="lang.mypage.title" /></title>
 
+<link rel="stylesheet" type="text/css" href="css/mypage.css">
+
 </head>
 <body>
 
 	<header>
-		<s:include value="header.jsp"></s:include>
+		<s:include value="header.jsp" />
 	</header>
+
+	<s:iterator value="userList">
+		<table class="userinfo">
+			<tbody>
+				<tr>
+					<td class="tdtitle"><s:text name="lang.mypage.userid" /></td>
+					<td class="tdsub"><s:property value="user_id" /></td>
+				</tr>
+				<tr>
+					<td class="tdtitle"><s:text name="lang.mypage.name" /></td>
+					<td class="tdsub"><s:property value="user_name" /></td>
+				</tr>
+				<tr>
+					<td class="tdtitle"><s:text name="lang.mypage.phone" /></td>
+					<td class="tdsub"><s:property value="phone_number" /></td>
+				</tr>
+				<tr>
+					<td class="tdtitle"><s:text name="lang.mypage.mail" /></td>
+					<td class="tdsub"><s:property value="phone_email" /></td>
+				</tr>
+				<tr>
+					<td class="tdtitle"><s:text name="lang.mypage.address" /></td>
+					<td class="tdsub">〒<s:property value="postal" /><br> <s:property
+							value="address" /></td>
+				</tr>
+			</tbody>
+		</table>
+	</s:iterator>
+
+		<footer style="text-align: center; font-size: 14px; bottom: 0;">
+			<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
+		</footer>
 
 </body>
 </html>

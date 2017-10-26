@@ -80,7 +80,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 							session.put("user_flg", dto.getUser_flg());
 							session.put("user_id", dto.getUser_id());
 							session.put("login_flg", dto.getLogin_flg());
-							result = "adimin";
+							result = "admin";
 
 						} else {
 							session.put("user_flg", dto.getUser_flg());

@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+.userinfo {
+	margin: 250px auto 100px;
+}
+
+.tdtitle {
+	background-color: #fcf8e3;
+	width: 200px;
+	text-align: center;
+	padding: 10px;
+}
+
+.tdsub {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#footerlist {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	bottom: 0;
+	text-aligin: center;
+}

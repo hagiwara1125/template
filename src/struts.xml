@@ -12,7 +12,8 @@
 		com.internousdev.template.property.login,
 		com.internousdev.template.property.item_list,
 		com.internousdev.template.property.item_detail,
-	    com.internousdev.template.property.cart
+	    com.internousdev.template.property.cart,
+	    com.internousdev.template.property.mypage,
 	    com.internousdev.template.property.purchase
 
      " />
@@ -38,7 +39,14 @@
 			<interceptor-ref name="token" />
 			<result name="invalid.token" type="chain">index.jsp</result>
 			<result name="success">login_check.jsp</result>
-			<result name="login">admin_top_check.jsp</result>
+			<result name="admin">admin_top_check.jsp</result>
+			<result name="error">login.jsp</result>
+		</action>
+
+		<!-- 管理者ページに遷移するAction -->
+		<action name="GoAdminTopAction"
+			class="com.internousdev.template.action.GoAdminTopAction" method="execute">
+			<result name="success">admin_top.jsp</result>
 			<result name="error">login.jsp</result>
 		</action>
 

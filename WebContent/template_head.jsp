@@ -29,8 +29,14 @@
 
 <title><s:text name="lang.XXXXX.title" /></title>
 
+<link rel="stylesheet" type="text/css" href="css/XXXX.css">
+
 </head>
 <body>
+
+	<header>
+		<s:include value="header.jsp" />
+	</header>
 
 </body>
 </html>
