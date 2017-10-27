@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="java.util.Calendar"%>
 <%
 	Calendar calendar = Calendar.getInstance();
@@ -13,262 +11,108 @@
 		year++;
 	}
 %>
+
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title><s:text name="lang.purchase.title" /></title>
-
-<link rel="stylesheet" type="text/css" href="css/purchase.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="./bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/payment.js"></script>
-<script type="text/javascript" src="js/cart_check.js"></script>
-
+<title>ご注文情報入力画面</title>
+<!-- cssの設定・読み込み -->
+<link rel="stylesheet" type="text/css"
+	href="http://yui.yahooapis.com/3.18/build/cssreset/cssreset-min.css">
+<link rel="stylesheet" type="text/css" href="css/user_main_design.css">
 </head>
-
-<body style="margin: 0 auto;">
-
-	<!-- ここまで -->
-
-	<script>
-			jQuery(function() {
-				jQuery(document).trigger("enhance");
-			});
-
-			$(function() {
-				$("#expirationYear").ymdpulldown({
-
-				});
-
-			});
-			$(function() {
-
-				$('#insertButton').click(function(e) {
-					var num1 = $('#num1').val();
-					var num2 = $('#num2').val();
-					var num3 = $('#num3').val();
-					var num4 = $('#num4').val();
-
-					var creditNumber = num1 + num2 + num3 + num4;
-					$('#creditNumber').attr({
-						'value' : creditNumber,
-					});
-
-				});
-
-				$("#nameE").on("invalid", function(e) {
-					if (e.currentTarget.validity.patternMismatch) {
-						this.setCustomValidity("※半角英字のみ入力可能です");
-					}
-				}).on("input", function() {
-					this.setCustomValidity("");
-				});
-
-				$("#securityCode").on("invalid", function(e) {
-					if (e.currentTarget.validity.patternMismatch) {
-						this.setCustomValidity("※3~4桁の半角数字のみ入力可能です");
-					}
-				}).on("input", function() {
-					this.setCustomValidity("");
-				});
-
-				$("#num1").on("invalid", function(e) {
-					if (e.currentTarget.validity.patternMismatch) {
-						this.setCustomValidity("※4桁の半角数字のみ入力可能です");
-					}
-				}).on("input", function() {
-					this.setCustomValidity("");
-				});
-
-				$("#num2").on("invalid", function(e) {
-					if (e.currentTarget.validity.patternMismatch) {
-						this.setCustomValidity("※4桁の半角数字のみ入力可能です");
-					}
-				}).on("input", function() {
-					this.setCustomValidity("");
-				});
-
-				$("#num3").on("invalid", function(e) {
-					if (e.currentTarget.validity.patternMismatch) {
-						this.setCustomValidity("※4桁の半角数字のみ入力可能です");
-					}
-				}).on("input", function() {
-					this.setCustomValidity("");
-				});
-
-				$("#num4").on("invalid", function(e) {
-					if (e.currentTarget.validity.patternMismatch) {
-						this.setCustomValidity("※3~4桁の半角数字のみ入力可能です");
-					}
-				}).on("input", function() {
-					this.setCustomValidity("");
-				});
-
-				$("#usepointform").on("invalid", function(e) {
-					if (e.currentTarget.validity.patternMismatch) {
-						this.setCustomValidity("※半角数値のみ入力可能です");
-					}
-				}).on("input", function() {
-					this.setCustomValidity("");
-				});
-
-			});
-		</script>
-	<script>
-			function nextField(i, n, m) {
-				if (i.value.length >= m) {
-					i.form.elements[n].focus();
-				}
-			}
-
-			function checkPoint(total, point) {
-				if (document.paymentForm.use_point.value >= total
-						|| document.paymentForm.use_point.value >= point) {
-					if (point < total) {
-						document.paymentForm.use_point.value = point;
-					} else {
-						document.paymentForm.use_point.value = total;
-					}
-				}
-			}
-		</script>
-
-	<!-- クレジットカード情報入力フォーム -->
+<body>
 
 
-	<!-- ログイン時 -->
-	<s:if test="%{cartList!=null && #session.user_id != null}">
-		<s:form action="CheckCreditAction" name="paymentForm" theme="simple">
-			<div id="container" style="margin-top: 40px;">
-				<div class="panel-title">
-					<span class="glyphicon glyphicon-pencil"></span>&nbsp;
-					<s:text name="lang.purchase.fillin" />
-				</div>
-				<s:if test="%{err_flg==1}">
-					<div class="errormsg">
-						<h4>
-							<s:text name="lang.purchase.errmsg" />
-						</h4>
-					</div>
-				</s:if>
-				<div id="freme">
 
-					<div class="row">
-						<div class="col-sm-4" id="formtitle">
-							<h2>
-								<s:text name="lang.purchase.creditcardnumber" />
-								<font color="red">*</font>
-							</h2>
-						</div>
-						<div id="textform" class="col-sm-8 form-inline">
-							<input type="hidden" name="creditNumber" id="creditNumber" /> <input
-								type="text" id="num1" pattern="[0-9]{4}" required maxlength="4"
-								size="2" onKeyUp="nextField(this, 'num2', 4)"
-								class="form-control">- <input type="text" id="num2"
-								pattern="[0-9]{4}" required maxlength="4" size="4"
-								onKeyUp="nextField(this, 'num3', 4)" class="form-control">-
-							<input type="text" id="num3" pattern="[0-9]{4}" required
-								maxlength="4" size="4" onKeyUp="nextField(this, 'num4', 4)"
-								class="form-control">- <input type="text" id="num4"
-								pattern="[0-9]{3,4}" maxlength="4" size="4" required
-								class="form-control"><br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-offset-4 col-sm-8" id="paycaution">
-							<font color="red"><s:text name="lang.purchase.caution" /></font><br>
-							<font color="red"><s:text name="lang.purchase.caution2" /></font>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-4" id="formtitle">
-							<h2>
-								<s:text name="lang.purchase.name" />
-								<font color="red">*</font>
-							</h2>
-						</div>
-						<div id="textform" class="col-sm-8">
-							<input name="nameE" class="form-control" type="text" size="15"
-								maxlength="40" placeholder="TARO YAMADA" required
-								pattern="[a-z\s]+$" id="nameE">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-4" id="formtitle">
-							<h2>
-								<s:text name="lang.purchase.securitycode" />
-								<font color="red">*</font>
-							</h2>
-						</div>
-						<div id="textform" class="col-sm-8">
-							<input name="securityCode" class="form-control" type="password"
-								size="5" maxlength="4" placeholder="123" pattern="[0-9]{3,4}"
-								required id="securityCode">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-4" id="formtitle">
-							<h2>
-								<s:text name="lang.purchase.cardexpiration" />
-								<font color="red">*</font>
-							</h2>
-						</div>
-						<div id="textform" class="col-sm-8 form-inline">
-							<select name="expirationMonth" class="form-control" id="eMonth">
-								<option value="1" selected="selected">01</option>
-								<option value="2">02</option>
-								<option value="3">03</option>
-								<option value="4">04</option>
-								<option value="5">05</option>
-								<option value="6">06</option>
-								<option value="7">07</option>
-								<option value="8">08</option>
-								<option value="9">09</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-							</select>&nbsp;
-							<s:text name="lang.purchase.month" />
-							&emsp;/&nbsp; <select class="form-control" id="se1"
-								name="expirationYear">
-								<%
-									for (int y : yearList) {
-								%>
-								<option value="<%=y%>"><%=y%></option>
-								<%
-									}
-								%>
-							</select>&nbsp;
-							<s:text name="lang.purchase.year" />
-						</div>
-					</div>
 
-				</div>
+	<header>
+		<s:include value="header.jsp" />
+	</header>
 
-				<!-- カートの中身画面へ遷移 -->
-				<div class="buttonfreme">
-					<span class="back"><a href="CartSelectAction" class="backlink"><s:text
-								name="lang.purchase.back" /></a></span>
-					<!-- 購入確認画面へ遷移 -->
-					<input type="submit" value="<s:text name="lang.purchase.next"/>"
-						id="insertButton" class="nextlink" />
-				</div>
-			</div>
+	<div class="contents" style="height: 100％; padding-top: 200px;">
+		<div style="text-align: right; margin-right: 20px;">
+			<b>ご注文情報入力</b>_ご注文情報確認_お手続き完了
+		</div>
+
+
+		<!-- ここからまるっとs:form処理 -->
+		<s:form name="form" action="CheckCreditAction" theme="simple">
+
+			<br>
+			<h1>ご注文情報の入力</h1>
+			<br>
+
+
+			<small> クレジットカード情報を以下のフォームに入力してください。 </small>
+			<br>
+			<small> <font color="red"><s:property
+						value="error_message" /> </font>
+			</small>
+			<table class="visible_table" style="width: 400px">
+				<tr>
+					<th style="width: 160px;">クレジットカード種類</th>
+					<td colspan="2"><s:select name="credit_type"
+							list='{"Pisa","Americanexcite","Sistercard"}' /></td>
+				</tr>
+				<tr>
+					<th>カード番号(16桁)</th>
+					<td colspan="2"><input type="text" name="credit_number1"
+						style="width: 40px;" pattern="[0-9]{4}" maxlength="4" required />-
+						<input type="text" name="credit_number2" style="width: 40px;"
+						pattern="[0-9]{4}" maxlength="4" required />- <input type="text"
+						name="credit_number3" style="width: 40px;" pattern="[0-9]{4}"
+						maxlength="4" required />- <input type="text"
+						name="credit_number4" style="width: 40px;" pattern="[0-9]{4}"
+						maxlength="4" required /></td>
+				</tr>
+				<tr>
+					<th>カード名義</th>
+					<td colspan="2"><input type="text" name="credit_holder"
+						pattern="[a-z|A-Z| |]{1,}" required /></td>
+				</tr>
+				<tr>
+					<th>有効期限</th>
+					<td><s:select name="expiration_month"
+							list="{1,2,3,4,5,6,7,8,9,10,11,12}" /> 月</td>
+					<td><select class="form-control" id="se1"
+						name="expiration_year">
+							<%
+								for (int y : yearList) {
+							%>
+							<option value="<%=y%>"><%=y%></option>
+							<%
+								}
+							%>
+					</select> 年</td>
+				</tr>
+				<tr>
+					<th>セキュリティコード</th>
+					<td colspan="2"><input type="password" size="15"
+						name="security_code" pattern="[0-9]{3}" maxlength="3" required />
+					</td>
+				</tr>
+			</table>
+			<br>
+			<hr>
+
+			<br>
+			<!-- 操作ボタンの部分 -->
+			<table style="margin: 0 auto; height: 120px;">
+				<tr>
+					<td style="border: 0px"><button class="actbtn">確認</button></td>
+				</tr>
+				<tr>
+					<td style="border: 0px"><button class="actbtn">お買い物に戻る</button></td>
+				</tr>
+			</table>
 		</s:form>
 
-	</s:if>
-	<!-- 未ログイン時 -->
-	<s:else>
-		<h2 style="text-align: center; margin-top: 200px;">
-			<s:text name="lang.purchase.error" />
-		</h2>
-	</s:else>
-	<footer>
-		<s:include value="footerload.jsp" />
-	</footer>
+		<div style="height: 80px"></div>
+	</div>
+
+
+	<footer style="margin-bottom: 0%;"> </footer>
 </body>
 </html>

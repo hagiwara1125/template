@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.template.dao.CartSelectDAO;
 import com.internousdev.template.dto.CartDTO;
+import com.internousdev.template.dto.ItemDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 
@@ -55,6 +56,11 @@ public class PurchaseCheckAction extends ActionSupport implements SessionAware {
 	 * カート情報リスト
 	 */
 	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
+
+	/**
+	 * 商品情報リスト
+	 */
+	private ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();
 
 
 
@@ -210,6 +216,24 @@ public class PurchaseCheckAction extends ActionSupport implements SessionAware {
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+
+
+	/**
+	 * @return itemList
+	 */
+	public ArrayList<ItemDTO> getItemList() {
+		return itemList;
+	}
+
+
+
+	/**
+	 * @param itemList セットする itemList
+	 */
+	public void setItemList(ArrayList<ItemDTO> itemList) {
+		this.itemList = itemList;
 	}
 
 }

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="refresh" content="0;URL=GoTopAction">
-<title>Calico Cat - ※更新で複数商品追加防止対策の0秒でGologinActionに遷移するjspです</title>
+<title>Calico Cat - ※更新で複数商品追加防止対策の0秒でGoTopActionに遷移するjspです</title>
 </head>
 <body>
 

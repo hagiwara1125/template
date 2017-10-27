@@ -29,11 +29,9 @@
 
 <title><s:text name="lang.cart.title" /></title>
 
-<link rel="stylesheet" type="text/css" href="css/cart.css">
+<link rel="stylesheet" type="text/css" href="./css/cart.css">
 
 </head>
-
-
 
 <body>
 
@@ -53,7 +51,6 @@
 		</div>
 
 		<s:if test="%{cartList.size() > 0 && #session.user_id != null}">
-
 			<table class="cartlist">
 
 				<thead>
@@ -142,7 +139,7 @@
 	</div>
 
 	<div class="saigo">
-		<footer style="text-align: center;">
+		<footer style="text-align: center; bottom: 0;">
 			<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
 		</footer>
 	</div>

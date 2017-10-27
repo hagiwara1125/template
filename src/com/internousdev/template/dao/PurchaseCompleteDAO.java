@@ -90,7 +90,7 @@ public class PurchaseCompleteDAO {
 	 * @param item_id 商品ID
 	 * @param order_count 注文数
 	 * @param sub_total 小計
-	 * @return 登録件数
+	 * @return addCount 登録件数
 	 */
 
 	public int purchaseInsert(int user_id, int item_id, int order_count, BigDecimal sub_total) {
@@ -135,6 +135,7 @@ public class PurchaseCompleteDAO {
 	 * @param user_id ユーザーID
 	 * @return ret 削除件数
 	 */
+
 	public int cartDelete(int user_id) {
 		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
@@ -170,6 +171,7 @@ public class PurchaseCompleteDAO {
 	 * @param item_stock 商品在庫数
 	 * @return ret 更新件数
 	 */
+
 	public int stockUpdate(int item_id, int new_stock) {
 		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
@@ -179,8 +181,8 @@ public class PurchaseCompleteDAO {
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, item_id);
-			ps.setInt(2, new_stock);
+			ps.setInt(1, new_stock);
+			ps.setInt(2, item_id);
 			ret = ps.executeUpdate();
 
 		} catch(SQLException e) {

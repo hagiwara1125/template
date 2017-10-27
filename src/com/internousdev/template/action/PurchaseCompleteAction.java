@@ -46,7 +46,7 @@ public class PurchaseCompleteAction extends ActionSupport implements SessionAwar
 	/**
 	 * 小計
 	 */
-	private BigDecimal sub_total;
+	private BigDecimal sub_total = BigDecimal.ZERO;
 
 	/**
 	 * カート情報リスト

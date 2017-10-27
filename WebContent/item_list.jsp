@@ -34,8 +34,6 @@
 
 <body>
 
-	<div id="pagecover">
-
 		<header>
 			<s:include value="header.jsp" />
 		</header>
@@ -112,7 +110,6 @@
 			</div>
 
 		</div>
-	</div>
 
 </body>
 </html>

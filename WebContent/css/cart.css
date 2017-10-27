@@ -69,9 +69,13 @@ body {
 }
 
 .saigo {
-	position: relative;
-	padding-top: 30px;
+	font-size: 12px;
+	position: absolute;
+	display: block;
 	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 30 auto 0;
 }
 
 .kaimonobox {

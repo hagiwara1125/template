@@ -7,15 +7,19 @@ drop table if exists users;
 drop table if exists item;
 drop table if exists cart;
 drop table if exists purcahse;
-drop table if exists credit;
+drop table if exists credit_card;
 drop table if exists inquiry;
+
+
+
+-- CREATE
 
 
 /*会員情報*/
 create table users(
-user_id int primary key not null auto_increment, /*ユーザーID*/
-phone_email varchar(255) unique not null, /*ログイン用メールアドレス*/
-password varchar(255) not null, /*ログイン用パスワード*/
+user_id int primary key not null auto_increment, /*ユーザーID */
+phone_email varchar(255) unique not null, /*ログイン用メールアドレス */
+password varchar(255) not null, /*ログイン用パスワード */
 login_flg int not null default 0, /*ログインフラグ*/
 user_flg int not null default 1, /*ユーザーフラグ*/
 delete_flg boolean not null default FALSE, /*削除フラグ*/
@@ -80,16 +84,15 @@ foreign key(item_id) references item(item_id)
 );
 
 
-/*クレジットカード*/
-create table credits(
+/*クレジットカード情報*/
+create table credit_card(
 credit_id int not null primary key auto_increment, /*クレジットカードID*/
-credit_type int not null, /*クレジットカード種類*/
-credit_name varchar(100) not null, /*クレジットカードブランド*/
-created_at datetime not null default current_timestamp, /*登録日*/
-updated_at datetime not null, /*更新日*/
-deleted_at datetime not null, /*削除日*/
-expiration_year int not null, /*有効期限(年)*/
-expiration_month int not null /*有効期限(月)*/
+credit_type varchar(20) unique not null, /*クレジットカード種類*/
+credit_number varchar(20) not null, /*クレジットカード番号*/
+credit_holder varchar(50) not null, /*名義人*/
+expiration_month varchar(2) not null, /*有効期限(月)*/
+expiration_year varchar(4) not null, /*有効期限(年)*/
+security_code varchar(4) not null /*セキュリティコード*/
 );
 
 
@@ -104,6 +107,14 @@ inqyiry_date datetime /*問い合わせ日*/
 );
 
 
+-- CREATE
+
+
+
+-- INSERT
+
+
+/*会員情報*/
 -- login_flg(0:未ログイン, 1:既ログイン)
 -- user_flg(1:顧客, 3:管理者)
 INSERT INTO users(phone_email, password, login_flg, user_flg, delete_flg, family_name, family_name_kana, given_name, given_name_kana, user_name, sex, postal, address, phone_number, register_date, update_date) VALUE
@@ -119,10 +130,19 @@ INSERT INTO users(phone_email, password, login_flg, user_flg, delete_flg, family
 ('admin.test05@gmail.com', 'testadmin', 0, 3, false, 'テスト', 'テスト', '管理者5', 'カンリシャ5', 'テスト管理者5', '女', '1130034', '東京都文京区湯島3-2-12　御茶ノ水天神ビル', '0123456798', '2017-10-21 00:00:00', '2017-10-21 00:00:00');
 
 
-
-
+/*商品情報*/
 -- variation_id(1:,)
 -- item_category(1:キッチン用品, 2:インテリア, 3:文房具, 4:ファッション小物, 5:アクセサリー, 11:ごはん, 12:おやつ, 13:おもちゃ, 14:日用品)
 -- item_user(1:愛猫家, 3:ねこ)
 INSERT INTO item(item_category, item_name, item_price, item_stock, img_path, item_comment) VALUE
 (1, 'グラス', 1000, 100, './img/item/glass.jpg', 'グラスペアセット');
+
+
+/*クレジットカード情報*/
+INSERT INTO credit_card(credit_type, credit_number, credit_holder, expiration_month, expiration_year, security_code) VALUE
+('Pisa', '4111-1111-1111-1112', 'testuser', '11', '2020', '123'),
+('Americanexcite', '3782-8278-0000-1111', 'testuser', '11', '2020', '123'),
+('Sistercard', '5555-5500-0000-0001', 'testuser', '11', '2020', '123');
+
+
+-- INSERT
