@@ -66,7 +66,7 @@
 					<table style="border: solid 1px white">
 						<tr>
 							<th><s:text name="lang.item_detail.comment" /></th>
-							<td><s:property escape="false" value="comment" /></td>
+							<td><s:property escape="false" value="item_comment" /></td>
 						</tr>
 						<tr>
 							<th class="priceth"><s:text name="lang.item_detail.price" /></th>

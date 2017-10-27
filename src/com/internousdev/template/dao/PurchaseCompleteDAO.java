@@ -55,7 +55,7 @@ public class PurchaseCompleteDAO {
 				ps2.setInt(1, dto.getItem_id());
 				ResultSet rs2 = ps2.executeQuery();
 
-				while(rs.next()) {
+				while(rs2.next()) {
 					dto.setItem_name(rs2.getString("item_name"));
 					dto.setItem_price(rs2.getBigDecimal("item_price"));
 					dto.setImg_path(rs2.getString("img_path"));
@@ -137,7 +137,7 @@ public class PurchaseCompleteDAO {
 	 */
 
 	public int cartDelete(int user_id) {
-		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost", "calicocat", "root", "mysql");
+		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 		int ret = 0;
 

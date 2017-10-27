@@ -22,6 +22,8 @@
 
 <title><s:text name="lang.index.title" /></title>
 
+<link rel="stylesheet" type="text/css" href="./css/index.css">
+
 </head>
 
 <body>
@@ -29,6 +31,10 @@
 	<header>
 		<s:include value="header.jsp"></s:include>
 	</header>
+
+	<div class="top_img">
+		<img src="./img/calicocat_info.jpg" style="margin-left: auto; margin-right: auto;">
+	</div>
 
 </body>
 </html>

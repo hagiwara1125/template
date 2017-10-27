@@ -49,7 +49,7 @@
 							name="lang.header.product_list" /></a>
 					<ul>
 						<li><a
-							href="<s:url action="ItemListAction"><s:param name="item_user" value="1" /></s:url>"><s:text
+							href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>"><s:text
 									name="lang.header.lover" /></a>
 							<ul>
 								<li><a
@@ -64,25 +64,22 @@
 								<li><a
 									href="<s:url action="ItemListAction"><s:param name="item_category" value="4" /></s:url>"><s:text
 											name="lang.header.fashion" /></a></li>
-								<li><a
-									href="<s:url action="ItemListAction"><s:param name="item_category" value="5" /></s:url>"><s:text
-											name="lang.header.accessories" /></a></li>
 							</ul></li>
 						<li><a
-							href="<s:url action="ItemListAction"><s:param name="item_user" value="2" /></s:url>"><s:text
+							href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>"><s:text
 									name="lang.header.cats" /></a>
 							<ul>
 								<li><a
-									href="<s:url action="ItemListAction"><s:param name="item_category" value="6" /></s:url>"><s:text
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="11" /></s:url>"><s:text
 											name="lang.header.food" /></a></li>
 								<li><a
-									href="<s:url action="ItemListAction"><s:param name="item_category" value="7" /></s:url>"><s:text
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="12" /></s:url>"><s:text
 											name="lang.header.snack" /></a></li>
 								<li><a
-									href="<s:url action="ItemListAction"><s:param name="item_category" value="8" /></s:url>"><s:text
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="13" /></s:url>"><s:text
 											name="lang.header.toy" /></a></li>
 								<li><a
-									href="<s:url action="ItemListAction"><s:param name="item_category" value="9" /></s:url>"><s:text
+									href="<s:url action="ItemListAction"><s:param name="item_category" value="14" /></s:url>"><s:text
 											name="lang.header.daily" /></a>
 							</ul></li>
 					</ul></li>

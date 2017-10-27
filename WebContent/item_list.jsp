@@ -34,6 +34,8 @@
 
 <body>
 
+	<div id="pagecover">
+
 		<header>
 			<s:include value="header.jsp" />
 		</header>
@@ -45,13 +47,11 @@
 				<div class="display_list">
 					<s:iterator value="selectList">
 						<div class="template">
-							<div class="hvr-float-shadow">
-								<div class="item_img">
-									<a
-										href="<s:url action="ItemDetailAction"><s:param name="item_id" value="%{item_id}"/></s:url>"><img
-										class="item_img" src="<s:property value="img_path"/>"
-										height="250px"> <s:hidden value="item_id" /> </a>
-								</div>
+							<div class="item_img">
+								<a
+									href="<s:url action="ItemDetailAction"><s:param name="item_id" value="%{item_id}"/></s:url>"><img
+									class="item_img" src="<s:property value="img_path"/>"
+									height="250px" width="250px"> <s:hidden value="item_id" /> </a>
 							</div>
 							<div class="item_name">
 								<s:property value="item_name" />
@@ -64,7 +64,7 @@
 					</s:iterator>
 				</div>
 
-				<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="col-xs-12 col-sm-12 col-md-12" id="listarea">
 					<nav>
 						<ul class="pagination">
 
@@ -98,7 +98,7 @@
 							</s:if>
 							<s:else>
 								<li><a
-									href="<s:url action="ItemListAction"><s:param name="pageNum" value="%{maxPage}"/><s:param name="item_category" value="%{item_category}"/></s:url>"
+									href="<s:url action="ListAction"><s:param name="pageNum" value="%{maxPage}"/><s:param name="item_category" value="%{item_category}"/></s:url>"
 									aria-label="1ページへ"> <span aria-hidden="true">&raquo;</span>
 								</a></li>
 							</s:else>
@@ -106,10 +106,10 @@
 					</nav>
 				</div>
 
-
 			</div>
 
 		</div>
+	</div>
 
 </body>
 </html>
