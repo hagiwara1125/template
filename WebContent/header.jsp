@@ -142,9 +142,6 @@
 								<li><a
 									href="<s:url action="ItemListAction"><s:param name="item_category" value="4" /></s:url>"><s:text
 											name="lang.header.fashion" /></a></li>
-								<li><a
-									href="<s:url action="ItemListAction"><s:param name="item_category" value="5" /></s:url>"><s:text
-											name="lang.header.accessories" /></a></li>
 							</ul></li>
 						<li><a
 							href="<s:url action="ItemListAction"><s:param name="item_user" value="2" /></s:url>"><s:text

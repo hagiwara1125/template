@@ -34,8 +34,10 @@
 
 	<div id="container">
 
-		<div class="top_img">
-			<img src="./img/calicocat_info.jpg">
+		<div id="main">
+			<div class="top_img">
+				<img src="./img/calicocat_info.jpg">
+			</div>
 		</div>
 
 		<div id="footer">

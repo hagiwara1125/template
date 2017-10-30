@@ -35,7 +35,7 @@ public class PurchaseHistoryDAO {
 
 		String sql = "SELECT item_name, order_count, sub_total, date_format(purchase_date, '%Y-%m-%d')"
 				+ " AS 'purchase_date' FROM purchase left JOIN item ON purchase.item_id = item.item_id"
-				+ " WHERE user_id = ?";
+				+ " WHERE user_id = ? ORDER BY purchase_date DESC";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
