@@ -34,7 +34,21 @@
 
 	<div id="container">
 
-		<div id="main"></div>
+		<div id="main">
+			<h2>支払方法は選べますか？</h2>
+			<p>クレジットカード決済のみとなります。</p>
+
+			<br>
+
+			<h2>注文してどのくらいで届きますか？</h2>
+			<p>
+				3営業日以内の発送となります。<br> 発送後のお届け日数は、配送業者さまのサイトにてご確認ください。
+			</p>
+
+
+			<h2></h2>
+			<p></p>
+		</div>
 
 		<div id="footer">
 			<footer style="text-align: center;">

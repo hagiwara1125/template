@@ -41,26 +41,26 @@
 			<br>
 
 			<table>
-			<thead>
-			<tr>
-			<th>購入商品</th>
-			<th>購入個数</th>
-			<th>小計</th>
-			<th>購入日</th>
-			</tr>
-			</thead>
-			<tbody>
-			<s:iterator value="purchaseList" status="st">
-			<s:iterator value="itemList.get(#st.index)" />
-			<tr>
-			<td><s:property value="item_name" /></td>
-			<td><s:property value="order_count" /> 個</td>
-			<td><fmt:formatNumber value="${sub_total}" pattern="###,###,###" /> 円(税込)</td>
-			<td><s:property value="purchase_date" /></td>
-			</tr>
-			</s:iterator>
-			</tbody>
-
+				<s:if test="%{!purchaseHistoryList.isEmpty()}">
+					<tr>
+						<th>購入商品</th>
+						<th>購入個数</th>
+						<th>小計</th>
+						<th>購入日</th>
+					</tr>
+					<s:iterator value="purchaseHistoryList">
+						<tr>
+							<td><s:property value="item_name" /></td>
+							<td><s:property value="order_count" /> 個</td>
+							<td><fmt:formatNumber value="${sub_total}"
+									pattern="###,###,###" /> 円(税込)</td>
+							<td><s:property value="purchase_date" /></td>
+						</tr>
+					</s:iterator>
+				</s:if>
+				<s:else>
+					<h1>購入履歴はありません</h1>
+				</s:else>
 			</table>
 
 		</div>

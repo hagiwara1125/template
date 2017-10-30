@@ -3,13 +3,13 @@
  */
 package com.internousdev.template.action;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.internousdev.template.dao.PurchaseHistorySelectDAO;
-import com.internousdev.template.dto.ItemDTO;
+import com.internousdev.template.dao.PurchaseHistoryDAO;
 import com.internousdev.template.dto.PurchaseDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -35,17 +35,32 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 	/**
 	 * ユーザーID
 	 */
-	private String user_id;
+	private int user_id;
+
+	/**
+	 * 商品ID
+	 */
+	private int item_id;
+
+	/**
+	 * 注文数
+	 */
+	private int order_count;
+
+	/**
+	 * 小計
+	 */
+	private BigDecimal sub_total;
+
+	/**
+	 * 購入日
+	 */
+	private String purchase_date;
 
 	/**
 	 * 購入履歴情報リスト
 	 */
-	private ArrayList<PurchaseDTO> purchaseList = new ArrayList<PurchaseDTO>();
-
-	/**
-	 * 商品情報リスト
-	 */
-	private ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();
+	private ArrayList<PurchaseDTO> purchaseHistoryList = new ArrayList<PurchaseDTO>();
 
 
 
@@ -60,13 +75,20 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 	public String execute() {
 		String result = ERROR;
 
-		PurchaseHistorySelectDAO dao = new PurchaseHistorySelectDAO();
-		if(dao.selectPurchaseHistory(user_id, "", "", "", "", "")) {
-			purchaseList = dao.getPurchaseList();
-			itemList = dao.getItemList();
-		}
+		if(session.containsKey("user_id")) {
+			user_id = (int)session.get("user_id");
 
-		result = SUCCESS;
+			PurchaseHistoryDAO dao = new PurchaseHistoryDAO();
+			purchaseHistoryList = dao.purchaseHistoryList(user_id);
+
+
+			if(purchaseHistoryList.size() != 0) {
+				result = SUCCESS;
+
+			} else {
+				result = SUCCESS;
+			}
+		}
 
 		return result;
 
@@ -105,10 +127,16 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 
 
 
+
+
+
+
+
+
 	/**
 	 * @return user_id
 	 */
-	public String getUser_id() {
+	public int getUser_id() {
 		return user_id;
 	}
 
@@ -119,7 +147,7 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 	/**
 	 * @param user_id セットする user_id
 	 */
-	public void setUser_id(String user_id) {
+	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
 
@@ -128,10 +156,10 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 
 
 	/**
-	 * @return purchaseList
+	 * @return item_id
 	 */
-	public ArrayList<PurchaseDTO> getPurchaseList() {
-		return purchaseList;
+	public int getItem_id() {
+		return item_id;
 	}
 
 
@@ -139,10 +167,10 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 
 
 	/**
-	 * @param purchaseList セットする purchaseList
+	 * @param item_id セットする item_id
 	 */
-	public void setPurchaseList(ArrayList<PurchaseDTO> purchaseList) {
-		this.purchaseList = purchaseList;
+	public void setItem_id(int item_id) {
+		this.item_id = item_id;
 	}
 
 
@@ -150,10 +178,10 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 
 
 	/**
-	 * @return itemList
+	 * @return order_count
 	 */
-	public ArrayList<ItemDTO> getItemList() {
-		return itemList;
+	public int getOrder_count() {
+		return order_count;
 	}
 
 
@@ -161,10 +189,76 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 
 
 	/**
-	 * @param itemList セットする itemList
+	 * @param order_count セットする order_count
 	 */
-	public void setItemList(ArrayList<ItemDTO> itemList) {
-		this.itemList = itemList;
+	public void setOrder_count(int order_count) {
+		this.order_count = order_count;
+	}
+
+
+
+
+
+	/**
+	 * @return sub_total
+	 */
+	public BigDecimal getSub_total() {
+		return sub_total;
+	}
+
+
+
+
+
+	/**
+	 * @param sub_total セットする sub_total
+	 */
+	public void setSub_total(BigDecimal sub_total) {
+		this.sub_total = sub_total;
+	}
+
+
+
+
+
+	/**
+	 * @return purchase_date
+	 */
+	public String getPurchase_date() {
+		return purchase_date;
+	}
+
+
+
+
+
+	/**
+	 * @param purchase_date セットする purchase_date
+	 */
+	public void setPurchase_date(String purchase_date) {
+		this.purchase_date = purchase_date;
+	}
+
+
+
+
+
+	/**
+	 * @return purchaseHistoryList
+	 */
+	public ArrayList<PurchaseDTO> getPurchaseHistoryList() {
+		return purchaseHistoryList;
+	}
+
+
+
+
+
+	/**
+	 * @param purchaseHistoryList セットする purchaseHistoryList
+	 */
+	public void setPurchaseHistoryList(ArrayList<PurchaseDTO> purchaseHistoryList) {
+		this.purchaseHistoryList = purchaseHistoryList;
 	}
 
 }
