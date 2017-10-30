@@ -3,10 +3,12 @@
 body, html {
 	height: 100%;
 	background: #fdf7ea;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 #container {
-	width: 1200px;
+	width: 1000px;
 	position: relative;
 	height: auto !important;
 	height: 100%;
@@ -17,7 +19,7 @@ body, html {
 
 #main {
 	margin-top: 235px;
-	padding-bottom: 100px;
+	text-align: center;
 }
 
 #footer {

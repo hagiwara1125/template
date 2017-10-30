@@ -17,12 +17,13 @@
 
 <!-- 国際化 -->
 <fmt:setLocale value="${pageContext.request.locale.language}" />
-<fmt:setBundle basename="com.internousdev.template.property.about"
+<fmt:setBundle
+	basename="com.internousdev.template.property.purchase_history"
 	var="lang" />
 
-<title>Calico Cat - アバウト画面<%-- <s:text name="lang.about.title" /> --%></title>
+<title>Calico Cat - 購入履歴画面<%-- <s:text name="lang.purchase_history.title" /> --%></title>
 
-<link rel="stylesheet" type="text/css" href="./css/about.css">
+<link rel="stylesheet" type="text/css" href="./css/purchase_history.css">
 
 </head>
 
@@ -35,11 +36,33 @@
 	<div id="container">
 
 		<div id="main">
-		<h1>Calico Catについて</h1>
-		<br>
+			<h1>購入履歴</h1>
 
-		当サイトは、猫が大好きな方や、猫ちゃんたちのための<br>
-		雑貨を取り扱っている、通販サイトです。<br><br>
+			<br>
+
+			<table>
+			<thead>
+			<tr>
+			<th>購入商品</th>
+			<th>購入個数</th>
+			<th>小計</th>
+			<th>購入日</th>
+			</tr>
+			</thead>
+			<tbody>
+			<s:iterator value="purchaseList" status="st">
+			<s:iterator value="itemList.get(#st.index)" />
+			<tr>
+			<td><s:property value="item_name" /></td>
+			<td><s:property value="order_count" /> 個</td>
+			<td><fmt:formatNumber value="${sub_total}" pattern="###,###,###" /> 円(税込)</td>
+			<td><s:property value="purchase_date" /></td>
+			</tr>
+			</s:iterator>
+			</tbody>
+
+			</table>
+
 		</div>
 
 		<div id="footer">

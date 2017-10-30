@@ -17,9 +17,10 @@ body, html {
 	margin-right: auto;
 }
 
-.top_img {
+#main {
 	margin-top: 235px;
-	margin-left: 270px;
+	text-align: center;
+	padding-bottom: 100px;
 }
 
 #footer {

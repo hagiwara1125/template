@@ -17,12 +17,12 @@
 
 <!-- 国際化 -->
 <fmt:setLocale value="${pageContext.request.locale.language}" />
-<fmt:setBundle basename="com.internousdev.template.property.about"
+<fmt:setBundle basename="com.internousdev.template.property.inquiry"
 	var="lang" />
 
-<title>Calico Cat - アバウト画面<%-- <s:text name="lang.about.title" /> --%></title>
+<title>Calico Cat - お問い合わせ画面<%-- <s:text name="lang.inquiry.title" /> --%></title>
 
-<link rel="stylesheet" type="text/css" href="./css/about.css">
+<link rel="stylesheet" type="text/css" href="./css/inquiry.css">
 
 </head>
 
@@ -35,12 +35,10 @@
 	<div id="container">
 
 		<div id="main">
-		<h1>Calico Catについて</h1>
-		<br>
+		申し訳ございません。<br>
+		ただいま工事中です。<br><br>
 
-		当サイトは、猫が大好きな方や、猫ちゃんたちのための<br>
-		雑貨を取り扱っている、通販サイトです。<br><br>
-		</div>
+		今しばらくお待ちください。</div>
 
 		<div id="footer">
 			<footer style="text-align: center;">

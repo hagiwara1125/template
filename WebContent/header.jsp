@@ -39,10 +39,12 @@
 
 		<s:if test="#session.user_flg==1">
 			<ul id="dropmenu">
-				<li><a href="about.jsp"><s:text name="lang.header.calicocat" /></a>
+				<li><a href="about.jsp"><s:text
+							name="lang.header.calicocat" /></a>
 					<ul>
-						<li><a href="#"><s:text name="lang.header.help" /></a></li>
-						<li><a href="#"><s:text name="lang.header.inquiry" /></a></li>
+						<li><a href="help.jsp"><s:text name="lang.header.help" /></a></li>
+						<li><a href="inquiry.jsp"><s:text
+									name="lang.header.inquiry" /></a></li>
 					</ul></li>
 				<li><a
 					href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>"><s:text
@@ -87,6 +89,8 @@
 					<ul>
 						<li><a href="GoMyPageAction"><s:text
 									name="lang.header.mypage" /></a></li>
+						<li><a href="PurchaseHistoryAction"><s:text
+									name="lang.header.purchase_history" /></a></li>
 						<li><a href="CartSelectAction"><s:text
 									name="lang.header.cart" /></a></li>
 					</ul></li>
@@ -111,10 +115,12 @@
 
 		<s:else>
 			<ul id="dropmenu">
-				<li><a href="about.jsp"><s:text name="lang.header.calicocat" /></a>
+				<li><a href="about.jsp"><s:text
+							name="lang.header.calicocat" /></a>
 					<ul>
-						<li><a href="#"><s:text name="lang.header.help" /></a></li>
-						<li><a href="#"><s:text name="lang.header.inquiry" /></a></li>
+						<li><a href="help.jsp"><s:text name="lang.header.help" /></a></li>
+						<li><a href="inquiry.jsp"><s:text
+									name="lang.header.inquiry" /></a></li>
 					</ul></li>
 				<li><a
 					href="<s:url action="ItemListAction"><s:param name="item_category" value="0" /></s:url>"><s:text
@@ -162,6 +168,8 @@
 					<ul>
 						<li><a href="GoMyPageAction"><s:text
 									name="lang.header.mypage" /></a></li>
+						<li><a href="PurchaseHistoryAction"><s:text
+									name="lang.header.purchase_history" /></a></li>
 						<li><a href="CartSelectAction"><s:text
 									name="lang.header.cart" /></a></li>
 					</ul></li>

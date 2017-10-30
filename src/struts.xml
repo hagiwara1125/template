@@ -78,6 +78,13 @@
 			<result name="error">login.jsp</result>
 		</action>
 
+		<!-- 購入履歴へ遷移するAction -->
+		<action name="PurchaseHistoryAction" class="com.internousdev.template.action.PurchaseHistoryAction"
+			method="execute">
+			<result name="success">purchase_history.jsp</result>
+			<result name="error">login.jsp</result>
+		</action>
+
 		<!-- カート画面へ遷移するAction -->
 		<action name="CartSelectAction"
 			class="com.internousdev.template.action.CartSelectAction" method="execute">

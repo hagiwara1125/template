@@ -17,12 +17,12 @@
 
 <!-- 国際化 -->
 <fmt:setLocale value="${pageContext.request.locale.language}" />
-<fmt:setBundle basename="com.internousdev.template.property.about"
+<fmt:setBundle basename="com.internousdev.template.property.help"
 	var="lang" />
 
-<title>Calico Cat - アバウト画面<%-- <s:text name="lang.about.title" /> --%></title>
+<title>Calico Cat - ヘルプ画面<%-- <s:text name="lang.help.title" /> --%></title>
 
-<link rel="stylesheet" type="text/css" href="./css/about.css">
+<link rel="stylesheet" type="text/css" href="./css/help.css">
 
 </head>
 
@@ -34,13 +34,7 @@
 
 	<div id="container">
 
-		<div id="main">
-		<h1>Calico Catについて</h1>
-		<br>
-
-		当サイトは、猫が大好きな方や、猫ちゃんたちのための<br>
-		雑貨を取り扱っている、通販サイトです。<br><br>
-		</div>
+		<div id="main"></div>
 
 		<div id="footer">
 			<footer style="text-align: center;">

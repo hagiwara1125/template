@@ -11,16 +11,9 @@
 <head>
 
 <meta charset="UTF-8">
-<meta http-equiv="X-UA=Compativble" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
-<meta http-equiv="imagetoolbar" content="no" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <!-- 国際化 -->
 <fmt:setLocale value="${pageContext.request.locale.language}" />
@@ -38,37 +31,43 @@
 		<s:include value="header.jsp" />
 	</header>
 
-	<s:iterator value="userList">
-		<table class="userinfo">
-			<tbody>
-				<tr>
-					<td class="tdtitle"><s:text name="lang.mypage.userid" /></td>
-					<td class="tdsub"><s:property value="user_id" /></td>
-				</tr>
-				<tr>
-					<td class="tdtitle"><s:text name="lang.mypage.name" /></td>
-					<td class="tdsub"><s:property value="user_name" /></td>
-				</tr>
-				<tr>
-					<td class="tdtitle"><s:text name="lang.mypage.phone" /></td>
-					<td class="tdsub"><s:property value="phone_number" /></td>
-				</tr>
-				<tr>
-					<td class="tdtitle"><s:text name="lang.mypage.mail" /></td>
-					<td class="tdsub"><s:property value="phone_email" /></td>
-				</tr>
-				<tr>
-					<td class="tdtitle"><s:text name="lang.mypage.address" /></td>
-					<td class="tdsub">〒<s:property value="postal" /><br> <s:property
-							value="address" /></td>
-				</tr>
-			</tbody>
-		</table>
-	</s:iterator>
+	<div id="container">
 
-		<footer style="text-align: center; font-size: 14px; bottom: 0;">
-			<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
-		</footer>
+		<s:iterator value="userList">
+			<table class="userinfo">
+				<tbody>
+					<tr>
+						<td class="tdtitle"><s:text name="lang.mypage.userid" /></td>
+						<td class="tdsub"><s:property value="user_id" /></td>
+					</tr>
+					<tr>
+						<td class="tdtitle"><s:text name="lang.mypage.name" /></td>
+						<td class="tdsub"><s:property value="user_name" /></td>
+					</tr>
+					<tr>
+						<td class="tdtitle"><s:text name="lang.mypage.phone" /></td>
+						<td class="tdsub"><s:property value="phone_number" /></td>
+					</tr>
+					<tr>
+						<td class="tdtitle"><s:text name="lang.mypage.mail" /></td>
+						<td class="tdsub"><s:property value="phone_email" /></td>
+					</tr>
+					<tr>
+						<td class="tdtitle"><s:text name="lang.mypage.address" /></td>
+						<td class="tdsub">〒<s:property value="postal" /><br> <s:property
+								value="address" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</s:iterator>
+
+		<div id="footer">
+			<footer style="text-align: center;">
+				<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
+			</footer>
+		</div>
+
+	</div>
 
 </body>
 </html>

@@ -3,6 +3,8 @@
 body, html {
 	height: 100%;
 	background: #fdf7ea;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 #contents {
