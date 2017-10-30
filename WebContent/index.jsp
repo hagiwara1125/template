@@ -32,8 +32,18 @@
 		<s:include value="header.jsp"></s:include>
 	</header>
 
-	<div class="top_img">
-		<img src="./img/calicocat_info.jpg" style="margin-left: auto; margin-right: auto;">
+	<div id="container">
+
+		<div class="top_img">
+			<img src="./img/calicocat_info.jpg">
+		</div>
+
+		<div id="footer">
+			<footer style="text-align: center;">
+				<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
+			</footer>
+		</div>
+
 	</div>
 
 </body>

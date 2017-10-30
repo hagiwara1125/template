@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @version 1.0
  */
 
-public class Purchase {
+public class PurchaseDTO {
 
 	/**
 	 * 購入ID

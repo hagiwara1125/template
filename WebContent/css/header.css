@@ -1,9 +1,8 @@
 @CHARSET "UTF-8";
 
-body {
-  min-height: 100%;
-  background: #fdf7ea;
-  font-family: 'メイリオ', Meiryo,sans-serif;
+body, html {
+	height: 100%;
+	background: #fdf7ea;
 }
 
 #contents {
@@ -135,17 +134,4 @@ body {
 	margin-left: -20px;
 	border: 5px solid transparent;
 	border-right-color: #ff0000;
-}
-
-header a:link{
-	              color:#ffffff;
-}
-header a:visited{
-	              color:#ffffff;
-}
-header a:hover{
-	              color:#ffffff;
-}
-header a:active{
-	              color:#ffffff;
 }

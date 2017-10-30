@@ -39,7 +39,7 @@
 
 		<s:if test="#session.user_flg==1">
 			<ul id="dropmenu">
-				<li><a href="#"><s:text name="lang.header.calicocat" /></a>
+				<li><a href="about.jsp"><s:text name="lang.header.calicocat" /></a>
 					<ul>
 						<li><a href="#"><s:text name="lang.header.help" /></a></li>
 						<li><a href="#"><s:text name="lang.header.inquiry" /></a></li>
@@ -111,7 +111,7 @@
 
 		<s:else>
 			<ul id="dropmenu">
-				<li><a href="#"><s:text name="lang.header.calicocat" /></a>
+				<li><a href="about.jsp"><s:text name="lang.header.calicocat" /></a>
 					<ul>
 						<li><a href="#"><s:text name="lang.header.help" /></a></li>
 						<li><a href="#"><s:text name="lang.header.inquiry" /></a></li>

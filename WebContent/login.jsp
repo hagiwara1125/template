@@ -11,16 +11,9 @@
 <head>
 
 <meta charset="UTF-8">
-<meta http-equiv="X-UA=Compativble" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
-<meta http-equiv="imagetoolbar" content="no" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <!-- 国際化 -->
 <fmt:setLocale value="${pageContext.request.locale.language}" />
@@ -32,19 +25,19 @@
 <link rel="stylesheet" type="text/css" href="./css/login.css">
 
 </head>
+
 <body>
 
-	<header style="position: static;">
-		<s:include value="header.jsp"></s:include>
+	<header>
+		<s:include value="header.jsp" />
 	</header>
 
-	<div class="main">
-		<div id="login_box">
-			<div class=login-text>
+	<div id="container">
+
+		<div id="main">
 				<h1>
 					<s:text name="lang.login.login" />
 				</h1>
-			</div>
 			<div id="login_box">
 				<p>
 					<s:text name="lang.login.input" />
@@ -69,8 +62,15 @@
 				</s:form>
 			</div>
 
-
 		</div>
+
+		<div id="footer">
+			<footer style="text-align: center;">
+				<c:import url="http://www.internousdev.com/openconnect/footer.jsp" />
+			</footer>
+		</div>
+
 	</div>
+
 </body>
 </html>
