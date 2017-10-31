@@ -104,133 +104,120 @@ public class PurchaseCheckAction extends ActionSupport implements SessionAware {
 
 
 	/**
-	 * @return session
-	 */
-	public Map<String, Object> getSession() {
-		return session;
-	}
-
-
-
-	/**
-	 * @param session セットする session
-	 */
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
-
-
-
-	/**
-	 * @return user_id
-	 */
-	public int getUser_id() {
-		return user_id;
-	}
-
-
-
-	/**
-	 * @param user_id セットする user_id
-	 */
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
-
-
-
-	/**
-	 * @return item_id
-	 */
-	public int getItem_id() {
-		return item_id;
-	}
-
-
-
-	/**
-	 * @param item_id セットする item_id
-	 */
-	public void setItem_id(int item_id) {
-		this.item_id = item_id;
-	}
-
-
-
-	/**
-	 * @return sub_total
-	 */
-	public BigDecimal getSub_total() {
-		return sub_total;
-	}
-
-
-
-	/**
-	 * @param sub_total セットする sub_total
-	 */
-	public void setSub_total(BigDecimal sub_total) {
-		this.sub_total = sub_total;
-	}
-
-
-
-	/**
-	 * @return total_price
-	 */
-	public BigDecimal getTotal_price() {
-		return total_price;
-	}
-
-
-
-	/**
-	 * @param total_price セットする total_price
-	 */
-	public void setTotal_price(BigDecimal total_price) {
-		this.total_price = total_price;
-	}
-
-
-
-	/**
-	 * @return cartList
-	 */
-	public ArrayList<CartDTO> getCartList() {
-		return cartList;
-	}
-
-
-
-	/**
-	 * @param cartList セットする cartList
-	 */
-	public void setCartList(ArrayList<CartDTO> cartList) {
-		this.cartList = cartList;
-	}
-
-
-
-	/**
-	 * @return serialversionuid
+	 * 生成されたシリアルIDを取得するためのメソッド
+	 * @return serialversionuid 生成されたシリアルID
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-
+	/**
+	 * セッション情報を取得するためのメソッド
+	 * @return session セッション情報
+	 */
+	public Map<String, Object> getSession() {
+		return session;
+	}
 
 	/**
-	 * @return itemList
+	 * セッション情報を格納するためのメソッド
+	 * @param session セッション情報
+	 */
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+	/**
+	 * ユーザーIDを取得するためのメソッド
+	 * @return user_id ユーザーID
+	 */
+	public int getUser_id() {
+		return user_id;
+	}
+
+	/**
+	 * ユーザーIDを格納するためのメソッド
+	 * @param user_id ユーザーID
+	 */
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+
+	/**
+	 * 商品IDを取得するためのメソッド
+	 * @return item_id 商品ID
+	 */
+	public int getItem_id() {
+		return item_id;
+	}
+
+	/**
+	 * 商品IDを格納するためのメソッド
+	 * @param item_id 商品ID
+	 */
+	public void setItem_id(int item_id) {
+		this.item_id = item_id;
+	}
+
+	/**
+	 * 小計を取得するためのメソッド
+	 * @return sub_total 小計
+	 */
+	public BigDecimal getSub_total() {
+		return sub_total;
+	}
+
+	/**
+	 * 小計を格納するためのメソッド
+	 * @param sub_total 小計
+	 */
+	public void setSub_total(BigDecimal sub_total) {
+		this.sub_total = sub_total;
+	}
+
+	/**
+	 * 合計金額を取得するためのメソッド
+	 * @return total_price 合計金額
+	 */
+	public BigDecimal getTotal_price() {
+		return total_price;
+	}
+
+	/**
+	 * 合計金額を格納するためのメソッド
+	 * @param total_price 合計金額
+	 */
+	public void setTotal_price(BigDecimal total_price) {
+		this.total_price = total_price;
+	}
+
+	/**
+	 * カート情報リストを取得するためのメソッド
+	 * @return cartList カート情報リスト
+	 */
+	public ArrayList<CartDTO> getCartList() {
+		return cartList;
+	}
+
+	/**
+	 * カート情報リストを格納するためのメソッド
+	 * @param cartList カート情報リスト
+	 */
+	public void setCartList(ArrayList<CartDTO> cartList) {
+		this.cartList = cartList;
+	}
+
+	/**
+	 * 商品情報リストを取得するためのメソッド
+	 * @return itemList 商品情報リスト
 	 */
 	public ArrayList<ItemDTO> getItemList() {
 		return itemList;
 	}
 
-
-
 	/**
-	 * @param itemList セットする itemList
+	 * 商品情報リストを格納するためのメソッド
+	 * @param itemList 商品情報リスト
 	 */
 	public void setItemList(ArrayList<ItemDTO> itemList) {
 		this.itemList = itemList;

@@ -30,45 +30,55 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 8619602857814970859L;
 
 	/**
-	 * データベースから取得した商品情報リスト
+	 * 商品一覧情報リスト
 	 */
 	private ArrayList<ItemDTO> selectList = new ArrayList<>();
+
 	/**
-	 * データベースから取得した商品情報を表示するための情報リスト
+	 * 商品表示情報リスト
 	 */
 	public ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();
+
 	/**
-	 * データベースから取得した商品情報リスト
+	 * カート情報リスト
 	 */
 	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
+
 	/**
 	 * セッション情報
 	 */
 	private Map<String,Object> session;
+
 	/**
 	 * 総ページ数
 	 */
 	private int maxPage;
+
 	/**
 	 * 現在のページ
 	 */
-	private int pageNum=1;
+	private int pageNum = 1;
+
 	/**
 	 * 総データ数
 	 */
 	private int number;
+
 	/**
 	 * カテゴリ
 	 */
 	private int item_category = 0;
+
 	/**
 	 * 在庫数メッセージ
 	 */
 	private String stock_alert;
+
 	/**
 	 * ユーザーID
 	 */
 	private int user_id;
+
 	/**
 	 * ページネーション番号表示リスト
 	 */
@@ -77,7 +87,7 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 
 
 	/**
-	 *  MySQLより商品情報を取得する為の実行メソッド
+	 * DBから商品情報を取得するための実行メソッド
 	 * @author HINAKO HAGIWRA
 	 * @since 2017/1022
 	 * @version 1.0
@@ -87,11 +97,13 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 
 		if (session.containsKey("user_id")) {
 			user_id = (int) session.get("user_id");
+
 			//カート情報の取得
 			CartSelectDAO cartDao = new CartSelectDAO();
 			cartList = cartDao.selectedItem(user_id);
 		}
 
+		// 商品情報の取得
 		ItemListDAO dao = new ItemListDAO();
 		selectList = dao.select(item_category);
 
@@ -109,6 +121,8 @@ public class ItemListAction extends ActionSupport implements SessionAware {
 		}
 
 		try{
+
+			// ページネーション処理
 			number = selectList.size();
 			if(number > 0) {
 				ArrayList<ItemListPageObject> allPages = new ArrayList<ItemListPageObject>();
