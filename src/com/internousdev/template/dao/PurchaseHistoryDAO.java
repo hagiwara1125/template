@@ -21,10 +21,12 @@ import com.internousdev.template.util.DBConnector;
 public class PurchaseHistoryDAO {
 
 	/**
-	 * 購入履歴に関するメソッド
+	 * 購入履歴を取得し格納するためのメソッド
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/30
 	 * @version 1.0
+	 * @param user_id ユーザーID
+	 * @return purchaseHistoryList 購入履歴情報リスト
 	 */
 
 	public ArrayList<PurchaseDTO> purchaseHistoryList = new ArrayList<PurchaseDTO>();
@@ -44,10 +46,10 @@ public class PurchaseHistoryDAO {
 
 			while(rs.next()) {
 				PurchaseDTO dto = new PurchaseDTO();
-				dto.setItem_name(rs.getString("item_name"));
-				dto.setSub_total(rs.getBigDecimal("sub_total"));
-				dto.setOrder_count(rs.getInt("order_count"));
-				dto.setPurchase_date(rs.getString("purchase_date"));
+				dto.setItem_name(rs.getString("item_name")); //商品名
+				dto.setSub_total(rs.getBigDecimal("sub_total")); //小計
+				dto.setOrder_count(rs.getInt("order_count")); //注文数
+				dto.setPurchase_date(rs.getString("purchase_date")); //購入日
 
 				purchaseHistoryList.add(dto);
 			}

@@ -80,8 +80,8 @@ public class PurchaseCompleteAction extends ActionSupport implements SessionAwar
 			cartList = dao.cartSelect(user_id);
 
 			for(int i = 0; i < cartList.size(); i++) {
-				sub_total = cartList.get(i).getItem_price().multiply(BigDecimal.valueOf(cartList.get(i).getOrder_count()));
-				int new_stock = cartList.get(i).getItem_stock() - cartList.get(i).getOrder_count();
+				sub_total = cartList.get(i).getItem_price().multiply(BigDecimal.valueOf(cartList.get(i).getOrder_count())); //小計
+				int new_stock = cartList.get(i).getItem_stock() - cartList.get(i).getOrder_count(); //更新された在庫数
 
 				if(new_stock >= 0) {
 					if(dao.purchaseInsert(user_id, cartList.get(i).getItem_id(), cartList.get(i).getOrder_count(), sub_total) != 0) {
@@ -95,7 +95,7 @@ public class PurchaseCompleteAction extends ActionSupport implements SessionAwar
 			}
 
 			if(result == SUCCESS) {
-				if(dao.cartDelete(user_id) == 0) {
+				if(dao.cartDelete(user_id) == 0) { //
 
 					result = ERROR;
 				}

@@ -33,7 +33,7 @@ public class LoginDAO {
 		Connection con = db.getConnection();
 		LoginDTO dto = new LoginDTO();
 
-		String sql = "select * from users where phone_email = ? and password = ?";
+		String sql = "SELECT * FROM users WHERE phone_email = ? AND password = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -42,11 +42,11 @@ public class LoginDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if(rs.next()) {
-				dto.setPhone_email(rs.getString("phone_email"));
-				dto.setPassword(rs.getString("password"));
-				dto.setUser_id(rs.getInt("user_id"));
-				dto.setUser_flg(rs.getInt("login_flg"));
-				dto.setUser_flg(rs.getInt("user_flg"));
+				dto.setPhone_email(rs.getString("phone_email")); //メールアドレス
+				dto.setPassword(rs.getString("password")); //パスワード
+				dto.setUser_id(rs.getInt("user_id")); //ユーザーID
+				dto.setUser_flg(rs.getInt("login_flg")); //ログインフラグ
+				dto.setUser_flg(rs.getInt("user_flg")); //ユーザーフラグ
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -76,7 +76,7 @@ public class LoginDAO {
 		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 
-		String sql = "update users set login_flg = 1 where user_id = ?";
+		String sql = "UPDATE users SET login_flg = 1 WHERE user_id = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -107,12 +107,13 @@ public class LoginDAO {
 	 * @param password パスワード
 	 * @return count 更新回数
 	 */
+
 	public int loginflg(String user_name, String password) {
 		int count = 0;
 		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 
-		String sql = "update users set login_flg = 0 where famili_name = ? and password = ?";
+		String sql = "UPDATE users SET login_flg = 0 WHERE user_name = ? AND password = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);

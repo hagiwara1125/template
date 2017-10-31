@@ -20,12 +20,24 @@ import com.internousdev.util.DBConnector;
 
 public class ItemListDAO {
 
+	/**
+	 * 商品一覧の情報を取得し格納するための実行メソッド
+	 * @author HINAKO HAGIWARA
+	 * @since 2017/10/22
+	 * @version 1.0
+	 * @param item_category 商品カテゴリ
+	 * @return itemList 商品一覧情報リスト
+	 */
+
 	public ArrayList<ItemDTO> select(int item_category){
 		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/","calicocat", "root", "mysql");
 		Connection con =db.getConnection();
 		ArrayList<ItemDTO> itemList =new ArrayList<ItemDTO>();
+
 		ItemDTO dto = null;
+
 		String sql;
+
 		if(item_category != 0){
 			sql = "SELECT * FROM item WHERE item_category = ? ORDER BY item_id ASC";
 		}else{
@@ -38,12 +50,12 @@ public class ItemListDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				dto =new ItemDTO();
-				dto.setItem_id(rs.getInt("item_id"));
-				dto.setItem_name(rs.getString("item_name"));
-				dto.setItem_stock(rs.getInt("item_stock"));
-				dto.setItem_price(rs.getBigDecimal("item_price"));
-				dto.setImg_path(rs.getString("img_path"));
-				dto.setItem_comment(rs.getString("item_comment"));
+				dto.setItem_id(rs.getInt("item_id")); //商品ID
+				dto.setItem_name(rs.getString("item_name")); //商品名
+				dto.setItem_stock(rs.getInt("item_stock")); //在庫数
+				dto.setItem_price(rs.getBigDecimal("item_price")); //価格
+				dto.setImg_path(rs.getString("img_path")); //画像パス
+				dto.setItem_comment(rs.getString("item_comment")); //商品説明
 				if(item_category != 0)dto.setItem_category(rs.getInt("item_category"));
 				itemList.add(dto);
 			}

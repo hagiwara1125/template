@@ -27,7 +27,8 @@ public class CartInsertDAO {
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/23
 	 * @version 1.0
-	 * @return itemList 商品情報
+	 * @param item_id 商品ID
+	 * @return itemList 商品情報リスト
 	 */
 
 	public ArrayList<ItemDTO> itemStatus(int item_id) {
@@ -44,10 +45,10 @@ public class CartInsertDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				ItemDTO dto = new ItemDTO();
-				dto.setItem_name(rs.getString("item_name"));
-				dto.setItem_price(rs.getBigDecimal("item_price"));
-				dto.setItem_stock(rs.getInt("item_stock"));
-				dto.setItem_comment(rs.getString("item_comment"));
+				dto.setItem_name(rs.getString("item_name")); //商品名
+				dto.setItem_price(rs.getBigDecimal("item_price")); //価格
+				dto.setItem_stock(rs.getInt("item_stock")); //在庫数
+				dto.setItem_comment(rs.getString("item_comment")); //商品説明
 				itemList.add(dto);
 			}
 
@@ -72,6 +73,10 @@ public class CartInsertDAO {
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/23
 	 * @verison 1.0
+	 * @param user_id ユーザーID
+	 * @param item_id 商品ID
+	 * @param order_count 注文数
+	 * @param sub_total 小計
 	 * @return addCount 追加回数
 	 */
 
@@ -85,10 +90,10 @@ public class CartInsertDAO {
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, user_id);
-			ps.setInt(2, item_id);
-			ps.setInt(3, order_count);
-			ps.setBigDecimal(4, sub_total);
+			ps.setInt(1, user_id); //ユーザーID
+			ps.setInt(2, item_id); //商品ID
+			ps.setInt(3, order_count); //注文数
+			ps.setBigDecimal(4, sub_total); //小計
 			addCount = ps.executeUpdate();
 
 		} catch(SQLException e) {
@@ -113,6 +118,7 @@ public class CartInsertDAO {
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/23
 	 * @version 1.0
+	 * @param user_id ユーザーID
 	 * @return cartList カート情報
 	 */
 
@@ -131,18 +137,18 @@ public class CartInsertDAO {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				CartDTO dto = new CartDTO();
-				dto.setUser_id(rs.getInt("user_id"));
-				dto.setCart_id(rs.getInt("cart_id"));
-				dto.setItem_id(rs.getInt("item_id"));
-				dto.setOrder_count(rs.getInt("order_count"));
+				dto.setUser_id(rs.getInt("user_id")); //ユーザーID
+				dto.setCart_id(rs.getInt("cart_id")); //カートID
+				dto.setItem_id(rs.getInt("item_id")); //商品ID
+				dto.setOrder_count(rs.getInt("order_count")); //注文数
 				cartList.add(dto);
 
 				PreparedStatement ps2 = con.prepareStatement(sql2);
 				ps.setInt(1, dto.getUser_id());
 				ResultSet rs2 = ps2.executeQuery();
 				while(rs.next()) {
-					dto.setItem_name(rs2.getString("item_name"));
-					dto.setItem_price(rs2.getBigDecimal("item_price"));
+					dto.setItem_name(rs2.getString("item_name")); //商品名
+					dto.setItem_price(rs2.getBigDecimal("item_price")); //価格
 
 				}
 			}
@@ -183,10 +189,10 @@ public class CartInsertDAO {
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, order_count);
-			ps.setBigDecimal(2, sub_total);
-			ps.setInt(3, user_id);
-			ps.setInt(4, item_id);
+			ps.setInt(1, order_count); //注文数
+			ps.setBigDecimal(2, sub_total); //小計
+			ps.setInt(3, user_id); //ユーザーID
+			ps.setInt(4, item_id); //商品ID
 			addCount = ps.executeUpdate();
 
 		} catch(SQLException e) {

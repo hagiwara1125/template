@@ -46,20 +46,20 @@ public class PurchaseCompleteDAO {
 
 			while(rs.next()) {
 				CartDTO dto = new CartDTO();
-				dto.setUser_id(rs.getInt("user_id"));
-				dto.setCart_id(rs.getInt("cart_id"));
-				dto.setItem_id(rs.getInt("item_id"));
-				dto.setOrder_count(rs.getInt("order_count"));
+				dto.setUser_id(rs.getInt("user_id")); //ユーザーID
+				dto.setCart_id(rs.getInt("cart_id")); //カートID
+				dto.setItem_id(rs.getInt("item_id")); //商品ID
+				dto.setOrder_count(rs.getInt("order_count")); //注文数
 
 				PreparedStatement ps2 = con.prepareStatement(sql2);
 				ps2.setInt(1, dto.getItem_id());
 				ResultSet rs2 = ps2.executeQuery();
 
 				while(rs2.next()) {
-					dto.setItem_name(rs2.getString("item_name"));
-					dto.setItem_price(rs2.getBigDecimal("item_price"));
-					dto.setImg_path(rs2.getString("img_path"));
-					dto.setItem_stock(rs2.getInt("item_stock"));
+					dto.setItem_name(rs2.getString("item_name")); //商品名
+					dto.setItem_price(rs2.getBigDecimal("item_price")); //価格
+					dto.setImg_path(rs2.getString("img_path")); //画像パス
+					dto.setItem_stock(rs2.getInt("item_stock")); //在庫数
 
 				}
 
@@ -86,6 +86,9 @@ public class PurchaseCompleteDAO {
 
 	/**
 	 * 購入情報を登録するためのメソッド
+	 * @author HINAKO HAGIWARA
+	 * @since 2017/10/24
+	 * @version 1.0
 	 * @param user_id ユーザーID
 	 * @param item_id 商品ID
 	 * @param order_count 注文数
@@ -168,7 +171,7 @@ public class PurchaseCompleteDAO {
 	 * @since 2017/10/24
 	 * @version 1.0
 	 * @param item_id 商品ID
-	 * @param item_stock 商品在庫数
+	 * @param new_stock 更新された在庫数
 	 * @return ret 更新件数
 	 */
 

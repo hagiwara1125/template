@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import com.internousdev.template.util.DBConnector;
 
+
+
 /**
  * クレジットカード情報照合に関するDAOクラス
  * @author HINAKO HAGIWARA
@@ -15,6 +17,20 @@ import com.internousdev.template.util.DBConnector;
  */
 
 public class CheckCreditDAO {
+
+	/**
+	 * クレジットカード情報を照合するためのメソッド
+	 * @author HINAKO HAGIWARA
+	 * @since 2017/10/27
+	 * @version 1.0
+	 * @param credit_type クレジットカード種類
+	 * @param credit_number クレジットカード番号
+	 * @param credit_holder 名義人
+	 * @param expiration_month 有効期限(月)
+	 * @param expiration_year 有効期限(年)
+	 * @param security_code セキュリティコード
+	 * @return selected_num 照合回数
+	 */
 
 	public int checkCreditInfo(String credit_type, String credit_number, String credit_holder, String expiration_month, String expiration_year, String security_code) {
 
@@ -33,12 +49,12 @@ public class CheckCreditDAO {
 					+ " security_code = ?";
 
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, credit_type);
-			ps.setString(2, credit_number);
-			ps.setString(3, credit_holder);
-			ps.setString(4, expiration_month);
-			ps.setString(5, expiration_year);
-			ps.setString(6, security_code);
+			ps.setString(1, credit_type); //クレジットカード種類
+			ps.setString(2, credit_number); //クレジットカード番号
+			ps.setString(3, credit_holder); //名義人
+			ps.setString(4, expiration_month); //有効期限(月)
+			ps.setString(5, expiration_year); //有効期限(年)
+			ps.setString(6, security_code); //セキュリティコード
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()) {

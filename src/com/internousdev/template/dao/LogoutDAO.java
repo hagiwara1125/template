@@ -32,7 +32,7 @@ public class LogoutDAO {
 		DBConnector db = new DBConnector("com.mysql.jdbc.Driver", "jdbc:mysql://localhost/", "calicocat", "root", "mysql");
 		Connection con = db.getConnection();
 
-		String sql = "update users set login_flg = ? where user_id = ?";
+		String sql = "UPDATE users SET login_flg = ? WHERE user_id = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
