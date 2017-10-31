@@ -33,33 +33,41 @@
 
 	<div id="container">
 
-		<s:iterator value="userList">
-			<table class="userinfo">
-				<tbody>
-					<tr>
-						<td class="tdtitle"><s:text name="lang.mypage.userid" /></td>
-						<td class="tdsub"><s:property value="user_id" /></td>
-					</tr>
-					<tr>
-						<td class="tdtitle"><s:text name="lang.mypage.name" /></td>
-						<td class="tdsub"><s:property value="user_name" /></td>
-					</tr>
-					<tr>
-						<td class="tdtitle"><s:text name="lang.mypage.phone" /></td>
-						<td class="tdsub"><s:property value="phone_number" /></td>
-					</tr>
-					<tr>
-						<td class="tdtitle"><s:text name="lang.mypage.mail" /></td>
-						<td class="tdsub"><s:property value="phone_email" /></td>
-					</tr>
-					<tr>
-						<td class="tdtitle"><s:text name="lang.mypage.address" /></td>
-						<td class="tdsub">〒<s:property value="postal" /><br> <s:property
-								value="address" /></td>
-					</tr>
-				</tbody>
-			</table>
-		</s:iterator>
+		<div id="main">
+
+			<h1 class="subtitle">
+				<s:text name="lang.mypage.subtitle" />
+			</h1>
+
+			<s:iterator value="userList">
+				<table class="userinfo">
+					<tbody>
+						<tr>
+							<td class="tdtitle"><s:text name="lang.mypage.userid" /></td>
+							<td class="tdsub"><s:property value="user_id" /></td>
+						</tr>
+						<tr>
+							<td class="tdtitle"><s:text name="lang.mypage.name" /></td>
+							<td class="tdsub"><s:property value="user_name" /></td>
+						</tr>
+						<tr>
+							<td class="tdtitle"><s:text name="lang.mypage.phone" /></td>
+							<td class="tdsub"><s:property value="phone_number" /></td>
+						</tr>
+						<tr>
+							<td class="tdtitle"><s:text name="lang.mypage.mail" /></td>
+							<td class="tdsub"><s:property value="phone_email" /></td>
+						</tr>
+						<tr>
+							<td class="tdtitle"><s:text name="lang.mypage.address" /></td>
+							<td class="tdsub">〒<s:property value="postal" /><br> <s:property
+									value="address" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</s:iterator>
+
+		</div>
 
 		<div id="footer">
 			<footer style="text-align: center;">

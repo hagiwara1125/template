@@ -20,6 +20,8 @@ html, body {
 #main {
 	margin-top: 235px;
 	padding-bottom: 100px;
+	text-align: center;
+	font-weight: bold;
 }
 
 .display_list {
@@ -27,10 +29,31 @@ html, body {
 	text-align: center;
 	display: block;
 	justify-content: space-around;
-	background-color: #fff;
+	background-color: #fdf7ea;
 	padding-bottom: 10px;
-	margin-bottom:100px;
+	margin: 30px auto 50px;
 	float: left;
+	width: 1200px;
+}
+
+.template {
+	float: left;
+	width: 340px;
+	height: 400px;
+	padding: 30px 10px 15px;
+	margin: 20px 18px 20px;
+	background-color: #fff;
+	text-align: center;
+	border: 1px solid white;
+}
+
+.pagination {
+	margin: 50px auto 20px;
+}
+
+.page {
+	padding: 0 10px 0;
+	font-size: 20px;
 }
 
 #footer {
@@ -41,114 +64,57 @@ html, body {
 	font-size: 14px;
 }
 
-.template {
-	float: left;
-	width: 350px;
-	height: 400px;
-	margin: 20px auto 0;
-	background-color: #fff;
-	text-align: center;
-	border: 1px solid white;
-}
 
 .item_img {
-	height:250px;
+	height: 250px;
 	width: 250px;
-	margin: 10px;
+	margin: 10px auto 10px;
 }
 
 .item_name {
-	color: #ff8040;
+	color: #804040;
 	font-weight: bold;
-	padding-top: 15px;
+	padding-top: 20px;
 	font-size: 20px;
 }
 
 .item_price {
-	color: red;
+	color: #ea4d00;
+	padding-top: 15px;
 	font-size: 17px;
 	font-align: center;
 }
 
-.maincontents{
-	max-width:1100px;
-	margin:0 auto;
-	font-family:"メイリオ";
+.maincontents {
+	max-width: 1100px;
+	margin: 0 auto;
+	font-family: "メイリオ";
 }
 
-.guide{
-	margin:0 auto;
-	margin-bottom:30px;
-	max-width:1100px;
+#itembox:hover {
+	opacity: 0.8;
 }
 
-.guide h1{
-	font-size:27px;
-	text-align:left;
-
-	padding-left:12px;
-	border-left:solid 9px #ff8000;
+#itembox a {
+	text-decoration: none;
 }
 
-.commentarea{
-	height:3.5em;
+#cartbtn {
+	background-color: orange;
 }
 
-.guide p{
-	text-align:center;
-	padding:0 4px;
-	border-bottom: dashed 2px #ff8000;
+#emptybtn {
+	background-color: #ff4444;
+}
+
+#cartbtn:hover {
+	filter: brightness(95%);
+}
+
+#listarea nav {
+	text-align: center;
+}
+
+#listarea ul {
 	display: inline-block;
 }
-
-.sideitem{
-	width:100%;
-	height:100%;
-	background-color:#e9dec2;
-	border:1px solid #747474;
-	border-collapse:collapse;
-}
-
-#itembox:hover{
-	opacity:0.8;
-}
-
-#itembox a{
-	text-decoration:none;
-}
-
-#cartbtn{
-	background-color:orange;
-}
-
-#emptybtn{
-	background-color:#ff4444;
-}
-
-#cartbtn:hover{
-	filter:brightness(95%);
-}
-#listarea nav{
-	text-align:center;
-}
-
-#listarea ul{
-	display:inline-block;
-}
-
-#recommendarea{
-	margin-top:30px;
-}
-
-#recommendarea h4{
-	display:inline-block;
-	border-bottom:2px dashed orange;
-}
-
-#recommendarea a{
-	text-decoration:none;
-	font-weight:600;
-	color:#41af94;
-	font-size:20px;
-	margin-left:1em;
-} */ */

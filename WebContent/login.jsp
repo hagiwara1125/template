@@ -35,7 +35,7 @@
 	<div id="container">
 
 		<div id="main">
-				<h1>
+				<h1 class="subtitle">
 					<s:text name="lang.login.login" />
 				</h1>
 			<div id="login_box">

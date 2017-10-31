@@ -72,7 +72,7 @@ public class CartSelectAction extends ActionSupport implements SessionAware {
 	private BigDecimal total_price = BigDecimal.ZERO;
 
 	/**
-	 * カート内情報
+	 * カート情報
 	 */
 	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
 
@@ -95,23 +95,20 @@ public class CartSelectAction extends ActionSupport implements SessionAware {
 			user_id = (int)session.get("user_id");
 
 			CartSelectDAO dao = new CartSelectDAO();
-			cartList = dao.selectedItem(user_id);
+			cartList = dao.selectedItem(user_id); //カート内情報
 
 			for(int i = 0; i < cartList.size(); i++) {
-				sub_total = (cartList.get(i).getItem_price()).multiply(BigDecimal.valueOf(cartList.get(i).getOrder_count()));
+				sub_total = cartList.get(i).getItem_price().multiply(BigDecimal.valueOf(cartList.get(i).getOrder_count())); //小計
 				cartList.get(i).setSub_total(sub_total);
 
-				total_price = total_price.add(sub_total);
+				total_price = total_price.add(sub_total); //合計金額
 			}
 
 			result = SUCCESS;
 
-		} else
-			result = LOGIN;
-
-
-		System.out.println("CartSelectAction - ユーザーID :" + user_id);
-		System.out.println("CartSelectAction - result :" + result);
+		} else {
+			result = LOGIN; //未ログイン時
+		}
 
 		return result;
 

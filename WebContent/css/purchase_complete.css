@@ -1,36 +1,18 @@
 @CHARSET "UTF-8";
 
-body, html {
+html, body {
 	height: 100%;
+	margin: 0;
+	padding: 0;
 	background: #fdf7ea;
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-.userinfo {
-	margin: 50px auto 0;
-}
-
-.tdtitle {
-	background: #804040;
-	color: #fff;
-	width: 200px;
-	text-align: center;
-	padding: 10px;
-	font-weight: bold;
-}
-
-.tdsub {
-	padding: 10px 30px 10px;
-	background: #fff;
 }
 
 #container {
-	width: 1200px;
 	position: relative;
 	height: auto !important;
 	height: 100%;
 	min-height: 100%;
+	width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -38,9 +20,6 @@ body, html {
 #main {
 	margin-top: 235px;
 	padding-bottom: 100px;
-}
-
-.subtitle {
 	text-align: center;
 }
 

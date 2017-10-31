@@ -14,7 +14,8 @@
 		com.internousdev.template.property.item_detail,
 	    com.internousdev.template.property.cart,
 	    com.internousdev.template.property.mypage,
-	    com.internousdev.template.property.purchase
+	    com.internousdev.template.property.purchase,
+	    com.internousdev.template.property.purchase_complete
 
      " />
 

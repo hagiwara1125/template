@@ -35,6 +35,8 @@
 
 		<div id="main">
 
+			<h1 class="itemlist_title">商品一覧</h1>
+
 			<div class="display_list">
 				<s:iterator value="selectList">
 					<div class="template">
@@ -55,46 +57,48 @@
 				</s:iterator>
 			</div>
 
-			<nav>
-				<ul class="pagination">
 
+			<br>
+			<br>
+			<table class="pagination">
+				<tr>
 					<s:if test="pageNum==1">
-						<li class="disabled"><span aria-hidden="true">&laquo;</span>
-						</li>
+						<td class="page"><span aria-hidden="true">&laquo;</span></td>
 					</s:if>
 
 					<s:else>
-						<li><a
+						<td class="page"><a
 							href="<s:url action="ItemListAction"><s:param name="pageNum" value="1"/><s:param name="item_category" value="%{item_category}"/></s:url>"
 							aria-label="1ページへ"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
+						</a>
+						<td>
 					</s:else>
 
 					<s:iterator value="list" status="st">
 						<s:if test="list.get(#st.index) == pageNum">
-							<li class="active"><a><s:property
-										value="list.get(#st.index)" /></a></li>
+							<td class="page"><a><s:property
+										value="list.get(#st.index)" /></a></td>
 						</s:if>
 						<s:else>
-							<li><a
+							<td><a
 								href="<s:url action="ItemListAction"><s:param name="pageNum" value="%{list.get(#st.index)}"/><s:param name="item_category" value="%{item_category}"/></s:url>"><s:property
-										value="list.get(#st.index)" /></a></li>
+										value="list.get(#st.index)" /></a></td>
 						</s:else>
 					</s:iterator>
 
 					<s:if test="pageNum==maxPage">
-						<li class="disabled"><span aria-hidden="true">&raquo;</span>
-						</li>
+						<td class="page"><span aria-hidden="true">&raquo;</span></td>
 					</s:if>
 					<s:else>
-						<li><a
+						<td><a
 							href="<s:url action="ListAction"><s:param name="pageNum" value="%{maxPage}"/><s:param name="item_category" value="%{item_category}"/></s:url>"
 							aria-label="1ページへ"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
+						</a></td>
 					</s:else>
-				</ul>
-			</nav>
+				</tr>
+			</table>
 		</div>
+		<br> <br>
 
 		<div id="footer">
 			<footer style="text-align: center;">

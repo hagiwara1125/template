@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 import com.internousdev.template.util.DBConnector;
 
+
+
 /**
  * カート内の商品削除に関するDAOクラス
  * @author HINAKO HAGIWARA
@@ -20,7 +22,9 @@ public class CartDeleteDAO {
 	 * @author HINAKO HAGIWARA
 	 * @since 2017/10/23
 	 * @version 1.0
-	 *
+	 * @param user_id ユーザーID
+	 * @param cart_id カートID
+	 * @return delCount 削除回数
 	 */
 
 	public int delete(int user_id, int cart_id) {
